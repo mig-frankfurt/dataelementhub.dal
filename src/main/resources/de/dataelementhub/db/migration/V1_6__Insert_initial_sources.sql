@@ -1,0 +1,1 @@
+INSERT INTO source (name, prefix, base_url, type) VALUES ('local', 'local', 'local', 'DATAELEMENTHUB')
