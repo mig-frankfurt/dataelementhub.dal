@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] - UNRELEASED
 ### Changed
 - user_namespace_grants is now user_namespace_access
-- grant_type is now access_type
+- grant_type is now access_level_type
 
 ## [1.0.0] - 2021-09-24
 ### Added
