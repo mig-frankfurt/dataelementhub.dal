@@ -1,4 +1,4 @@
-CREATE TYPE access_type AS ENUM (
+CREATE TYPE access_level_type AS ENUM (
     'READ',
     'WRITE',
     'ADMIN');
@@ -7,7 +7,7 @@ CREATE TABLE user_namespace_access
 (
     user_id      INTEGER    NOT NULL,
     namespace_id INTEGER    NOT NULL,
-    "access_type" access_type NULL,
+    access_level access_level_type NULL,
     CONSTRAINT user_namespace_access_unique UNIQUE (user_id, namespace_id)
 );
 
@@ -19,8 +19,8 @@ ALTER TABLE user_namespace_access
 ALTER TABLE user_namespace_access
     ADD CONSTRAINT user_namespace_access_user_fkey FOREIGN KEY (user_id) REFERENCES dehub_user (id) ON DELETE CASCADE;
 
-INSERT INTO user_namespace_access (user_id, namespace_id, access_type)
-SELECT user_id, namespace_id, grant_type::TEXT::access_type from user_namespace_grants;
+INSERT INTO user_namespace_access (user_id, namespace_id, access_level)
+SELECT user_id, namespace_id, grant_type::TEXT::access_level_type from user_namespace_grants;
 
 drop table user_namespace_grants;
 drop type grant_type;
