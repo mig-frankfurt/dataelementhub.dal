@@ -26,7 +26,7 @@ import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
-import de.dataelementhub.dal.jooq.tables.UserNamespaceGrants;
+import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
@@ -262,9 +262,9 @@ public class Tables {
     public static final Staging STAGING = Staging.STAGING;
 
     /**
-     * The table <code>public.user_namespace_grants</code>.
+     * The table <code>public.user_namespace_access</code>.
      */
-    public static final UserNamespaceGrants USER_NAMESPACE_GRANTS = UserNamespaceGrants.USER_NAMESPACE_GRANTS;
+    public static final UserNamespaceAccess USER_NAMESPACE_ACCESS = UserNamespaceAccess.USER_NAMESPACE_ACCESS;
 
     /**
      * The table <code>public.user_source_credentials</code>.
