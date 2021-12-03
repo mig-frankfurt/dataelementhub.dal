@@ -26,7 +26,7 @@ import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
-import de.dataelementhub.dal.jooq.tables.UserNamespaceGrants;
+import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
@@ -53,7 +53,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -874939376;
+    private static final long serialVersionUID = 418960452;
 
     /**
      * The reference instance of <code>public</code>
@@ -276,9 +276,9 @@ public class Public extends SchemaImpl {
     public final Staging STAGING = Staging.STAGING;
 
     /**
-     * The table <code>public.user_namespace_grants</code>.
+     * The table <code>public.user_namespace_access</code>.
      */
-    public final UserNamespaceGrants USER_NAMESPACE_GRANTS = UserNamespaceGrants.USER_NAMESPACE_GRANTS;
+    public final UserNamespaceAccess USER_NAMESPACE_ACCESS = UserNamespaceAccess.USER_NAMESPACE_ACCESS;
 
     /**
      * The table <code>public.user_source_credentials</code>.
@@ -343,7 +343,7 @@ public class Public extends SchemaImpl {
             Slot.SLOT,
             Source.SOURCE,
             Staging.STAGING,
-            UserNamespaceGrants.USER_NAMESPACE_GRANTS,
+            UserNamespaceAccess.USER_NAMESPACE_ACCESS,
             UserSourceCredentials.USER_SOURCE_CREDENTIALS,
             ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE);
     }
