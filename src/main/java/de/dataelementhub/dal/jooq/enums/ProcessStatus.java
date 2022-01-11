@@ -21,7 +21,7 @@ public enum ProcessStatus implements EnumType {
 
     INTERRUPTED("INTERRUPTED"),
 
-    DONE("DONE");
+    COMPLETED("COMPLETED");
 
     private final String literal;
 

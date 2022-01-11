@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import extends TableImpl<ImportRecord> {
 
-    private static final long serialVersionUID = -100872525;
+    private static final long serialVersionUID = 1736929810;
 
     /**
      * The reference instance of <code>public.import</code>
@@ -86,9 +86,9 @@ public class Import extends TableImpl<ImportRecord> {
     public final TableField<ImportRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID, this, "");
 
     /**
-     * The column <code>public.import.converted_at</code>.
+     * The column <code>public.import.number_of_elements</code>.
      */
-    public final TableField<ImportRecord, LocalDateTime> CONVERTED_AT = createField(DSL.name("converted_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<ImportRecord, Integer> NUMBER_OF_ELEMENTS = createField(DSL.name("number_of_elements"), org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.import.status</code>.
@@ -179,7 +179,7 @@ public class Import extends TableImpl<ImportRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, UUID, LocalDateTime, ProcessStatus> fieldsRow() {
+    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, UUID, Integer, ProcessStatus> fieldsRow() {
         return (Row9) super.fieldsRow();
     }
 }
