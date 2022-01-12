@@ -23,7 +23,7 @@ import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
-import de.dataelementhub.dal.jooq.tables.UserNamespaceGrants;
+import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
 import de.dataelementhub.dal.jooq.tables.records.ConceptElementAssociationsRecord;
@@ -45,7 +45,7 @@ import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 import de.dataelementhub.dal.jooq.tables.records.SlotRecord;
 import de.dataelementhub.dal.jooq.tables.records.SourceRecord;
 import de.dataelementhub.dal.jooq.tables.records.StagingRecord;
-import de.dataelementhub.dal.jooq.tables.records.UserNamespaceGrantsRecord;
+import de.dataelementhub.dal.jooq.tables.records.UserNamespaceAccessRecord;
 import de.dataelementhub.dal.jooq.tables.records.UserSourceCredentialsRecord;
 import de.dataelementhub.dal.jooq.tables.records.ValueDomainPermissibleValueRecord;
 
@@ -107,7 +107,7 @@ public class Keys {
     public static final UniqueKey<SourceRecord> SOURCE_PREFIX_KEY = UniqueKeys0.SOURCE_PREFIX_KEY;
     public static final UniqueKey<SourceRecord> SOURCE_BASE_URL_KEY = UniqueKeys0.SOURCE_BASE_URL_KEY;
     public static final UniqueKey<StagingRecord> STAGING_PKEY = UniqueKeys0.STAGING_PKEY;
-    public static final UniqueKey<UserNamespaceGrantsRecord> USER_NAMESPACE_GRANTS_UNIQUE = UniqueKeys0.USER_NAMESPACE_GRANTS_UNIQUE;
+    public static final UniqueKey<UserNamespaceAccessRecord> USER_NAMESPACE_ACCESS_UNIQUE = UniqueKeys0.USER_NAMESPACE_ACCESS_UNIQUE;
     public static final UniqueKey<UserSourceCredentialsRecord> USER_SOURCE_CREDENTIALS_PKEY = UniqueKeys0.USER_SOURCE_CREDENTIALS_PKEY;
     public static final UniqueKey<UserSourceCredentialsRecord> CREDENTIALS_UNIQUE = UniqueKeys0.CREDENTIALS_UNIQUE;
 
@@ -134,6 +134,9 @@ public class Keys {
     public static final ForeignKey<ScopedIdentifierHierarchyRecord, ScopedIdentifierRecord> SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY = ForeignKeys0.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY;
     public static final ForeignKey<SlotRecord, ScopedIdentifierRecord> SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY = ForeignKeys0.SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY;
     public static final ForeignKey<StagingRecord, ImportRecord> STAGING__STAGING_IMPORT_FKEY = ForeignKeys0.STAGING__STAGING_IMPORT_FKEY;
+    public static final ForeignKey<StagingRecord, ElementRecord> STAGING__STAGING_ELEMENT_FKEY = ForeignKeys0.STAGING__STAGING_ELEMENT_FKEY;
+    public static final ForeignKey<UserNamespaceAccessRecord, DehubUserRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY = ForeignKeys0.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY;
+    public static final ForeignKey<UserNamespaceAccessRecord, ElementRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY = ForeignKeys0.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY;
     public static final ForeignKey<UserNamespaceGrantsRecord, DehubUserRecord> USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_USER_FKEY = ForeignKeys0.USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_USER_FKEY;
     public static final ForeignKey<UserNamespaceGrantsRecord, ElementRecord> USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_NAMESPACE_FKEY = ForeignKeys0.USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_NAMESPACE_FKEY;
     public static final ForeignKey<UserSourceCredentialsRecord, DehubUserRecord> USER_SOURCE_CREDENTIALS__USER_ID_FKEY = ForeignKeys0.USER_SOURCE_CREDENTIALS__USER_ID_FKEY;
@@ -184,7 +187,7 @@ public class Keys {
         public static final UniqueKey<SourceRecord> SOURCE_PREFIX_KEY = Internal.createUniqueKey(Source.SOURCE, "source_prefix_key", new TableField[] { Source.SOURCE.PREFIX }, true);
         public static final UniqueKey<SourceRecord> SOURCE_BASE_URL_KEY = Internal.createUniqueKey(Source.SOURCE, "source_base_url_key", new TableField[] { Source.SOURCE.BASE_URL }, true);
         public static final UniqueKey<StagingRecord> STAGING_PKEY = Internal.createUniqueKey(Staging.STAGING, "staging_pkey", new TableField[] { Staging.STAGING.ID }, true);
-        public static final UniqueKey<UserNamespaceGrantsRecord> USER_NAMESPACE_GRANTS_UNIQUE = Internal.createUniqueKey(UserNamespaceGrants.USER_NAMESPACE_GRANTS, "user_namespace_grants_unique", new TableField[] { UserNamespaceGrants.USER_NAMESPACE_GRANTS.USER_ID, UserNamespaceGrants.USER_NAMESPACE_GRANTS.NAMESPACE_ID, UserNamespaceGrants.USER_NAMESPACE_GRANTS.GRANT_TYPE }, true);
+        public static final UniqueKey<UserNamespaceAccessRecord> USER_NAMESPACE_ACCESS_UNIQUE = Internal.createUniqueKey(UserNamespaceAccess.USER_NAMESPACE_ACCESS, "user_namespace_access_unique", new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.USER_ID, UserNamespaceAccess.USER_NAMESPACE_ACCESS.NAMESPACE_ID }, true);
         public static final UniqueKey<UserSourceCredentialsRecord> USER_SOURCE_CREDENTIALS_PKEY = Internal.createUniqueKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, "user_source_credentials_pkey", new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID, UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, true);
         public static final UniqueKey<UserSourceCredentialsRecord> CREDENTIALS_UNIQUE = Internal.createUniqueKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, "credentials_unique", new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID, UserSourceCredentials.USER_SOURCE_CREDENTIALS.CREDENTIAL, UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, true);
     }
@@ -211,6 +214,9 @@ public class Keys {
         public static final ForeignKey<StagingRecord, ImportRecord> STAGING__STAGING_IMPORT_FKEY = Internal.createForeignKey(Keys.IMPORT_PKEY, Staging.STAGING, "staging_import_fkey", new TableField[] { Staging.STAGING.IMPORT_ID }, true);
         public static final ForeignKey<UserNamespaceGrantsRecord, DehubUserRecord> USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_USER_FKEY = Internal.createForeignKey(Keys.DEHUB_USER_PKEY, UserNamespaceGrants.USER_NAMESPACE_GRANTS, "user_namespace_grants_user_fkey", new TableField[] { UserNamespaceGrants.USER_NAMESPACE_GRANTS.USER_ID }, true);
         public static final ForeignKey<UserNamespaceGrantsRecord, ElementRecord> USER_NAMESPACE_GRANTS__USER_NAMESPACE_GRANTS_NAMESPACE_FKEY = Internal.createForeignKey(Keys.ELEMENT_PKEY, UserNamespaceGrants.USER_NAMESPACE_GRANTS, "user_namespace_grants_namespace_fkey", new TableField[] { UserNamespaceGrants.USER_NAMESPACE_GRANTS.NAMESPACE_ID }, true);
+        public static final ForeignKey<StagingRecord, ElementRecord> STAGING__STAGING_ELEMENT_FKEY = Internal.createForeignKey(Keys.ELEMENT_PKEY, Staging.STAGING, "staging_element_fkey", new TableField[] { Staging.STAGING.ELEMENT_ID }, true);
+        public static final ForeignKey<UserNamespaceAccessRecord, DehubUserRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY = Internal.createForeignKey(Keys.DEHUB_USER_PKEY, UserNamespaceAccess.USER_NAMESPACE_ACCESS, "user_namespace_access_user_fkey", new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.USER_ID }, true);
+        public static final ForeignKey<UserNamespaceAccessRecord, ElementRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY = Internal.createForeignKey(Keys.ELEMENT_PKEY, UserNamespaceAccess.USER_NAMESPACE_ACCESS, "user_namespace_access_namespace_fkey", new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.NAMESPACE_ID }, true);
         public static final ForeignKey<UserSourceCredentialsRecord, DehubUserRecord> USER_SOURCE_CREDENTIALS__USER_ID_FKEY = Internal.createForeignKey(Keys.DEHUB_USER_PKEY, UserSourceCredentials.USER_SOURCE_CREDENTIALS, "user_id_fkey", new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID }, true);
         public static final ForeignKey<UserSourceCredentialsRecord, SourceRecord> USER_SOURCE_CREDENTIALS__SOURCE_ID_FKEY = Internal.createForeignKey(Keys.SOURCE_PKEY, UserSourceCredentials.USER_SOURCE_CREDENTIALS, "source_id_fkey", new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, true);
         public static final ForeignKey<ValueDomainPermissibleValueRecord, ScopedIdentifierRecord> VALUE_DOMAIN_PERMISSIBLE_VALUE__VALUE_DOMAIN_PERMISSIBLE_VALU_VALUE_DOMAIN_SCOPED_IDENTIFI_FKEY = Internal.createForeignKey(Keys.SCOPED_IDENTIFIER_PKEY, ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE, "value_domain_permissible_valu_value_domain_scoped_identifi_fkey", new TableField[] { ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE.VALUE_DOMAIN_SCOPED_IDENTIFIER_ID }, true);

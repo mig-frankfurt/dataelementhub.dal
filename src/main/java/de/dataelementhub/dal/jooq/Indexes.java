@@ -11,7 +11,7 @@ import de.dataelementhub.dal.jooq.tables.PermissibleCode;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
-import de.dataelementhub.dal.jooq.tables.UserNamespaceGrants;
+import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -50,8 +50,8 @@ public class Indexes {
     public static final Index SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_IDX = Indexes0.SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_IDX;
     public static final Index SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_IDX = Indexes0.SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_IDX;
     public static final Index SLOT_SCOPED_IDENTIFIER_ID_IDX = Indexes0.SLOT_SCOPED_IDENTIFIER_ID_IDX;
-    public static final Index USER_NAMESPACE_GRANTS_NAMESPACE_ID_IDX = Indexes0.USER_NAMESPACE_GRANTS_NAMESPACE_ID_IDX;
-    public static final Index USER_NAMESPACE_GRANTS_USER_ID_IDX = Indexes0.USER_NAMESPACE_GRANTS_USER_ID_IDX;
+    public static final Index USER_NAMESPACE_ACCESS_NAMESPACE_ID_IDX = Indexes0.USER_NAMESPACE_ACCESS_NAMESPACE_ID_IDX;
+    public static final Index USER_NAMESPACE_ACCESS_USER_ID_IDX = Indexes0.USER_NAMESPACE_ACCESS_USER_ID_IDX;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -80,7 +80,7 @@ public class Indexes {
         public static Index SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_IDX = Internal.createIndex("scoped_identifier_hierarchy_sub_id_idx", ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY, new OrderField[] { ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUB_ID }, false);
         public static Index SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_IDX = Internal.createIndex("scoped_identifier_hierarchy_super_id_idx", ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY, new OrderField[] { ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUPER_ID }, false);
         public static Index SLOT_SCOPED_IDENTIFIER_ID_IDX = Internal.createIndex("slot_scoped_identifier_id_idx", Slot.SLOT, new OrderField[] { Slot.SLOT.SCOPED_IDENTIFIER_ID }, false);
-        public static Index USER_NAMESPACE_GRANTS_NAMESPACE_ID_IDX = Internal.createIndex("user_namespace_grants_namespace_id_idx", UserNamespaceGrants.USER_NAMESPACE_GRANTS, new OrderField[] { UserNamespaceGrants.USER_NAMESPACE_GRANTS.NAMESPACE_ID }, false);
-        public static Index USER_NAMESPACE_GRANTS_USER_ID_IDX = Internal.createIndex("user_namespace_grants_user_id_idx", UserNamespaceGrants.USER_NAMESPACE_GRANTS, new OrderField[] { UserNamespaceGrants.USER_NAMESPACE_GRANTS.USER_ID }, false);
+        public static Index USER_NAMESPACE_ACCESS_NAMESPACE_ID_IDX = Internal.createIndex("user_namespace_access_namespace_id_idx", UserNamespaceAccess.USER_NAMESPACE_ACCESS, new OrderField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.NAMESPACE_ID }, false);
+        public static Index USER_NAMESPACE_ACCESS_USER_ID_IDX = Internal.createIndex("user_namespace_access_user_id_idx", UserNamespaceAccess.USER_NAMESPACE_ACCESS, new OrderField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.USER_ID }, false);
     }
 }
