@@ -1,6 +1,6 @@
 CREATE TYPE process_status AS ENUM (
     'PROCESSING',
-    'INTERRUPTED',
+    'ABORTED',
     'COMPLETED');
 
 ALTER TABLE staging ADD COLUMN converted_at timestamp;

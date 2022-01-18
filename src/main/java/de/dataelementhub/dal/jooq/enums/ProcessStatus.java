@@ -19,7 +19,7 @@ public enum ProcessStatus implements EnumType {
 
     PROCESSING("PROCESSING"),
 
-    INTERRUPTED("INTERRUPTED"),
+    ABORTED("ABORTED"),
 
     COMPLETED("COMPLETED");
 
