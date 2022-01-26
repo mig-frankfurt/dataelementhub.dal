@@ -4,6 +4,7 @@
 package de.dataelementhub.dal.jooq.tables.daos;
 
 
+import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 import de.dataelementhub.dal.jooq.tables.Import;
 import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
 
@@ -146,16 +147,30 @@ public class ImportDao extends DAOImpl<ImportRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>converted_at BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>number_of_elements BETWEEN lowerInclusive AND upperInclusive</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchRangeOfConvertedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
-        return fetchRange(Import.IMPORT.CONVERTED_AT, lowerInclusive, upperInclusive);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchRangeOfNumberOfElements(Integer lowerInclusive, Integer upperInclusive) {
+        return fetchRange(Import.IMPORT.NUMBER_OF_ELEMENTS, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>converted_at IN (values)</code>
+     * Fetch records that have <code>number_of_elements IN (values)</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchByConvertedAt(LocalDateTime... values) {
-        return fetch(Import.IMPORT.CONVERTED_AT, values);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchByNumberOfElements(Integer... values) {
+        return fetch(Import.IMPORT.NUMBER_OF_ELEMENTS, values);
+    }
+
+    /**
+     * Fetch records that have <code>status BETWEEN lowerInclusive AND upperInclusive</code>
+     */
+    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchRangeOfStatus(ProcessStatus lowerInclusive, ProcessStatus upperInclusive) {
+        return fetchRange(Import.IMPORT.STATUS, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>status IN (values)</code>
+     */
+    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchByStatus(ProcessStatus... values) {
+        return fetch(Import.IMPORT.STATUS, values);
     }
 }

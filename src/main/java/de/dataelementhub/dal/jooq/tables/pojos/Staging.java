@@ -7,6 +7,7 @@ package de.dataelementhub.dal.jooq.tables.pojos;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 /**
@@ -15,15 +16,18 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Staging implements Serializable {
 
-    private static final long serialVersionUID = -1637455636;
+    private static final long serialVersionUID = 1612093565;
 
-    private Integer     id;
-    private String      data;
-    private ElementType elementType;
-    private String      designation;
-    private Integer     parentId;
-    private Integer     importId;
-    private Integer     elementId;
+    private Integer       id;
+    private String        data;
+    private ElementType   elementType;
+    private String        designation;
+    private Integer       importId;
+    private Integer       scopedIdentifierId;
+    private LocalDateTime convertedAt;
+    private Integer       convertedBy;
+    private String        stagedElementId;
+    private String        members;
 
     public Staging() {}
 
@@ -32,27 +36,36 @@ public class Staging implements Serializable {
         this.data = value.data;
         this.elementType = value.elementType;
         this.designation = value.designation;
-        this.parentId = value.parentId;
         this.importId = value.importId;
-        this.elementId = value.elementId;
+        this.scopedIdentifierId = value.scopedIdentifierId;
+        this.convertedAt = value.convertedAt;
+        this.convertedBy = value.convertedBy;
+        this.stagedElementId = value.stagedElementId;
+        this.members = value.members;
     }
 
     public Staging(
-        Integer     id,
-        String      data,
-        ElementType elementType,
-        String      designation,
-        Integer     parentId,
-        Integer     importId,
-        Integer     elementId
+        Integer       id,
+        String        data,
+        ElementType   elementType,
+        String        designation,
+        Integer       importId,
+        Integer       scopedIdentifierId,
+        LocalDateTime convertedAt,
+        Integer       convertedBy,
+        String        stagedElementId,
+        String        members
     ) {
         this.id = id;
         this.data = data;
         this.elementType = elementType;
         this.designation = designation;
-        this.parentId = parentId;
         this.importId = importId;
-        this.elementId = elementId;
+        this.scopedIdentifierId = scopedIdentifierId;
+        this.convertedAt = convertedAt;
+        this.convertedBy = convertedBy;
+        this.stagedElementId = stagedElementId;
+        this.members = members;
     }
 
     public Integer getId() {
@@ -87,14 +100,6 @@ public class Staging implements Serializable {
         this.designation = designation;
     }
 
-    public Integer getParentId() {
-        return this.parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
     public Integer getImportId() {
         return this.importId;
     }
@@ -103,12 +108,44 @@ public class Staging implements Serializable {
         this.importId = importId;
     }
 
-    public Integer getElementId() {
-        return this.elementId;
+    public Integer getScopedIdentifierId() {
+        return this.scopedIdentifierId;
     }
 
-    public void setElementId(Integer elementId) {
-        this.elementId = elementId;
+    public void setScopedIdentifierId(Integer scopedIdentifierId) {
+        this.scopedIdentifierId = scopedIdentifierId;
+    }
+
+    public LocalDateTime getConvertedAt() {
+        return this.convertedAt;
+    }
+
+    public void setConvertedAt(LocalDateTime convertedAt) {
+        this.convertedAt = convertedAt;
+    }
+
+    public Integer getConvertedBy() {
+        return this.convertedBy;
+    }
+
+    public void setConvertedBy(Integer convertedBy) {
+        this.convertedBy = convertedBy;
+    }
+
+    public String getStagedElementId() {
+        return this.stagedElementId;
+    }
+
+    public void setStagedElementId(String stagedElementId) {
+        this.stagedElementId = stagedElementId;
+    }
+
+    public String getMembers() {
+        return this.members;
+    }
+
+    public void setMembers(String members) {
+        this.members = members;
     }
 
     @Override
@@ -119,9 +156,12 @@ public class Staging implements Serializable {
         sb.append(", ").append(data);
         sb.append(", ").append(elementType);
         sb.append(", ").append(designation);
-        sb.append(", ").append(parentId);
         sb.append(", ").append(importId);
-        sb.append(", ").append(elementId);
+        sb.append(", ").append(scopedIdentifierId);
+        sb.append(", ").append(convertedAt);
+        sb.append(", ").append(convertedBy);
+        sb.append(", ").append(stagedElementId);
+        sb.append(", ").append(members);
 
         sb.append(")");
         return sb.toString();
