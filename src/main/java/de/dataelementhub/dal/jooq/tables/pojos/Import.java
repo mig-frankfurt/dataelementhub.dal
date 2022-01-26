@@ -4,6 +4,8 @@
 package de.dataelementhub.dal.jooq.tables.pojos;
 
 
+import de.dataelementhub.dal.jooq.enums.ProcessStatus;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,7 +17,7 @@ import java.util.UUID;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import implements Serializable {
 
-    private static final long serialVersionUID = -243884518;
+    private static final long serialVersionUID = 1610586787;
 
     private Integer       id;
     private LocalDateTime createdAt;
@@ -24,7 +26,8 @@ public class Import implements Serializable {
     private String        source;
     private String        label;
     private UUID          uuid;
-    private LocalDateTime convertedAt;
+    private Integer       numberOfElements;
+    private ProcessStatus status;
 
     public Import() {}
 
@@ -36,7 +39,8 @@ public class Import implements Serializable {
         this.source = value.source;
         this.label = value.label;
         this.uuid = value.uuid;
-        this.convertedAt = value.convertedAt;
+        this.numberOfElements = value.numberOfElements;
+        this.status = value.status;
     }
 
     public Import(
@@ -47,7 +51,8 @@ public class Import implements Serializable {
         String        source,
         String        label,
         UUID          uuid,
-        LocalDateTime convertedAt
+        Integer       numberOfElements,
+        ProcessStatus status
     ) {
         this.id = id;
         this.createdAt = createdAt;
@@ -56,7 +61,8 @@ public class Import implements Serializable {
         this.source = source;
         this.label = label;
         this.uuid = uuid;
-        this.convertedAt = convertedAt;
+        this.numberOfElements = numberOfElements;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -115,12 +121,20 @@ public class Import implements Serializable {
         this.uuid = uuid;
     }
 
-    public LocalDateTime getConvertedAt() {
-        return this.convertedAt;
+    public Integer getNumberOfElements() {
+        return this.numberOfElements;
     }
 
-    public void setConvertedAt(LocalDateTime convertedAt) {
-        this.convertedAt = convertedAt;
+    public void setNumberOfElements(Integer numberOfElements) {
+        this.numberOfElements = numberOfElements;
+    }
+
+    public ProcessStatus getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(ProcessStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -134,7 +148,8 @@ public class Import implements Serializable {
         sb.append(", ").append(source);
         sb.append(", ").append(label);
         sb.append(", ").append(uuid);
-        sb.append(", ").append(convertedAt);
+        sb.append(", ").append(numberOfElements);
+        sb.append(", ").append(status);
 
         sb.append(")");
         return sb.toString();

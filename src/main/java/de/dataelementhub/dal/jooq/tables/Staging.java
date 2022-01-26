@@ -9,6 +9,7 @@ import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.tables.records.StagingRecord;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row10;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -33,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Staging extends TableImpl<StagingRecord> {
 
-    private static final long serialVersionUID = 117277143;
+    private static final long serialVersionUID = 1022323697;
 
     /**
      * The reference instance of <code>public.staging</code>
@@ -69,19 +70,34 @@ public class Staging extends TableImpl<StagingRecord> {
     public final TableField<StagingRecord, String> DESIGNATION = createField(DSL.name("designation"), org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.staging.parent_id</code>.
-     */
-    public final TableField<StagingRecord, Integer> PARENT_ID = createField(DSL.name("parent_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
-
-    /**
      * The column <code>public.staging.import_id</code>.
      */
     public final TableField<StagingRecord, Integer> IMPORT_ID = createField(DSL.name("import_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.staging.element_id</code>.
+     * The column <code>public.staging.scoped_identifier_id</code>.
      */
-    public final TableField<StagingRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<StagingRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.staging.converted_at</code>.
+     */
+    public final TableField<StagingRecord, LocalDateTime> CONVERTED_AT = createField(DSL.name("converted_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
+     * The column <code>public.staging.converted_by</code>.
+     */
+    public final TableField<StagingRecord, Integer> CONVERTED_BY = createField(DSL.name("converted_by"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.staging.staged_element_id</code>.
+     */
+    public final TableField<StagingRecord, String> STAGED_ELEMENT_ID = createField(DSL.name("staged_element_id"), org.jooq.impl.SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>public.staging.members</code>.
+     */
+    public final TableField<StagingRecord, String> MEMBERS = createField(DSL.name("members"), org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
      * Create a <code>public.staging</code> table reference
@@ -138,19 +154,11 @@ public class Staging extends TableImpl<StagingRecord> {
 
     @Override
     public List<ForeignKey<StagingRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<StagingRecord, ?>>asList(Keys.STAGING__STAGING_PARENT_ID_FKEY, Keys.STAGING__STAGING_IMPORT_FKEY, Keys.STAGING__STAGING_ELEMENT_FKEY);
-    }
-
-    public Staging staging() {
-        return new Staging(this, Keys.STAGING__STAGING_PARENT_ID_FKEY);
+        return Arrays.<ForeignKey<StagingRecord, ?>>asList(Keys.STAGING__STAGING_IMPORT_FKEY);
     }
 
     public Import import_() {
         return new Import(this, Keys.STAGING__STAGING_IMPORT_FKEY);
-    }
-
-    public Element element() {
-        return new Element(this, Keys.STAGING__STAGING_ELEMENT_FKEY);
     }
 
     @Override
@@ -180,11 +188,11 @@ public class Staging extends TableImpl<StagingRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, String, ElementType, String, Integer, Integer, Integer> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row10<Integer, String, ElementType, String, Integer, Integer, LocalDateTime, Integer, String, String> fieldsRow() {
+        return (Row10) super.fieldsRow();
     }
 }

@@ -6,6 +6,7 @@ package de.dataelementhub.dal.jooq.tables;
 
 import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
+import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row8;
+import org.jooq.Row9;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import extends TableImpl<ImportRecord> {
 
-    private static final long serialVersionUID = 1699819366;
+    private static final long serialVersionUID = 1736929810;
 
     /**
      * The reference instance of <code>public.import</code>
@@ -85,9 +86,14 @@ public class Import extends TableImpl<ImportRecord> {
     public final TableField<ImportRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID, this, "");
 
     /**
-     * The column <code>public.import.converted_at</code>.
+     * The column <code>public.import.number_of_elements</code>.
      */
-    public final TableField<ImportRecord, LocalDateTime> CONVERTED_AT = createField(DSL.name("converted_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<ImportRecord, Integer> NUMBER_OF_ELEMENTS = createField(DSL.name("number_of_elements"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.import.status</code>.
+     */
+    public final TableField<ImportRecord, ProcessStatus> STATUS = createField(DSL.name("status"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ProcessStatus.class), this, "");
 
     /**
      * Create a <code>public.import</code> table reference
@@ -169,11 +175,11 @@ public class Import extends TableImpl<ImportRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row9 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Integer, LocalDateTime, Integer, Integer, String, String, UUID, LocalDateTime> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, UUID, Integer, ProcessStatus> fieldsRow() {
+        return (Row9) super.fieldsRow();
     }
 }
