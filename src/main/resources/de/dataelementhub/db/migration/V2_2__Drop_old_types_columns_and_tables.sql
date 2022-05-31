@@ -1,3 +1,6 @@
+drop view identified_element;
+drop view listview_element;
+
 drop table config;
 drop table permissible_code;
 
