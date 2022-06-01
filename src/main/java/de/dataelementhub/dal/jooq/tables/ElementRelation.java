@@ -24,6 +24,7 @@ import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ElementRelation extends TableImpl<ElementRelationRecord> {
 
-    private static final long serialVersionUID = 615341360;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.element_relation</code>
@@ -51,43 +52,44 @@ public class ElementRelation extends TableImpl<ElementRelationRecord> {
     /**
      * The column <code>public.element_relation.left_urn</code>.
      */
-    public final TableField<ElementRelationRecord, String> LEFT_URN = createField(DSL.name("left_urn"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ElementRelationRecord, String> LEFT_URN = createField(DSL.name("left_urn"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.element_relation.left_source</code>.
      */
-    public final TableField<ElementRelationRecord, Integer> LEFT_SOURCE = createField(DSL.name("left_source"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ElementRelationRecord, Integer> LEFT_SOURCE = createField(DSL.name("left_source"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.element_relation.right_urn</code>.
      */
-    public final TableField<ElementRelationRecord, String> RIGHT_URN = createField(DSL.name("right_urn"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ElementRelationRecord, String> RIGHT_URN = createField(DSL.name("right_urn"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.element_relation.right_source</code>.
      */
-    public final TableField<ElementRelationRecord, Integer> RIGHT_SOURCE = createField(DSL.name("right_source"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ElementRelationRecord, Integer> RIGHT_SOURCE = createField(DSL.name("right_source"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.element_relation.relation</code>.
      */
-    public final TableField<ElementRelationRecord, RelationType> RELATION = createField(DSL.name("relation"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.RelationType.class), this, "");
+    public final TableField<ElementRelationRecord, RelationType> RELATION = createField(DSL.name("relation"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.RelationType.class), this, "");
 
     /**
      * The column <code>public.element_relation.created_by</code>.
      */
-    public final TableField<ElementRelationRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ElementRelationRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.element_relation.created_at</code>.
      */
-    public final TableField<ElementRelationRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false).defaultValue(org.jooq.impl.DSL.field("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<ElementRelationRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
-    /**
-     * Create a <code>public.element_relation</code> table reference
-     */
-    public ElementRelation() {
-        this(DSL.name("element_relation"), null);
+    private ElementRelation(Name alias, Table<ElementRelationRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private ElementRelation(Name alias, Table<ElementRelationRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -104,12 +106,11 @@ public class ElementRelation extends TableImpl<ElementRelationRecord> {
         this(alias, ELEMENT_RELATION);
     }
 
-    private ElementRelation(Name alias, Table<ElementRelationRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private ElementRelation(Name alias, Table<ElementRelationRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.element_relation</code> table reference
+     */
+    public ElementRelation() {
+        this(DSL.name("element_relation"), null);
     }
 
     public <O extends Record> ElementRelation(Table<O> child, ForeignKey<O, ElementRelationRecord> key) {
@@ -118,7 +119,7 @@ public class ElementRelation extends TableImpl<ElementRelationRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
@@ -127,21 +128,33 @@ public class ElementRelation extends TableImpl<ElementRelationRecord> {
     }
 
     @Override
-    public List<UniqueKey<ElementRelationRecord>> getKeys() {
-        return Arrays.<UniqueKey<ElementRelationRecord>>asList(Keys.ELEMENT_RELATION_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<ElementRelationRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<ElementRelationRecord, ?>>asList(Keys.ELEMENT_RELATION__LEFT_SOURCE_ID_FKEY, Keys.ELEMENT_RELATION__RIGHT_SOURCE_ID_FKEY);
+        return Arrays.asList(Keys.ELEMENT_RELATION__LEFT_SOURCE_ID_FKEY, Keys.ELEMENT_RELATION__RIGHT_SOURCE_ID_FKEY);
     }
 
+    private transient Source _leftSourceIdFkey;
+    private transient Source _rightSourceIdFkey;
+
+    /**
+     * Get the implicit join path to the <code>public.source</code> table, via
+     * the <code>left_source_id_fkey</code> key.
+     */
     public Source leftSourceIdFkey() {
-        return new Source(this, Keys.ELEMENT_RELATION__LEFT_SOURCE_ID_FKEY);
+        if (_leftSourceIdFkey == null)
+            _leftSourceIdFkey = new Source(this, Keys.ELEMENT_RELATION__LEFT_SOURCE_ID_FKEY);
+
+        return _leftSourceIdFkey;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.source</code> table, via
+     * the <code>right_source_id_fkey</code> key.
+     */
     public Source rightSourceIdFkey() {
-        return new Source(this, Keys.ELEMENT_RELATION__RIGHT_SOURCE_ID_FKEY);
+        if (_rightSourceIdFkey == null)
+            _rightSourceIdFkey = new Source(this, Keys.ELEMENT_RELATION__RIGHT_SOURCE_ID_FKEY);
+
+        return _rightSourceIdFkey;
     }
 
     @Override

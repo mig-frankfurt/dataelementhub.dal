@@ -11,6 +11,7 @@ import org.jooq.Field;
 import org.jooq.Parameter;
 import org.jooq.impl.AbstractRoutine;
 import org.jooq.impl.Internal;
+import org.jooq.impl.SQLDataType;
 
 
 /**
@@ -19,23 +20,23 @@ import org.jooq.impl.Internal;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Getelementtype extends AbstractRoutine<ElementType> {
 
-    private static final long serialVersionUID = -738921982;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The parameter <code>public.getelementtype.RETURN_VALUE</code>.
      */
-    public static final Parameter<ElementType> RETURN_VALUE = Internal.createParameter("RETURN_VALUE", org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), false, false);
+    public static final Parameter<ElementType> RETURN_VALUE = Internal.createParameter("RETURN_VALUE", SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), false, false);
 
     /**
      * The parameter <code>public.getelementtype.id</code>.
      */
-    public static final Parameter<Integer> ID = Internal.createParameter("id", org.jooq.impl.SQLDataType.INTEGER, false, false);
+    public static final Parameter<Integer> ID = Internal.createParameter("id", SQLDataType.INTEGER, false, false);
 
     /**
      * Create a new routine call instance
      */
     public Getelementtype() {
-        super("getelementtype", Public.PUBLIC, org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class));
+        super("getelementtype", Public.PUBLIC, SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class));
 
         setReturnParameter(RETURN_VALUE);
         addInParameter(ID);
@@ -49,7 +50,8 @@ public class Getelementtype extends AbstractRoutine<ElementType> {
     }
 
     /**
-     * Set the <code>id</code> parameter to the function to be used with a {@link org.jooq.Select} statement
+     * Set the <code>id</code> parameter to the function to be used with a
+     * {@link org.jooq.Select} statement
      */
     public void setId(Field<Integer> field) {
         setField(ID, field);

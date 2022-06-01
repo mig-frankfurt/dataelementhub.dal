@@ -23,7 +23,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ImportRecord extends UpdatableRecordImpl<ImportRecord> implements Record9<Integer, LocalDateTime, Integer, Integer, String, String, UUID, Integer, ProcessStatus> {
 
-    private static final long serialVersionUID = 84441426;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.import.id</code>.
@@ -394,14 +394,33 @@ public class ImportRecord extends UpdatableRecordImpl<ImportRecord> implements R
     public ImportRecord(Integer id, LocalDateTime createdAt, Integer createdBy, Integer namespaceId, String source, String label, UUID uuid, Integer numberOfElements, ProcessStatus status) {
         super(Import.IMPORT);
 
-        set(0, id);
-        set(1, createdAt);
-        set(2, createdBy);
-        set(3, namespaceId);
-        set(4, source);
-        set(5, label);
-        set(6, uuid);
-        set(7, numberOfElements);
-        set(8, status);
+        setId(id);
+        setCreatedAt(createdAt);
+        setCreatedBy(createdBy);
+        setNamespaceId(namespaceId);
+        setSource(source);
+        setLabel(label);
+        setUuid(uuid);
+        setNumberOfElements(numberOfElements);
+        setStatus(status);
+    }
+
+    /**
+     * Create a detached, initialised ImportRecord
+     */
+    public ImportRecord(de.dataelementhub.dal.jooq.tables.pojos.Import value) {
+        super(Import.IMPORT);
+
+        if (value != null) {
+            setId(value.getId());
+            setCreatedAt(value.getCreatedAt());
+            setCreatedBy(value.getCreatedBy());
+            setNamespaceId(value.getNamespaceId());
+            setSource(value.getSource());
+            setLabel(value.getLabel());
+            setUuid(value.getUuid());
+            setNumberOfElements(value.getNumberOfElements());
+            setStatus(value.getStatus());
+        }
     }
 }

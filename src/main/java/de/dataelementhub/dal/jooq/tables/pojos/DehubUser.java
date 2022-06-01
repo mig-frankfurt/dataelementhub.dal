@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DehubUser implements Serializable {
 
-    private static final long serialVersionUID = 296023808;
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String  authId;
@@ -49,50 +49,86 @@ public class DehubUser implements Serializable {
         this.email = email;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.auth_id</code>.
+     */
     public String getAuthId() {
         return this.authId;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.auth_id</code>.
+     */
     public void setAuthId(String authId) {
         this.authId = authId;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.first_name</code>.
+     */
     public String getFirstName() {
         return this.firstName;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.first_name</code>.
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.last_name</code>.
+     */
     public String getLastName() {
         return this.lastName;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.last_name</code>.
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.user_name</code>.
+     */
     public String getUserName() {
         return this.userName;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.user_name</code>.
+     */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    /**
+     * Getter for <code>public.dehub_user.email</code>.
+     */
     public String getEmail() {
         return this.email;
     }
 
+    /**
+     * Setter for <code>public.dehub_user.email</code>.
+     */
     public void setEmail(String email) {
         this.email = email;
     }

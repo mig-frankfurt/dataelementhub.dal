@@ -8,6 +8,7 @@ import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.records.DehubUserRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -39,7 +40,8 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.ID, lowerInclusive, upperInclusive);
@@ -60,7 +62,15 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>auth_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchOptionalById(Integer value) {
+        return fetchOptional(DehubUser.DEHUB_USER.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>auth_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfAuthId(String lowerInclusive, String upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.AUTH_ID, lowerInclusive, upperInclusive);
@@ -81,7 +91,15 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>first_name BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>auth_id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchOptionalByAuthId(String value) {
+        return fetchOptional(DehubUser.DEHUB_USER.AUTH_ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>first_name BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfFirstName(String lowerInclusive, String upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.FIRST_NAME, lowerInclusive, upperInclusive);
@@ -95,7 +113,8 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>last_name BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>last_name BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfLastName(String lowerInclusive, String upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.LAST_NAME, lowerInclusive, upperInclusive);
@@ -109,7 +128,8 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>user_name BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>user_name BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfUserName(String lowerInclusive, String upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.USER_NAME, lowerInclusive, upperInclusive);
@@ -123,7 +143,8 @@ public class DehubUserDao extends DAOImpl<DehubUserRecord, de.dataelementhub.dal
     }
 
     /**
-     * Fetch records that have <code>email BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>email BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.DehubUser> fetchRangeOfEmail(String lowerInclusive, String upperInclusive) {
         return fetchRange(DehubUser.DEHUB_USER.EMAIL, lowerInclusive, upperInclusive);

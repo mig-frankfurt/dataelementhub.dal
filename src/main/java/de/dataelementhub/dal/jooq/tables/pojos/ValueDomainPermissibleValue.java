@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ValueDomainPermissibleValue implements Serializable {
 
-    private static final long serialVersionUID = -544109773;
+    private static final long serialVersionUID = 1L;
 
     private Integer valueDomainScopedIdentifierId;
     private Integer permissibleValueScopedIdentifierId;
@@ -33,18 +33,34 @@ public class ValueDomainPermissibleValue implements Serializable {
         this.permissibleValueScopedIdentifierId = permissibleValueScopedIdentifierId;
     }
 
+    /**
+     * Getter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     */
     public Integer getValueDomainScopedIdentifierId() {
         return this.valueDomainScopedIdentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     */
     public void setValueDomainScopedIdentifierId(Integer valueDomainScopedIdentifierId) {
         this.valueDomainScopedIdentifierId = valueDomainScopedIdentifierId;
     }
 
+    /**
+     * Getter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     */
     public Integer getPermissibleValueScopedIdentifierId() {
         return this.permissibleValueScopedIdentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     */
     public void setPermissibleValueScopedIdentifierId(Integer permissibleValueScopedIdentifierId) {
         this.permissibleValueScopedIdentifierId = permissibleValueScopedIdentifierId;
     }

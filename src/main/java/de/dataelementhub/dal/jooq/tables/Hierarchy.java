@@ -22,6 +22,7 @@ import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -31,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Hierarchy extends TableImpl<HierarchyRecord> {
 
-    private static final long serialVersionUID = 1230777687;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.hierarchy</code>
@@ -49,23 +50,24 @@ public class Hierarchy extends TableImpl<HierarchyRecord> {
     /**
      * The column <code>public.hierarchy.root</code>.
      */
-    public final TableField<HierarchyRecord, Integer> ROOT = createField(DSL.name("root"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<HierarchyRecord, Integer> ROOT = createField(DSL.name("root"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.hierarchy.super</code>.
      */
-    public final TableField<HierarchyRecord, Integer> SUPER = createField(DSL.name("super"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<HierarchyRecord, Integer> SUPER = createField(DSL.name("super"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.hierarchy.sub</code>.
      */
-    public final TableField<HierarchyRecord, Integer> SUB = createField(DSL.name("sub"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<HierarchyRecord, Integer> SUB = createField(DSL.name("sub"), SQLDataType.INTEGER, this, "");
 
-    /**
-     * Create a <code>public.hierarchy</code> table reference
-     */
-    public Hierarchy() {
-        this(DSL.name("hierarchy"), null);
+    private Hierarchy(Name alias, Table<HierarchyRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Hierarchy(Name alias, Table<HierarchyRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.materializedView());
     }
 
     /**
@@ -82,12 +84,11 @@ public class Hierarchy extends TableImpl<HierarchyRecord> {
         this(alias, HIERARCHY);
     }
 
-    private Hierarchy(Name alias, Table<HierarchyRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Hierarchy(Name alias, Table<HierarchyRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.materializedView());
+    /**
+     * Create a <code>public.hierarchy</code> table reference
+     */
+    public Hierarchy() {
+        this(DSL.name("hierarchy"), null);
     }
 
     public <O extends Record> Hierarchy(Table<O> child, ForeignKey<O, HierarchyRecord> key) {
@@ -96,12 +97,12 @@ public class Hierarchy extends TableImpl<HierarchyRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.HIERARCHY_ROOT_IDX, Indexes.HIERARCHY_SUB_IDX, Indexes.HIERARCHY_SUPER_IDX, Indexes.HIERARCHY_SUPER_SUB_IDX);
+        return Arrays.asList(Indexes.HIERARCHY_ROOT_IDX, Indexes.HIERARCHY_SUB_IDX, Indexes.HIERARCHY_SUPER_IDX, Indexes.HIERARCHY_SUPER_SUB_IDX);
     }
 
     @Override

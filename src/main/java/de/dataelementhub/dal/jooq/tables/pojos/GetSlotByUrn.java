@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetSlotByUrn implements Serializable {
 
-    private static final long serialVersionUID = 149585945;
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private Integer scopedIdentifierId;
@@ -41,34 +41,58 @@ public class GetSlotByUrn implements Serializable {
         this.value = value;
     }
 
+    /**
+     * Getter for <code>public.get_slot_by_urn.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.get_slot_by_urn.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.get_slot_by_urn.scoped_identifier_id</code>.
+     */
     public Integer getScopedIdentifierId() {
         return this.scopedIdentifierId;
     }
 
+    /**
+     * Setter for <code>public.get_slot_by_urn.scoped_identifier_id</code>.
+     */
     public void setScopedIdentifierId(Integer scopedIdentifierId) {
         this.scopedIdentifierId = scopedIdentifierId;
     }
 
+    /**
+     * Getter for <code>public.get_slot_by_urn.key</code>.
+     */
     public String getKey() {
         return this.key;
     }
 
+    /**
+     * Setter for <code>public.get_slot_by_urn.key</code>.
+     */
     public void setKey(String key) {
         this.key = key;
     }
 
+    /**
+     * Getter for <code>public.get_slot_by_urn.value</code>.
+     */
     public String getValue() {
         return this.value;
     }
 
+    /**
+     * Setter for <code>public.get_slot_by_urn.value</code>.
+     */
     public void setValue(String value) {
         this.value = value;
     }

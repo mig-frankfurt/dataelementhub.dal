@@ -22,7 +22,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ConceptElementAssociationsRecord extends UpdatableRecordImpl<ConceptElementAssociationsRecord> implements Record5<Integer, Integer, RelationType, Integer, LocalDateTime> {
 
-    private static final long serialVersionUID = -799303865;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.concept_element_associations.concept_id</code>.
@@ -39,14 +39,16 @@ public class ConceptElementAssociationsRecord extends UpdatableRecordImpl<Concep
     }
 
     /**
-     * Setter for <code>public.concept_element_associations.scopedidentifier_id</code>.
+     * Setter for
+     * <code>public.concept_element_associations.scopedidentifier_id</code>.
      */
     public void setScopedidentifierId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>public.concept_element_associations.scopedidentifier_id</code>.
+     * Getter for
+     * <code>public.concept_element_associations.scopedidentifier_id</code>.
      */
     public Integer getScopedidentifierId() {
         return (Integer) get(1);
@@ -249,10 +251,25 @@ public class ConceptElementAssociationsRecord extends UpdatableRecordImpl<Concep
     public ConceptElementAssociationsRecord(Integer conceptId, Integer scopedidentifierId, RelationType linktype, Integer createdBy, LocalDateTime createdAt) {
         super(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS);
 
-        set(0, conceptId);
-        set(1, scopedidentifierId);
-        set(2, linktype);
-        set(3, createdBy);
-        set(4, createdAt);
+        setConceptId(conceptId);
+        setScopedidentifierId(scopedidentifierId);
+        setLinktype(linktype);
+        setCreatedBy(createdBy);
+        setCreatedAt(createdAt);
+    }
+
+    /**
+     * Create a detached, initialised ConceptElementAssociationsRecord
+     */
+    public ConceptElementAssociationsRecord(de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations value) {
+        super(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS);
+
+        if (value != null) {
+            setConceptId(value.getConceptId());
+            setScopedidentifierId(value.getScopedidentifierId());
+            setLinktype(value.getLinktype());
+            setCreatedBy(value.getCreatedBy());
+            setCreatedAt(value.getCreatedAt());
+        }
     }
 }

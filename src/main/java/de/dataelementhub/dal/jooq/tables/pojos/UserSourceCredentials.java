@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserSourceCredentials implements Serializable {
 
-    private static final long serialVersionUID = -1271403099;
+    private static final long serialVersionUID = 1L;
 
     private Integer userId;
     private String  credential;
@@ -37,26 +37,44 @@ public class UserSourceCredentials implements Serializable {
         this.sourceId = sourceId;
     }
 
+    /**
+     * Getter for <code>public.user_source_credentials.user_id</code>.
+     */
     public Integer getUserId() {
         return this.userId;
     }
 
+    /**
+     * Setter for <code>public.user_source_credentials.user_id</code>.
+     */
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
+    /**
+     * Getter for <code>public.user_source_credentials.credential</code>.
+     */
     public String getCredential() {
         return this.credential;
     }
 
+    /**
+     * Setter for <code>public.user_source_credentials.credential</code>.
+     */
     public void setCredential(String credential) {
         this.credential = credential;
     }
 
+    /**
+     * Getter for <code>public.user_source_credentials.source_id</code>.
+     */
     public Integer getSourceId() {
         return this.sourceId;
     }
 
+    /**
+     * Setter for <code>public.user_source_credentials.source_id</code>.
+     */
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Concepts implements Serializable {
 
-    private static final long serialVersionUID = 1907718042;
+    private static final long serialVersionUID = 1L;
 
     private Integer       id;
     private String        system;
@@ -58,66 +58,114 @@ public class Concepts implements Serializable {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.concepts.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.concepts.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.concepts.system</code>.
+     */
     public String getSystem() {
         return this.system;
     }
 
+    /**
+     * Setter for <code>public.concepts.system</code>.
+     */
     public void setSystem(String system) {
         this.system = system;
     }
 
+    /**
+     * Getter for <code>public.concepts.version</code>.
+     */
     public String getVersion() {
         return this.version;
     }
 
+    /**
+     * Setter for <code>public.concepts.version</code>.
+     */
     public void setVersion(String version) {
         this.version = version;
     }
 
+    /**
+     * Getter for <code>public.concepts.term</code>.
+     */
     public String getTerm() {
         return this.term;
     }
 
+    /**
+     * Setter for <code>public.concepts.term</code>.
+     */
     public void setTerm(String term) {
         this.term = term;
     }
 
+    /**
+     * Getter for <code>public.concepts.text</code>.
+     */
     public String getText() {
         return this.text;
     }
 
+    /**
+     * Setter for <code>public.concepts.text</code>.
+     */
     public void setText(String text) {
         this.text = text;
     }
 
+    /**
+     * Getter for <code>public.concepts.source_id</code>.
+     */
     public Integer getSourceId() {
         return this.sourceId;
     }
 
+    /**
+     * Setter for <code>public.concepts.source_id</code>.
+     */
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 
+    /**
+     * Getter for <code>public.concepts.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.concepts.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.concepts.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.concepts.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }

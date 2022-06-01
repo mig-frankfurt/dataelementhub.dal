@@ -4,21 +4,19 @@
 package de.dataelementhub.dal.jooq.tables;
 
 
-import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Record;
 import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -28,7 +26,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
 
-    private static final long serialVersionUID = 1794329214;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.get_definition_by_urn</code>
@@ -46,32 +44,59 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
     /**
      * The column <code>public.get_definition_by_urn.id</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('definition_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<GetDefinitionByUrnRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true).defaultValue(DSL.field("nextval('definition_id_seq'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
-     * The column <code>public.get_definition_by_urn.scoped_identifier_id</code>.
+     * The column
+     * <code>public.get_definition_by_urn.scoped_identifier_id</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<GetDefinitionByUrnRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.get_definition_by_urn.designation</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, String> DESIGNATION = createField(DSL.name("designation"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GetDefinitionByUrnRecord, String> DESIGNATION = createField(DSL.name("designation"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.get_definition_by_urn.definition</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, String> DEFINITION = createField(DSL.name("definition"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<GetDefinitionByUrnRecord, String> DEFINITION = createField(DSL.name("definition"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.get_definition_by_urn.language</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, String> LANGUAGE = createField(DSL.name("language"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GetDefinitionByUrnRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.get_definition_by_urn.element_id</code>.
      */
-    public final TableField<GetDefinitionByUrnRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetDefinitionByUrnRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER.nullable(false), this, "");
+
+    private GetDefinitionByUrn(Name alias, Table<GetDefinitionByUrnRecord> aliased) {
+        this(alias, aliased, new Field[] {
+            DSL.val(null, SQLDataType.CLOB)
+        });
+    }
+
+    private GetDefinitionByUrn(Name alias, Table<GetDefinitionByUrnRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.function());
+    }
+
+    /**
+     * Create an aliased <code>public.get_definition_by_urn</code> table
+     * reference
+     */
+    public GetDefinitionByUrn(String alias) {
+        this(DSL.name(alias), GET_DEFINITION_BY_URN);
+    }
+
+    /**
+     * Create an aliased <code>public.get_definition_by_urn</code> table
+     * reference
+     */
+    public GetDefinitionByUrn(Name alias) {
+        this(alias, GET_DEFINITION_BY_URN);
+    }
 
     /**
      * Create a <code>public.get_definition_by_urn</code> table reference
@@ -80,40 +105,14 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
         this(DSL.name("get_definition_by_urn"), null);
     }
 
-    /**
-     * Create an aliased <code>public.get_definition_by_urn</code> table reference
-     */
-    public GetDefinitionByUrn(String alias) {
-        this(DSL.name(alias), GET_DEFINITION_BY_URN);
-    }
-
-    /**
-     * Create an aliased <code>public.get_definition_by_urn</code> table reference
-     */
-    public GetDefinitionByUrn(Name alias) {
-        this(alias, GET_DEFINITION_BY_URN);
-    }
-
-    private GetDefinitionByUrn(Name alias, Table<GetDefinitionByUrnRecord> aliased) {
-        this(alias, aliased, new Field[1]);
-    }
-
-    private GetDefinitionByUrn(Name alias, Table<GetDefinitionByUrnRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.function());
-    }
-
-    public <O extends Record> GetDefinitionByUrn(Table<O> child, ForeignKey<O, GetDefinitionByUrnRecord> key) {
-        super(child, key, GET_DEFINITION_BY_URN);
-    }
-
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<GetDefinitionByUrnRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_GET_DEFINITION_BY_URN;
+        return (Identity<GetDefinitionByUrnRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -154,18 +153,26 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
     /**
      * Call this table-valued function
      */
-    public GetDefinitionByUrn call(String urn) {
-        return new GetDefinitionByUrn(DSL.name(getName()), null, new Field[] { 
-              DSL.val(urn, org.jooq.impl.SQLDataType.CLOB)
+    public GetDefinitionByUrn call(
+          String urn
+    ) {
+        GetDefinitionByUrn result = new GetDefinitionByUrn(DSL.name("get_definition_by_urn"), null, new Field[] {
+            DSL.val(urn, SQLDataType.CLOB)
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
     }
 
     /**
      * Call this table-valued function
      */
-    public GetDefinitionByUrn call(Field<String> urn) {
-        return new GetDefinitionByUrn(DSL.name(getName()), null, new Field[] { 
-              urn
+    public GetDefinitionByUrn call(
+          Field<String> urn
+    ) {
+        GetDefinitionByUrn result = new GetDefinitionByUrn(DSL.name("get_definition_by_urn"), null, new Field[] {
+            urn
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
     }
 }

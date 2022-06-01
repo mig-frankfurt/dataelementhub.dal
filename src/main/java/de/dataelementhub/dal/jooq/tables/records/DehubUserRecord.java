@@ -19,7 +19,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DehubUserRecord extends UpdatableRecordImpl<DehubUserRecord> implements Record6<Integer, String, String, String, String, String> {
 
-    private static final long serialVersionUID = -384615526;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.dehub_user.id</code>.
@@ -282,11 +282,27 @@ public class DehubUserRecord extends UpdatableRecordImpl<DehubUserRecord> implem
     public DehubUserRecord(Integer id, String authId, String firstName, String lastName, String userName, String email) {
         super(DehubUser.DEHUB_USER);
 
-        set(0, id);
-        set(1, authId);
-        set(2, firstName);
-        set(3, lastName);
-        set(4, userName);
-        set(5, email);
+        setId(id);
+        setAuthId(authId);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setUserName(userName);
+        setEmail(email);
+    }
+
+    /**
+     * Create a detached, initialised DehubUserRecord
+     */
+    public DehubUserRecord(de.dataelementhub.dal.jooq.tables.pojos.DehubUser value) {
+        super(DehubUser.DEHUB_USER);
+
+        if (value != null) {
+            setId(value.getId());
+            setAuthId(value.getAuthId());
+            setFirstName(value.getFirstName());
+            setLastName(value.getLastName());
+            setUserName(value.getUserName());
+            setEmail(value.getEmail());
+        }
     }
 }

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ConceptElementAssociations implements Serializable {
 
-    private static final long serialVersionUID = 669483880;
+    private static final long serialVersionUID = 1L;
 
     private Integer       conceptId;
     private Integer       scopedidentifierId;
@@ -48,42 +48,74 @@ public class ConceptElementAssociations implements Serializable {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.concept_element_associations.concept_id</code>.
+     */
     public Integer getConceptId() {
         return this.conceptId;
     }
 
+    /**
+     * Setter for <code>public.concept_element_associations.concept_id</code>.
+     */
     public void setConceptId(Integer conceptId) {
         this.conceptId = conceptId;
     }
 
+    /**
+     * Getter for
+     * <code>public.concept_element_associations.scopedidentifier_id</code>.
+     */
     public Integer getScopedidentifierId() {
         return this.scopedidentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.concept_element_associations.scopedidentifier_id</code>.
+     */
     public void setScopedidentifierId(Integer scopedidentifierId) {
         this.scopedidentifierId = scopedidentifierId;
     }
 
+    /**
+     * Getter for <code>public.concept_element_associations.linktype</code>.
+     */
     public RelationType getLinktype() {
         return this.linktype;
     }
 
+    /**
+     * Setter for <code>public.concept_element_associations.linktype</code>.
+     */
     public void setLinktype(RelationType linktype) {
         this.linktype = linktype;
     }
 
+    /**
+     * Getter for <code>public.concept_element_associations.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.concept_element_associations.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.concept_element_associations.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.concept_element_associations.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }

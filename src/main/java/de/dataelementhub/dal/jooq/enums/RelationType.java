@@ -43,7 +43,7 @@ public enum RelationType implements EnumType {
 
     @Override
     public Catalog getCatalog() {
-        return getSchema() == null ? null : getSchema().getCatalog();
+        return getSchema().getCatalog();
     }
 
     @Override
@@ -59,5 +59,12 @@ public enum RelationType implements EnumType {
     @Override
     public String getLiteral() {
         return literal;
+    }
+
+    /**
+     * Lookup a value of this EnumType by its literal
+     */
+    public static RelationType lookupLiteral(String literal) {
+        return EnumType.lookupLiteral(RelationType.class, literal);
     }
 }

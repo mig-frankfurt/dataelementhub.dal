@@ -7,21 +7,23 @@ package de.dataelementhub.dal.jooq.tables;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
-import de.dataelementhub.dal.jooq.enums.ValidationType;
+import de.dataelementhub.dal.jooq.enums.ValidationDatatypeType;
+import de.dataelementhub.dal.jooq.enums.ValidationSubtypeType;
 import de.dataelementhub.dal.jooq.tables.records.IdentifiedElementRecord;
 
 import java.util.UUID;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.JSON;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Row19;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -31,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
 
-    private static final long serialVersionUID = -1126063888;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.identified_element</code>
@@ -49,128 +51,104 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
     /**
      * The column <code>public.identified_element.si_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SI_ID = createField(DSL.name("si_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> SI_ID = createField(DSL.name("si_id"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.identified_element.si_identifier</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SI_IDENTIFIER = createField(DSL.name("si_identifier"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> SI_IDENTIFIER = createField(DSL.name("si_identifier"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.identified_element.si_version</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SI_VERSION = createField(DSL.name("si_version"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> SI_VERSION = createField(DSL.name("si_version"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.identified_element.si_status</code>.
      */
-    public final TableField<IdentifiedElementRecord, Status> SI_STATUS = createField(DSL.name("si_status"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
+    public final TableField<IdentifiedElementRecord, Status> SI_STATUS = createField(DSL.name("si_status"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
 
     /**
      * The column <code>public.identified_element.si_namespace_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SI_NAMESPACE_ID = createField(DSL.name("si_namespace_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> SI_NAMESPACE_ID = createField(DSL.name("si_namespace_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.id</code>.
+     * The column <code>public.identified_element.e_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> E_ID = createField(DSL.name("e_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.element_type</code>.
+     * The column <code>public.identified_element.e_element_type</code>.
      */
-    public final TableField<IdentifiedElementRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
+    public final TableField<IdentifiedElementRecord, ElementType> E_ELEMENT_TYPE = createField(DSL.name("e_element_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
-     * The column <code>public.identified_element.hidden</code>.
+     * The column <code>public.identified_element.e_created_by</code>.
      */
-    public final TableField<IdentifiedElementRecord, Boolean> HIDDEN = createField(DSL.name("hidden"), org.jooq.impl.SQLDataType.BOOLEAN, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> E_CREATED_BY = createField(DSL.name("e_created_by"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.created_by</code>.
+     * The column <code>public.identified_element.e_element_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> E_ELEMENT_ID = createField(DSL.name("e_element_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.element_id</code>.
+     * The column <code>public.identified_element.e_permitted_value</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, String> E_PERMITTED_VALUE = createField(DSL.name("e_permitted_value"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.identified_element.scoped_identifier_id</code>.
+     * The column <code>public.identified_element.e_uuid</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, UUID> E_UUID = createField(DSL.name("e_uuid"), SQLDataType.UUID, this, "");
 
     /**
-     * The column <code>public.identified_element.code</code>.
+     * The column <code>public.identified_element.e_external_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, String> CODE = createField(DSL.name("code"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<IdentifiedElementRecord, String> E_EXTERNAL_ID = createField(DSL.name("e_external_id"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.identified_element.is_valid</code>.
+     * The column <code>public.identified_element.v_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, Boolean> IS_VALID = createField(DSL.name("is_valid"), org.jooq.impl.SQLDataType.BOOLEAN, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> V_ID = createField(DSL.name("v_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.format</code>.
+     * The column <code>public.identified_element.v_element_id</code>.
      */
-    public final TableField<IdentifiedElementRecord, String> FORMAT = createField(DSL.name("format"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> V_ELEMENT_ID = createField(DSL.name("v_element_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.datatype</code>.
+     * The column <code>public.identified_element.v_datatype</code>.
      */
-    public final TableField<IdentifiedElementRecord, String> DATATYPE = createField(DSL.name("datatype"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<IdentifiedElementRecord, ValidationDatatypeType> V_DATATYPE = createField(DSL.name("v_datatype"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationDatatypeType.class), this, "");
 
     /**
-     * The column <code>public.identified_element.unit_of_measure</code>.
+     * The column <code>public.identified_element.v_subtype</code>.
      */
-    public final TableField<IdentifiedElementRecord, String> UNIT_OF_MEASURE = createField(DSL.name("unit_of_measure"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<IdentifiedElementRecord, ValidationSubtypeType> V_SUBTYPE = createField(DSL.name("v_subtype"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationSubtypeType.class), this, "");
 
     /**
-     * The column <code>public.identified_element.maximum_characters</code>.
+     * The column <code>public.identified_element.v_format</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> MAXIMUM_CHARACTERS = createField(DSL.name("maximum_characters"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, String> V_FORMAT = createField(DSL.name("v_format"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.identified_element.description</code>.
+     * The column <code>public.identified_element.v_unit_of_measure</code>.
      */
-    public final TableField<IdentifiedElementRecord, String> DESCRIPTION = createField(DSL.name("description"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<IdentifiedElementRecord, String> V_UNIT_OF_MEASURE = createField(DSL.name("v_unit_of_measure"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.identified_element.validation_type</code>.
+     * The column <code>public.identified_element.v_maximum_characters</code>.
      */
-    public final TableField<IdentifiedElementRecord, ValidationType> VALIDATION_TYPE = createField(DSL.name("validation_type"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationType.class), this, "");
+    public final TableField<IdentifiedElementRecord, Integer> V_MAXIMUM_CHARACTERS = createField(DSL.name("v_maximum_characters"), SQLDataType.INTEGER, this, "");
 
-    /**
-     * The column <code>public.identified_element.validation_data</code>.
-     */
-    public final TableField<IdentifiedElementRecord, String> VALIDATION_DATA = createField(DSL.name("validation_data"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    private IdentifiedElement(Name alias, Table<IdentifiedElementRecord> aliased) {
+        this(alias, aliased, null);
+    }
 
-    /**
-     * The column <code>public.identified_element.permitted_value</code>.
-     */
-    public final TableField<IdentifiedElementRecord, String> PERMITTED_VALUE = createField(DSL.name("permitted_value"), org.jooq.impl.SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.identified_element.data</code>.
-     */
-    public final TableField<IdentifiedElementRecord, JSON> DATA = createField(DSL.name("data"), org.jooq.impl.SQLDataType.JSON, this, "");
-
-    /**
-     * The column <code>public.identified_element.uuid</code>.
-     */
-    public final TableField<IdentifiedElementRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID, this, "");
-
-    /**
-     * The column <code>public.identified_element.external_id</code>.
-     */
-    public final TableField<IdentifiedElementRecord, String> EXTERNAL_ID = createField(DSL.name("external_id"), org.jooq.impl.SQLDataType.CLOB, this, "");
-
-    /**
-     * Create a <code>public.identified_element</code> table reference
-     */
-    public IdentifiedElement() {
-        this(DSL.name("identified_element"), null);
+    private IdentifiedElement(Name alias, Table<IdentifiedElementRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("create view \"identified_element\" as  SELECT si.id AS si_id,\n    si.identifier AS si_identifier,\n    si.version AS si_version,\n    si.status AS si_status,\n    si.namespace_id AS si_namespace_id,\n    e.id AS e_id,\n    e.element_type AS e_element_type,\n    e.created_by AS e_created_by,\n    e.element_id AS e_element_id,\n    e.permitted_value AS e_permitted_value,\n    e.uuid AS e_uuid,\n    e.external_id AS e_external_id,\n    v.id AS v_id,\n    v.element_id AS v_element_id,\n    v.datatype AS v_datatype,\n    v.subtype AS v_subtype,\n    v.format AS v_format,\n    v.unit_of_measure AS v_unit_of_measure,\n    v.maximum_characters AS v_maximum_characters\n   FROM (((scoped_identifier si\n     LEFT JOIN element ns ON ((si.namespace_id = ns.id)))\n     LEFT JOIN element e ON ((e.id = si.element_id)))\n     LEFT JOIN validation v ON ((e.id = v.element_id)));"));
     }
 
     /**
@@ -187,12 +165,11 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
         this(alias, IDENTIFIED_ELEMENT);
     }
 
-    private IdentifiedElement(Name alias, Table<IdentifiedElementRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private IdentifiedElement(Name alias, Table<IdentifiedElementRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("create view \"identified_element\" as  SELECT si.id AS si_id,\n    si.identifier AS si_identifier,\n    si.version AS si_version,\n    si.status AS si_status,\n    si.namespace_id AS si_namespace_id,\n    e.id,\n    e.element_type,\n    e.hidden,\n    e.created_by,\n    e.element_id,\n    e.scoped_identifier_id,\n    e.code,\n    e.is_valid,\n    e.format,\n    e.datatype,\n    e.unit_of_measure,\n    e.maximum_characters,\n    e.description,\n    e.validation_type,\n    e.validation_data,\n    e.permitted_value,\n    e.data,\n    e.uuid,\n    e.external_id\n   FROM ((scoped_identifier si\n     LEFT JOIN element ns ON ((si.namespace_id = ns.id)))\n     LEFT JOIN element e ON ((e.id = si.element_id)));"));
+    /**
+     * Create a <code>public.identified_element</code> table reference
+     */
+    public IdentifiedElement() {
+        this(DSL.name("identified_element"), null);
     }
 
     public <O extends Record> IdentifiedElement(Table<O> child, ForeignKey<O, IdentifiedElementRecord> key) {
@@ -201,7 +178,7 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
@@ -228,5 +205,14 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
     @Override
     public IdentifiedElement rename(Name name) {
         return new IdentifiedElement(name, null);
+    }
+
+    // -------------------------------------------------------------------------
+    // Row19 type methods
+    // -------------------------------------------------------------------------
+
+    @Override
+    public Row19<Integer, Integer, Integer, Status, Integer, Integer, ElementType, Integer, Integer, String, UUID, String, Integer, Integer, ValidationDatatypeType, ValidationSubtypeType, String, String, Integer> fieldsRow() {
+        return (Row19) super.fieldsRow();
     }
 }

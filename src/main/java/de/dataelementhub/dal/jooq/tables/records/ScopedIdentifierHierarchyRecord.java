@@ -19,7 +19,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ScopedIdentifierHierarchyRecord extends UpdatableRecordImpl<ScopedIdentifierHierarchyRecord> implements Record3<Integer, Integer, Integer> {
 
-    private static final long serialVersionUID = 193929706;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.scoped_identifier_hierarchy.super_id</code>.
@@ -174,8 +174,21 @@ public class ScopedIdentifierHierarchyRecord extends UpdatableRecordImpl<ScopedI
     public ScopedIdentifierHierarchyRecord(Integer superId, Integer subId, Integer order) {
         super(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY);
 
-        set(0, superId);
-        set(1, subId);
-        set(2, order);
+        setSuperId(superId);
+        setSubId(subId);
+        setOrder(order);
+    }
+
+    /**
+     * Create a detached, initialised ScopedIdentifierHierarchyRecord
+     */
+    public ScopedIdentifierHierarchyRecord(de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifierHierarchy value) {
+        super(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY);
+
+        if (value != null) {
+            setSuperId(value.getSuperId());
+            setSubId(value.getSubId());
+            setOrder(value.getOrder());
+        }
     }
 }

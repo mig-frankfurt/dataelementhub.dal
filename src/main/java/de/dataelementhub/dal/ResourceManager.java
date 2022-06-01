@@ -8,6 +8,9 @@ import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Resource Manager.
+ */
 public class ResourceManager {
 
   private static String URL;

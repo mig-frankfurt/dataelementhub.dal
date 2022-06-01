@@ -6,7 +6,6 @@ package de.dataelementhub.dal.jooq;
 
 import de.dataelementhub.dal.jooq.tables.ConceptElementAssociations;
 import de.dataelementhub.dal.jooq.tables.Concepts;
-import de.dataelementhub.dal.jooq.tables.Config;
 import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.Element;
@@ -20,7 +19,6 @@ import de.dataelementhub.dal.jooq.tables.Hierarchy;
 import de.dataelementhub.dal.jooq.tables.IdentifiedElement;
 import de.dataelementhub.dal.jooq.tables.Import;
 import de.dataelementhub.dal.jooq.tables.ListviewElement;
-import de.dataelementhub.dal.jooq.tables.PermissibleCode;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
@@ -28,6 +26,7 @@ import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
 import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
+import de.dataelementhub.dal.jooq.tables.Validation;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
 import de.dataelementhub.dal.jooq.tables.records.GetScopedIdentifierByUrnRecord;
@@ -42,7 +41,6 @@ import org.jooq.Catalog;
 import org.jooq.Configuration;
 import org.jooq.Field;
 import org.jooq.Result;
-import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
@@ -53,7 +51,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 418960452;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public</code>
@@ -69,11 +67,6 @@ public class Public extends SchemaImpl {
      * The table <code>public.concepts</code>.
      */
     public final Concepts CONCEPTS = Concepts.CONCEPTS;
-
-    /**
-     * The table <code>public.config</code>.
-     */
-    public final Config CONFIG = Config.CONFIG;
 
     /**
      * The table <code>public.definition</code>.
@@ -103,22 +96,35 @@ public class Public extends SchemaImpl {
     /**
      * Call <code>public.get_definition_by_urn</code>.
      */
-    public static Result<GetDefinitionByUrnRecord> GET_DEFINITION_BY_URN(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn)).fetch();
+    public static Result<GetDefinitionByUrnRecord> GET_DEFINITION_BY_URN(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_definition_by_urn</code> as a table.
      */
-    public static GetDefinitionByUrn GET_DEFINITION_BY_URN(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn);
+    public static GetDefinitionByUrn GET_DEFINITION_BY_URN(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_definition_by_urn</code> as a table.
      */
-    public static GetDefinitionByUrn GET_DEFINITION_BY_URN(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn);
+    public static GetDefinitionByUrn GET_DEFINITION_BY_URN(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+            urn
+        );
     }
 
     /**
@@ -129,22 +135,35 @@ public class Public extends SchemaImpl {
     /**
      * Call <code>public.get_scoped_identifier_by_urn</code>.
      */
-    public static Result<GetScopedIdentifierByUrnRecord> GET_SCOPED_IDENTIFIER_BY_URN(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn)).fetch();
+    public static Result<GetScopedIdentifierByUrnRecord> GET_SCOPED_IDENTIFIER_BY_URN(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_scoped_identifier_by_urn</code> as a table.
      */
-    public static GetScopedIdentifierByUrn GET_SCOPED_IDENTIFIER_BY_URN(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn);
+    public static GetScopedIdentifierByUrn GET_SCOPED_IDENTIFIER_BY_URN(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_scoped_identifier_by_urn</code> as a table.
      */
-    public static GetScopedIdentifierByUrn GET_SCOPED_IDENTIFIER_BY_URN(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn);
+    public static GetScopedIdentifierByUrn GET_SCOPED_IDENTIFIER_BY_URN(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+            urn
+        );
     }
 
     /**
@@ -155,22 +174,35 @@ public class Public extends SchemaImpl {
     /**
      * Call <code>public.get_slot_by_urn</code>.
      */
-    public static Result<GetSlotByUrnRecord> GET_SLOT_BY_URN(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn)).fetch();
+    public static Result<GetSlotByUrnRecord> GET_SLOT_BY_URN(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_slot_by_urn</code> as a table.
      */
-    public static GetSlotByUrn GET_SLOT_BY_URN(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn);
+    public static GetSlotByUrn GET_SLOT_BY_URN(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_slot_by_urn</code> as a table.
      */
-    public static GetSlotByUrn GET_SLOT_BY_URN(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn);
+    public static GetSlotByUrn GET_SLOT_BY_URN(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+            urn
+        );
     }
 
     /**
@@ -181,48 +213,80 @@ public class Public extends SchemaImpl {
     /**
      * Call <code>public.get_value_domain_by_urn</code>.
      */
-    public static Result<GetValueDomainByUrnRecord> GET_VALUE_DOMAIN_BY_URN(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn)).fetch();
+    public static Result<GetValueDomainByUrnRecord> GET_VALUE_DOMAIN_BY_URN(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_value_domain_by_urn</code> as a table.
      */
-    public static GetValueDomainByUrn GET_VALUE_DOMAIN_BY_URN(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn);
+    public static GetValueDomainByUrn GET_VALUE_DOMAIN_BY_URN(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_value_domain_by_urn</code> as a table.
      */
-    public static GetValueDomainByUrn GET_VALUE_DOMAIN_BY_URN(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn);
+    public static GetValueDomainByUrn GET_VALUE_DOMAIN_BY_URN(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+            urn
+        );
     }
 
     /**
-     * The table <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
+     * The table
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
      */
     public final GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN = GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN;
 
     /**
-     * Call <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
+     * Call
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
      */
-    public static Result<GetValueDomainScopedIdentifierByDataelementUrnRecord> GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn)).fetch();
+    public static Result<GetValueDomainScopedIdentifierByDataelementUrnRecord> GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
-     * Get <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> as a table.
+     * Get
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * as a table.
      */
-    public static GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn);
+    public static GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+            urn
+        );
     }
 
     /**
-     * Get <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> as a table.
+     * Get
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * as a table.
      */
-    public static GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn);
+    public static GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+            urn
+        );
     }
 
     /**
@@ -244,11 +308,6 @@ public class Public extends SchemaImpl {
      * The table <code>public.listview_element</code>.
      */
     public final ListviewElement LISTVIEW_ELEMENT = ListviewElement.LISTVIEW_ELEMENT;
-
-    /**
-     * The table <code>public.permissible_code</code>.
-     */
-    public final PermissibleCode PERMISSIBLE_CODE = PermissibleCode.PERMISSIBLE_CODE;
 
     /**
      * The table <code>public.scoped_identifier</code>.
@@ -286,6 +345,11 @@ public class Public extends SchemaImpl {
     public final UserSourceCredentials USER_SOURCE_CREDENTIALS = UserSourceCredentials.USER_SOURCE_CREDENTIALS;
 
     /**
+     * The table <code>public.validation</code>.
+     */
+    public final Validation VALIDATION = Validation.VALIDATION;
+
+    /**
      * The table <code>public.value_domain_permissible_value</code>.
      */
     public final ValueDomainPermissibleValue VALUE_DOMAIN_PERMISSIBLE_VALUE = ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE;
@@ -304,26 +368,10 @@ public class Public extends SchemaImpl {
     }
 
     @Override
-    public final List<Sequence<?>> getSequences() {
-        return Arrays.<Sequence<?>>asList(
-            Sequences.CONCEPTS_ID_SEQ,
-            Sequences.CONFIG_ID_SEQ,
-            Sequences.DEFINITION_ID_SEQ,
-            Sequences.DEHUB_USER_ID_SEQ,
-            Sequences.ELEMENT_ID_SEQ,
-            Sequences.IMPORT_ID_SEQ,
-            Sequences.SCOPED_IDENTIFIER_ID_SEQ,
-            Sequences.SLOT_ID_SEQ,
-            Sequences.SOURCE_ID_SEQ,
-            Sequences.STAGING_ID_SEQ);
-    }
-
-    @Override
     public final List<Table<?>> getTables() {
-        return Arrays.<Table<?>>asList(
+        return Arrays.asList(
             ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS,
             Concepts.CONCEPTS,
-            Config.CONFIG,
             Definition.DEFINITION,
             DehubUser.DEHUB_USER,
             Element.ELEMENT,
@@ -337,7 +385,6 @@ public class Public extends SchemaImpl {
             IdentifiedElement.IDENTIFIED_ELEMENT,
             Import.IMPORT,
             ListviewElement.LISTVIEW_ELEMENT,
-            PermissibleCode.PERMISSIBLE_CODE,
             ScopedIdentifier.SCOPED_IDENTIFIER,
             ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY,
             Slot.SLOT,
@@ -345,6 +392,8 @@ public class Public extends SchemaImpl {
             Staging.STAGING,
             UserNamespaceAccess.USER_NAMESPACE_ACCESS,
             UserSourceCredentials.USER_SOURCE_CREDENTIALS,
-            ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE);
+            Validation.VALIDATION,
+            ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE
+        );
     }
 }

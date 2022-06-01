@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Staging implements Serializable {
 
-    private static final long serialVersionUID = 1612093565;
+    private static final long serialVersionUID = 1L;
 
     private Integer       id;
     private String        data;
@@ -68,82 +68,142 @@ public class Staging implements Serializable {
         this.members = members;
     }
 
+    /**
+     * Getter for <code>public.staging.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.staging.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.staging.data</code>.
+     */
     public String getData() {
         return this.data;
     }
 
+    /**
+     * Setter for <code>public.staging.data</code>.
+     */
     public void setData(String data) {
         this.data = data;
     }
 
+    /**
+     * Getter for <code>public.staging.element_type</code>.
+     */
     public ElementType getElementType() {
         return this.elementType;
     }
 
+    /**
+     * Setter for <code>public.staging.element_type</code>.
+     */
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
     }
 
+    /**
+     * Getter for <code>public.staging.designation</code>.
+     */
     public String getDesignation() {
         return this.designation;
     }
 
+    /**
+     * Setter for <code>public.staging.designation</code>.
+     */
     public void setDesignation(String designation) {
         this.designation = designation;
     }
 
+    /**
+     * Getter for <code>public.staging.import_id</code>.
+     */
     public Integer getImportId() {
         return this.importId;
     }
 
+    /**
+     * Setter for <code>public.staging.import_id</code>.
+     */
     public void setImportId(Integer importId) {
         this.importId = importId;
     }
 
+    /**
+     * Getter for <code>public.staging.scoped_identifier_id</code>.
+     */
     public Integer getScopedIdentifierId() {
         return this.scopedIdentifierId;
     }
 
+    /**
+     * Setter for <code>public.staging.scoped_identifier_id</code>.
+     */
     public void setScopedIdentifierId(Integer scopedIdentifierId) {
         this.scopedIdentifierId = scopedIdentifierId;
     }
 
+    /**
+     * Getter for <code>public.staging.converted_at</code>.
+     */
     public LocalDateTime getConvertedAt() {
         return this.convertedAt;
     }
 
+    /**
+     * Setter for <code>public.staging.converted_at</code>.
+     */
     public void setConvertedAt(LocalDateTime convertedAt) {
         this.convertedAt = convertedAt;
     }
 
+    /**
+     * Getter for <code>public.staging.converted_by</code>.
+     */
     public Integer getConvertedBy() {
         return this.convertedBy;
     }
 
+    /**
+     * Setter for <code>public.staging.converted_by</code>.
+     */
     public void setConvertedBy(Integer convertedBy) {
         this.convertedBy = convertedBy;
     }
 
+    /**
+     * Getter for <code>public.staging.staged_element_id</code>.
+     */
     public String getStagedElementId() {
         return this.stagedElementId;
     }
 
+    /**
+     * Setter for <code>public.staging.staged_element_id</code>.
+     */
     public void setStagedElementId(String stagedElementId) {
         this.stagedElementId = stagedElementId;
     }
 
+    /**
+     * Getter for <code>public.staging.members</code>.
+     */
     public String getMembers() {
         return this.members;
     }
 
+    /**
+     * Setter for <code>public.staging.members</code>.
+     */
     public void setMembers(String members) {
         this.members = members;
     }

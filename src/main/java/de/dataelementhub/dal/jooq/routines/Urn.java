@@ -11,6 +11,7 @@ import org.jooq.Field;
 import org.jooq.Parameter;
 import org.jooq.impl.AbstractRoutine;
 import org.jooq.impl.Internal;
+import org.jooq.impl.SQLDataType;
 
 
 /**
@@ -19,12 +20,12 @@ import org.jooq.impl.Internal;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Urn extends AbstractRoutine<String> {
 
-    private static final long serialVersionUID = -1212296542;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The parameter <code>public.urn.RETURN_VALUE</code>.
      */
-    public static final Parameter<String> RETURN_VALUE = Internal.createParameter("RETURN_VALUE", org.jooq.impl.SQLDataType.CLOB, false, false);
+    public static final Parameter<String> RETURN_VALUE = Internal.createParameter("RETURN_VALUE", SQLDataType.CLOB, false, false);
 
     /**
      * The parameter <code>public.urn.sc</code>.
@@ -35,7 +36,7 @@ public class Urn extends AbstractRoutine<String> {
      * Create a new routine call instance
      */
     public Urn() {
-        super("urn", Public.PUBLIC, org.jooq.impl.SQLDataType.CLOB);
+        super("urn", Public.PUBLIC, SQLDataType.CLOB);
 
         setReturnParameter(RETURN_VALUE);
         addInParameter(SC);
@@ -49,7 +50,8 @@ public class Urn extends AbstractRoutine<String> {
     }
 
     /**
-     * Set the <code>sc</code> parameter to the function to be used with a {@link org.jooq.Select} statement
+     * Set the <code>sc</code> parameter to the function to be used with a
+     * {@link org.jooq.Select} statement
      */
     public void setSc(Field<ScopedIdentifierRecord> field) {
         setField(SC, field);

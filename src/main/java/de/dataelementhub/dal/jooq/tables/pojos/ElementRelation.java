@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ElementRelation implements Serializable {
 
-    private static final long serialVersionUID = 621988283;
+    private static final long serialVersionUID = 1L;
 
     private String        leftUrn;
     private Integer       leftSource;
@@ -56,58 +56,100 @@ public class ElementRelation implements Serializable {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.element_relation.left_urn</code>.
+     */
     public String getLeftUrn() {
         return this.leftUrn;
     }
 
+    /**
+     * Setter for <code>public.element_relation.left_urn</code>.
+     */
     public void setLeftUrn(String leftUrn) {
         this.leftUrn = leftUrn;
     }
 
+    /**
+     * Getter for <code>public.element_relation.left_source</code>.
+     */
     public Integer getLeftSource() {
         return this.leftSource;
     }
 
+    /**
+     * Setter for <code>public.element_relation.left_source</code>.
+     */
     public void setLeftSource(Integer leftSource) {
         this.leftSource = leftSource;
     }
 
+    /**
+     * Getter for <code>public.element_relation.right_urn</code>.
+     */
     public String getRightUrn() {
         return this.rightUrn;
     }
 
+    /**
+     * Setter for <code>public.element_relation.right_urn</code>.
+     */
     public void setRightUrn(String rightUrn) {
         this.rightUrn = rightUrn;
     }
 
+    /**
+     * Getter for <code>public.element_relation.right_source</code>.
+     */
     public Integer getRightSource() {
         return this.rightSource;
     }
 
+    /**
+     * Setter for <code>public.element_relation.right_source</code>.
+     */
     public void setRightSource(Integer rightSource) {
         this.rightSource = rightSource;
     }
 
+    /**
+     * Getter for <code>public.element_relation.relation</code>.
+     */
     public RelationType getRelation() {
         return this.relation;
     }
 
+    /**
+     * Setter for <code>public.element_relation.relation</code>.
+     */
     public void setRelation(RelationType relation) {
         this.relation = relation;
     }
 
+    /**
+     * Getter for <code>public.element_relation.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.element_relation.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.element_relation.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.element_relation.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }

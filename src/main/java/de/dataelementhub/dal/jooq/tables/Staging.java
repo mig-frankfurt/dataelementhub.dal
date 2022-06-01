@@ -25,6 +25,7 @@ import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -34,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Staging extends TableImpl<StagingRecord> {
 
-    private static final long serialVersionUID = 1022323697;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.staging</code>
@@ -52,58 +53,59 @@ public class Staging extends TableImpl<StagingRecord> {
     /**
      * The column <code>public.staging.id</code>.
      */
-    public final TableField<StagingRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('staging_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<StagingRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.staging.data</code>.
      */
-    public final TableField<StagingRecord, String> DATA = createField(DSL.name("data"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<StagingRecord, String> DATA = createField(DSL.name("data"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.staging.element_type</code>.
      */
-    public final TableField<StagingRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
+    public final TableField<StagingRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
      * The column <code>public.staging.designation</code>.
      */
-    public final TableField<StagingRecord, String> DESIGNATION = createField(DSL.name("designation"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<StagingRecord, String> DESIGNATION = createField(DSL.name("designation"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.staging.import_id</code>.
      */
-    public final TableField<StagingRecord, Integer> IMPORT_ID = createField(DSL.name("import_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<StagingRecord, Integer> IMPORT_ID = createField(DSL.name("import_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.staging.scoped_identifier_id</code>.
      */
-    public final TableField<StagingRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<StagingRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.staging.converted_at</code>.
      */
-    public final TableField<StagingRecord, LocalDateTime> CONVERTED_AT = createField(DSL.name("converted_at"), org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+    public final TableField<StagingRecord, LocalDateTime> CONVERTED_AT = createField(DSL.name("converted_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>public.staging.converted_by</code>.
      */
-    public final TableField<StagingRecord, Integer> CONVERTED_BY = createField(DSL.name("converted_by"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<StagingRecord, Integer> CONVERTED_BY = createField(DSL.name("converted_by"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.staging.staged_element_id</code>.
      */
-    public final TableField<StagingRecord, String> STAGED_ELEMENT_ID = createField(DSL.name("staged_element_id"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<StagingRecord, String> STAGED_ELEMENT_ID = createField(DSL.name("staged_element_id"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.staging.members</code>.
      */
-    public final TableField<StagingRecord, String> MEMBERS = createField(DSL.name("members"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<StagingRecord, String> MEMBERS = createField(DSL.name("members"), SQLDataType.CLOB, this, "");
 
-    /**
-     * Create a <code>public.staging</code> table reference
-     */
-    public Staging() {
-        this(DSL.name("staging"), null);
+    private Staging(Name alias, Table<StagingRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Staging(Name alias, Table<StagingRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -120,12 +122,11 @@ public class Staging extends TableImpl<StagingRecord> {
         this(alias, STAGING);
     }
 
-    private Staging(Name alias, Table<StagingRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Staging(Name alias, Table<StagingRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.staging</code> table reference
+     */
+    public Staging() {
+        this(DSL.name("staging"), null);
     }
 
     public <O extends Record> Staging(Table<O> child, ForeignKey<O, StagingRecord> key) {
@@ -134,12 +135,12 @@ public class Staging extends TableImpl<StagingRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<StagingRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_STAGING;
+        return (Identity<StagingRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -148,17 +149,20 @@ public class Staging extends TableImpl<StagingRecord> {
     }
 
     @Override
-    public List<UniqueKey<StagingRecord>> getKeys() {
-        return Arrays.<UniqueKey<StagingRecord>>asList(Keys.STAGING_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<StagingRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<StagingRecord, ?>>asList(Keys.STAGING__STAGING_IMPORT_FKEY);
+        return Arrays.asList(Keys.STAGING__STAGING_IMPORT_FKEY);
     }
 
+    private transient Import _import_;
+
+    /**
+     * Get the implicit join path to the <code>public.import</code> table.
+     */
     public Import import_() {
-        return new Import(this, Keys.STAGING__STAGING_IMPORT_FKEY);
+        if (_import_ == null)
+            _import_ = new Import(this, Keys.STAGING__STAGING_IMPORT_FKEY);
+
+        return _import_;
     }
 
     @Override

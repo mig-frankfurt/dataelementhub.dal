@@ -8,6 +8,7 @@ import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.records.SlotRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -39,7 +40,8 @@ public class SlotDao extends DAOImpl<SlotRecord, de.dataelementhub.dal.jooq.tabl
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Slot> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Slot.SLOT.ID, lowerInclusive, upperInclusive);
@@ -60,7 +62,15 @@ public class SlotDao extends DAOImpl<SlotRecord, de.dataelementhub.dal.jooq.tabl
     }
 
     /**
-     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Slot> fetchOptionalById(Integer value) {
+        return fetchOptional(Slot.SLOT.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Slot> fetchRangeOfScopedIdentifierId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Slot.SLOT.SCOPED_IDENTIFIER_ID, lowerInclusive, upperInclusive);
@@ -74,7 +84,8 @@ public class SlotDao extends DAOImpl<SlotRecord, de.dataelementhub.dal.jooq.tabl
     }
 
     /**
-     * Fetch records that have <code>key BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>key BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Slot> fetchRangeOfKey(String lowerInclusive, String upperInclusive) {
         return fetchRange(Slot.SLOT.KEY, lowerInclusive, upperInclusive);
@@ -88,7 +99,8 @@ public class SlotDao extends DAOImpl<SlotRecord, de.dataelementhub.dal.jooq.tabl
     }
 
     /**
-     * Fetch records that have <code>value BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>value BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Slot> fetchRangeOfValue(String lowerInclusive, String upperInclusive) {
         return fetchRange(Slot.SLOT.VALUE, lowerInclusive, upperInclusive);

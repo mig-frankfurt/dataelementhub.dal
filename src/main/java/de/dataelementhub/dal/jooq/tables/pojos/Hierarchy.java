@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Hierarchy implements Serializable {
 
-    private static final long serialVersionUID = -272869694;
+    private static final long serialVersionUID = 1L;
 
     private Integer root;
     private Integer super_;
@@ -37,26 +37,44 @@ public class Hierarchy implements Serializable {
         this.sub = sub;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.root</code>.
+     */
     public Integer getRoot() {
         return this.root;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.root</code>.
+     */
     public void setRoot(Integer root) {
         this.root = root;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.super</code>.
+     */
     public Integer getSuper() {
         return this.super_;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.super</code>.
+     */
     public void setSuper(Integer super_) {
         this.super_ = super_;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.sub</code>.
+     */
     public Integer getSub() {
         return this.sub;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.sub</code>.
+     */
     public void setSub(Integer sub) {
         this.sub = sub;
     }

@@ -17,18 +17,18 @@ import java.util.UUID;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializable {
 
-    private static final long serialVersionUID = -101051131;
+    private static final long serialVersionUID = 1L;
 
     private Integer     id;
     private ElementType elementType;
     private Integer     version;
     private Integer     identifier;
-    private String      url;
     private Integer     createdBy;
     private Status      status;
     private Integer     elementId;
     private Integer     namespaceId;
     private UUID        uuid;
+    private Boolean     hidden;
 
     public GetValueDomainScopedIdentifierByDataelementUrn() {}
 
@@ -37,12 +37,12 @@ public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializa
         this.elementType = value.elementType;
         this.version = value.version;
         this.identifier = value.identifier;
-        this.url = value.url;
         this.createdBy = value.createdBy;
         this.status = value.status;
         this.elementId = value.elementId;
         this.namespaceId = value.namespaceId;
         this.uuid = value.uuid;
+        this.hidden = value.hidden;
     }
 
     public GetValueDomainScopedIdentifierByDataelementUrn(
@@ -50,103 +50,183 @@ public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializa
         ElementType elementType,
         Integer     version,
         Integer     identifier,
-        String      url,
         Integer     createdBy,
         Status      status,
         Integer     elementId,
         Integer     namespaceId,
-        UUID        uuid
+        UUID        uuid,
+        Boolean     hidden
     ) {
         this.id = id;
         this.elementType = elementType;
         this.version = version;
         this.identifier = identifier;
-        this.url = url;
         this.createdBy = createdBy;
         this.status = status;
         this.elementId = elementId;
         this.namespaceId = namespaceId;
         this.uuid = uuid;
+        this.hidden = hidden;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     */
     public ElementType getElementType() {
         return this.elementType;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     */
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     */
     public Integer getVersion() {
         return this.version;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     */
     public Integer getIdentifier() {
         return this.identifier;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     */
     public void setIdentifier(Integer identifier) {
         this.identifier = identifier;
     }
 
-    public String getUrl() {
-        return this.url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     */
     public Status getStatus() {
         return this.status;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     */
     public Integer getElementId() {
         return this.elementId;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     */
     public void setElementId(Integer elementId) {
         this.elementId = elementId;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     */
     public UUID getUuid() {
         return this.uuid;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     */
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.hidden</code>.
+     */
+    public Boolean getHidden() {
+        return this.hidden;
+    }
+
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.hidden</code>.
+     */
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
     }
 
     @Override
@@ -157,12 +237,12 @@ public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializa
         sb.append(", ").append(elementType);
         sb.append(", ").append(version);
         sb.append(", ").append(identifier);
-        sb.append(", ").append(url);
         sb.append(", ").append(createdBy);
         sb.append(", ").append(status);
         sb.append(", ").append(elementId);
         sb.append(", ").append(namespaceId);
         sb.append(", ").append(uuid);
+        sb.append(", ").append(hidden);
 
         sb.append(")");
         return sb.toString();

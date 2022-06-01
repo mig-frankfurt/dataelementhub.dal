@@ -17,7 +17,7 @@ import java.util.UUID;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import implements Serializable {
 
-    private static final long serialVersionUID = 1610586787;
+    private static final long serialVersionUID = 1L;
 
     private Integer       id;
     private LocalDateTime createdAt;
@@ -65,74 +65,128 @@ public class Import implements Serializable {
         this.status = status;
     }
 
+    /**
+     * Getter for <code>public.import.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.import.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.import.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.import.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.import.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.import.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.import.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for <code>public.import.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for <code>public.import.source</code>.
+     */
     public String getSource() {
         return this.source;
     }
 
+    /**
+     * Setter for <code>public.import.source</code>.
+     */
     public void setSource(String source) {
         this.source = source;
     }
 
+    /**
+     * Getter for <code>public.import.label</code>.
+     */
     public String getLabel() {
         return this.label;
     }
 
+    /**
+     * Setter for <code>public.import.label</code>.
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * Getter for <code>public.import.uuid</code>.
+     */
     public UUID getUuid() {
         return this.uuid;
     }
 
+    /**
+     * Setter for <code>public.import.uuid</code>.
+     */
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
+    /**
+     * Getter for <code>public.import.number_of_elements</code>.
+     */
     public Integer getNumberOfElements() {
         return this.numberOfElements;
     }
 
+    /**
+     * Setter for <code>public.import.number_of_elements</code>.
+     */
     public void setNumberOfElements(Integer numberOfElements) {
         this.numberOfElements = numberOfElements;
     }
 
+    /**
+     * Getter for <code>public.import.status</code>.
+     */
     public ProcessStatus getStatus() {
         return this.status;
     }
 
+    /**
+     * Setter for <code>public.import.status</code>.
+     */
     public void setStatus(ProcessStatus status) {
         this.status = status;
     }

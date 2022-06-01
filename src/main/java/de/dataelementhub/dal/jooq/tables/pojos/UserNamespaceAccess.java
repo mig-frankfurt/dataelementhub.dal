@@ -15,7 +15,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserNamespaceAccess implements Serializable {
 
-    private static final long serialVersionUID = -1830867828;
+    private static final long serialVersionUID = 1L;
 
     private Integer         userId;
     private Integer         namespaceId;
@@ -39,26 +39,44 @@ public class UserNamespaceAccess implements Serializable {
         this.accessLevel = accessLevel;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.user_id</code>.
+     */
     public Integer getUserId() {
         return this.userId;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.user_id</code>.
+     */
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.access_level</code>.
+     */
     public AccessLevelType getAccessLevel() {
         return this.accessLevel;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.access_level</code>.
+     */
     public void setAccessLevel(AccessLevelType accessLevel) {
         this.accessLevel = accessLevel;
     }

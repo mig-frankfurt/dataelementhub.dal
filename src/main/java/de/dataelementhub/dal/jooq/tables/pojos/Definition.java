@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Definition implements Serializable {
 
-    private static final long serialVersionUID = -2095765354;
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private Integer scopedIdentifierId;
@@ -49,50 +49,86 @@ public class Definition implements Serializable {
         this.elementId = elementId;
     }
 
+    /**
+     * Getter for <code>public.definition.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.definition.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.definition.scoped_identifier_id</code>.
+     */
     public Integer getScopedIdentifierId() {
         return this.scopedIdentifierId;
     }
 
+    /**
+     * Setter for <code>public.definition.scoped_identifier_id</code>.
+     */
     public void setScopedIdentifierId(Integer scopedIdentifierId) {
         this.scopedIdentifierId = scopedIdentifierId;
     }
 
+    /**
+     * Getter for <code>public.definition.designation</code>.
+     */
     public String getDesignation() {
         return this.designation;
     }
 
+    /**
+     * Setter for <code>public.definition.designation</code>.
+     */
     public void setDesignation(String designation) {
         this.designation = designation;
     }
 
+    /**
+     * Getter for <code>public.definition.definition</code>.
+     */
     public String getDefinition() {
         return this.definition;
     }
 
+    /**
+     * Setter for <code>public.definition.definition</code>.
+     */
     public void setDefinition(String definition) {
         this.definition = definition;
     }
 
+    /**
+     * Getter for <code>public.definition.language</code>.
+     */
     public String getLanguage() {
         return this.language;
     }
 
+    /**
+     * Setter for <code>public.definition.language</code>.
+     */
     public void setLanguage(String language) {
         this.language = language;
     }
 
+    /**
+     * Getter for <code>public.definition.element_id</code>.
+     */
     public Integer getElementId() {
         return this.elementId;
     }
 
+    /**
+     * Setter for <code>public.definition.element_id</code>.
+     */
     public void setElementId(Integer elementId) {
         this.elementId = elementId;
     }

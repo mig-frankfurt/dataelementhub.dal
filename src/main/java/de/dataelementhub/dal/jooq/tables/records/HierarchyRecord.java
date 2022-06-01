@@ -18,7 +18,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class HierarchyRecord extends TableRecordImpl<HierarchyRecord> implements Record3<Integer, Integer, Integer> {
 
-    private static final long serialVersionUID = -196379596;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.hierarchy.root</code>.
@@ -164,8 +164,21 @@ public class HierarchyRecord extends TableRecordImpl<HierarchyRecord> implements
     public HierarchyRecord(Integer root, Integer super_, Integer sub) {
         super(Hierarchy.HIERARCHY);
 
-        set(0, root);
-        set(1, super_);
-        set(2, sub);
+        setRoot(root);
+        setSuper(super_);
+        setSub(sub);
+    }
+
+    /**
+     * Create a detached, initialised HierarchyRecord
+     */
+    public HierarchyRecord(de.dataelementhub.dal.jooq.tables.pojos.Hierarchy value) {
+        super(Hierarchy.HIERARCHY);
+
+        if (value != null) {
+            setRoot(value.getRoot());
+            setSuper(value.getSuper());
+            setSub(value.getSub());
+        }
     }
 }

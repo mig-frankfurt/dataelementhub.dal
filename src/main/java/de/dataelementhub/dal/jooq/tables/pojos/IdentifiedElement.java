@@ -6,12 +6,11 @@ package de.dataelementhub.dal.jooq.tables.pojos;
 
 import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
-import de.dataelementhub.dal.jooq.enums.ValidationType;
+import de.dataelementhub.dal.jooq.enums.ValidationDatatypeType;
+import de.dataelementhub.dal.jooq.enums.ValidationSubtypeType;
 
 import java.io.Serializable;
 import java.util.UUID;
-
-import org.jooq.JSON;
 
 
 /**
@@ -20,32 +19,27 @@ import org.jooq.JSON;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class IdentifiedElement implements Serializable {
 
-    private static final long serialVersionUID = 699161457;
+    private static final long serialVersionUID = 1L;
 
-    private Integer        siId;
-    private Integer        siIdentifier;
-    private Integer        siVersion;
-    private Status         siStatus;
-    private Integer        siNamespaceId;
-    private Integer        id;
-    private ElementType    elementType;
-    private Boolean        hidden;
-    private Integer        createdBy;
-    private Integer        elementId;
-    private Integer        scopedIdentifierId;
-    private String         code;
-    private Boolean        isValid;
-    private String         format;
-    private String         datatype;
-    private String         unitOfMeasure;
-    private Integer        maximumCharacters;
-    private String         description;
-    private ValidationType validationType;
-    private String         validationData;
-    private String         permittedValue;
-    private JSON           data;
-    private UUID           uuid;
-    private String         externalId;
+    private Integer                siId;
+    private Integer                siIdentifier;
+    private Integer                siVersion;
+    private Status                 siStatus;
+    private Integer                siNamespaceId;
+    private Integer                eId;
+    private ElementType            eElementType;
+    private Integer                eCreatedBy;
+    private Integer                eElementId;
+    private String                 ePermittedValue;
+    private UUID                   eUuid;
+    private String                 eExternalId;
+    private Integer                vId;
+    private Integer                vElementId;
+    private ValidationDatatypeType vDatatype;
+    private ValidationSubtypeType  vSubtype;
+    private String                 vFormat;
+    private String                 vUnitOfMeasure;
+    private Integer                vMaximumCharacters;
 
     public IdentifiedElement() {}
 
@@ -55,269 +49,328 @@ public class IdentifiedElement implements Serializable {
         this.siVersion = value.siVersion;
         this.siStatus = value.siStatus;
         this.siNamespaceId = value.siNamespaceId;
-        this.id = value.id;
-        this.elementType = value.elementType;
-        this.hidden = value.hidden;
-        this.createdBy = value.createdBy;
-        this.elementId = value.elementId;
-        this.scopedIdentifierId = value.scopedIdentifierId;
-        this.code = value.code;
-        this.isValid = value.isValid;
-        this.format = value.format;
-        this.datatype = value.datatype;
-        this.unitOfMeasure = value.unitOfMeasure;
-        this.maximumCharacters = value.maximumCharacters;
-        this.description = value.description;
-        this.validationType = value.validationType;
-        this.validationData = value.validationData;
-        this.permittedValue = value.permittedValue;
-        this.data = value.data;
-        this.uuid = value.uuid;
-        this.externalId = value.externalId;
+        this.eId = value.eId;
+        this.eElementType = value.eElementType;
+        this.eCreatedBy = value.eCreatedBy;
+        this.eElementId = value.eElementId;
+        this.ePermittedValue = value.ePermittedValue;
+        this.eUuid = value.eUuid;
+        this.eExternalId = value.eExternalId;
+        this.vId = value.vId;
+        this.vElementId = value.vElementId;
+        this.vDatatype = value.vDatatype;
+        this.vSubtype = value.vSubtype;
+        this.vFormat = value.vFormat;
+        this.vUnitOfMeasure = value.vUnitOfMeasure;
+        this.vMaximumCharacters = value.vMaximumCharacters;
     }
 
     public IdentifiedElement(
-        Integer        siId,
-        Integer        siIdentifier,
-        Integer        siVersion,
-        Status         siStatus,
-        Integer        siNamespaceId,
-        Integer        id,
-        ElementType    elementType,
-        Boolean        hidden,
-        Integer        createdBy,
-        Integer        elementId,
-        Integer        scopedIdentifierId,
-        String         code,
-        Boolean        isValid,
-        String         format,
-        String         datatype,
-        String         unitOfMeasure,
-        Integer        maximumCharacters,
-        String         description,
-        ValidationType validationType,
-        String         validationData,
-        String         permittedValue,
-        JSON           data,
-        UUID           uuid,
-        String         externalId
+        Integer                siId,
+        Integer                siIdentifier,
+        Integer                siVersion,
+        Status                 siStatus,
+        Integer                siNamespaceId,
+        Integer                eId,
+        ElementType            eElementType,
+        Integer                eCreatedBy,
+        Integer                eElementId,
+        String                 ePermittedValue,
+        UUID                   eUuid,
+        String                 eExternalId,
+        Integer                vId,
+        Integer                vElementId,
+        ValidationDatatypeType vDatatype,
+        ValidationSubtypeType  vSubtype,
+        String                 vFormat,
+        String                 vUnitOfMeasure,
+        Integer                vMaximumCharacters
     ) {
         this.siId = siId;
         this.siIdentifier = siIdentifier;
         this.siVersion = siVersion;
         this.siStatus = siStatus;
         this.siNamespaceId = siNamespaceId;
-        this.id = id;
-        this.elementType = elementType;
-        this.hidden = hidden;
-        this.createdBy = createdBy;
-        this.elementId = elementId;
-        this.scopedIdentifierId = scopedIdentifierId;
-        this.code = code;
-        this.isValid = isValid;
-        this.format = format;
-        this.datatype = datatype;
-        this.unitOfMeasure = unitOfMeasure;
-        this.maximumCharacters = maximumCharacters;
-        this.description = description;
-        this.validationType = validationType;
-        this.validationData = validationData;
-        this.permittedValue = permittedValue;
-        this.data = data;
-        this.uuid = uuid;
-        this.externalId = externalId;
+        this.eId = eId;
+        this.eElementType = eElementType;
+        this.eCreatedBy = eCreatedBy;
+        this.eElementId = eElementId;
+        this.ePermittedValue = ePermittedValue;
+        this.eUuid = eUuid;
+        this.eExternalId = eExternalId;
+        this.vId = vId;
+        this.vElementId = vElementId;
+        this.vDatatype = vDatatype;
+        this.vSubtype = vSubtype;
+        this.vFormat = vFormat;
+        this.vUnitOfMeasure = vUnitOfMeasure;
+        this.vMaximumCharacters = vMaximumCharacters;
     }
 
+    /**
+     * Getter for <code>public.identified_element.si_id</code>.
+     */
     public Integer getSiId() {
         return this.siId;
     }
 
+    /**
+     * Setter for <code>public.identified_element.si_id</code>.
+     */
     public void setSiId(Integer siId) {
         this.siId = siId;
     }
 
+    /**
+     * Getter for <code>public.identified_element.si_identifier</code>.
+     */
     public Integer getSiIdentifier() {
         return this.siIdentifier;
     }
 
+    /**
+     * Setter for <code>public.identified_element.si_identifier</code>.
+     */
     public void setSiIdentifier(Integer siIdentifier) {
         this.siIdentifier = siIdentifier;
     }
 
+    /**
+     * Getter for <code>public.identified_element.si_version</code>.
+     */
     public Integer getSiVersion() {
         return this.siVersion;
     }
 
+    /**
+     * Setter for <code>public.identified_element.si_version</code>.
+     */
     public void setSiVersion(Integer siVersion) {
         this.siVersion = siVersion;
     }
 
+    /**
+     * Getter for <code>public.identified_element.si_status</code>.
+     */
     public Status getSiStatus() {
         return this.siStatus;
     }
 
+    /**
+     * Setter for <code>public.identified_element.si_status</code>.
+     */
     public void setSiStatus(Status siStatus) {
         this.siStatus = siStatus;
     }
 
+    /**
+     * Getter for <code>public.identified_element.si_namespace_id</code>.
+     */
     public Integer getSiNamespaceId() {
         return this.siNamespaceId;
     }
 
+    /**
+     * Setter for <code>public.identified_element.si_namespace_id</code>.
+     */
     public void setSiNamespaceId(Integer siNamespaceId) {
         this.siNamespaceId = siNamespaceId;
     }
 
-    public Integer getId() {
-        return this.id;
+    /**
+     * Getter for <code>public.identified_element.e_id</code>.
+     */
+    public Integer getEId() {
+        return this.eId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    /**
+     * Setter for <code>public.identified_element.e_id</code>.
+     */
+    public void setEId(Integer eId) {
+        this.eId = eId;
     }
 
-    public ElementType getElementType() {
-        return this.elementType;
+    /**
+     * Getter for <code>public.identified_element.e_element_type</code>.
+     */
+    public ElementType getEElementType() {
+        return this.eElementType;
     }
 
-    public void setElementType(ElementType elementType) {
-        this.elementType = elementType;
+    /**
+     * Setter for <code>public.identified_element.e_element_type</code>.
+     */
+    public void setEElementType(ElementType eElementType) {
+        this.eElementType = eElementType;
     }
 
-    public Boolean getHidden() {
-        return this.hidden;
+    /**
+     * Getter for <code>public.identified_element.e_created_by</code>.
+     */
+    public Integer getECreatedBy() {
+        return this.eCreatedBy;
     }
 
-    public void setHidden(Boolean hidden) {
-        this.hidden = hidden;
+    /**
+     * Setter for <code>public.identified_element.e_created_by</code>.
+     */
+    public void setECreatedBy(Integer eCreatedBy) {
+        this.eCreatedBy = eCreatedBy;
     }
 
-    public Integer getCreatedBy() {
-        return this.createdBy;
+    /**
+     * Getter for <code>public.identified_element.e_element_id</code>.
+     */
+    public Integer getEElementId() {
+        return this.eElementId;
     }
 
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
+    /**
+     * Setter for <code>public.identified_element.e_element_id</code>.
+     */
+    public void setEElementId(Integer eElementId) {
+        this.eElementId = eElementId;
     }
 
-    public Integer getElementId() {
-        return this.elementId;
+    /**
+     * Getter for <code>public.identified_element.e_permitted_value</code>.
+     */
+    public String getEPermittedValue() {
+        return this.ePermittedValue;
     }
 
-    public void setElementId(Integer elementId) {
-        this.elementId = elementId;
+    /**
+     * Setter for <code>public.identified_element.e_permitted_value</code>.
+     */
+    public void setEPermittedValue(String ePermittedValue) {
+        this.ePermittedValue = ePermittedValue;
     }
 
-    public Integer getScopedIdentifierId() {
-        return this.scopedIdentifierId;
+    /**
+     * Getter for <code>public.identified_element.e_uuid</code>.
+     */
+    public UUID getEUuid() {
+        return this.eUuid;
     }
 
-    public void setScopedIdentifierId(Integer scopedIdentifierId) {
-        this.scopedIdentifierId = scopedIdentifierId;
+    /**
+     * Setter for <code>public.identified_element.e_uuid</code>.
+     */
+    public void setEUuid(UUID eUuid) {
+        this.eUuid = eUuid;
     }
 
-    public String getCode() {
-        return this.code;
+    /**
+     * Getter for <code>public.identified_element.e_external_id</code>.
+     */
+    public String getEExternalId() {
+        return this.eExternalId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    /**
+     * Setter for <code>public.identified_element.e_external_id</code>.
+     */
+    public void setEExternalId(String eExternalId) {
+        this.eExternalId = eExternalId;
     }
 
-    public Boolean getIsValid() {
-        return this.isValid;
+    /**
+     * Getter for <code>public.identified_element.v_id</code>.
+     */
+    public Integer getVId() {
+        return this.vId;
     }
 
-    public void setIsValid(Boolean isValid) {
-        this.isValid = isValid;
+    /**
+     * Setter for <code>public.identified_element.v_id</code>.
+     */
+    public void setVId(Integer vId) {
+        this.vId = vId;
     }
 
-    public String getFormat() {
-        return this.format;
+    /**
+     * Getter for <code>public.identified_element.v_element_id</code>.
+     */
+    public Integer getVElementId() {
+        return this.vElementId;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    /**
+     * Setter for <code>public.identified_element.v_element_id</code>.
+     */
+    public void setVElementId(Integer vElementId) {
+        this.vElementId = vElementId;
     }
 
-    public String getDatatype() {
-        return this.datatype;
+    /**
+     * Getter for <code>public.identified_element.v_datatype</code>.
+     */
+    public ValidationDatatypeType getVDatatype() {
+        return this.vDatatype;
     }
 
-    public void setDatatype(String datatype) {
-        this.datatype = datatype;
+    /**
+     * Setter for <code>public.identified_element.v_datatype</code>.
+     */
+    public void setVDatatype(ValidationDatatypeType vDatatype) {
+        this.vDatatype = vDatatype;
     }
 
-    public String getUnitOfMeasure() {
-        return this.unitOfMeasure;
+    /**
+     * Getter for <code>public.identified_element.v_subtype</code>.
+     */
+    public ValidationSubtypeType getVSubtype() {
+        return this.vSubtype;
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
+    /**
+     * Setter for <code>public.identified_element.v_subtype</code>.
+     */
+    public void setVSubtype(ValidationSubtypeType vSubtype) {
+        this.vSubtype = vSubtype;
     }
 
-    public Integer getMaximumCharacters() {
-        return this.maximumCharacters;
+    /**
+     * Getter for <code>public.identified_element.v_format</code>.
+     */
+    public String getVFormat() {
+        return this.vFormat;
     }
 
-    public void setMaximumCharacters(Integer maximumCharacters) {
-        this.maximumCharacters = maximumCharacters;
+    /**
+     * Setter for <code>public.identified_element.v_format</code>.
+     */
+    public void setVFormat(String vFormat) {
+        this.vFormat = vFormat;
     }
 
-    public String getDescription() {
-        return this.description;
+    /**
+     * Getter for <code>public.identified_element.v_unit_of_measure</code>.
+     */
+    public String getVUnitOfMeasure() {
+        return this.vUnitOfMeasure;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    /**
+     * Setter for <code>public.identified_element.v_unit_of_measure</code>.
+     */
+    public void setVUnitOfMeasure(String vUnitOfMeasure) {
+        this.vUnitOfMeasure = vUnitOfMeasure;
     }
 
-    public ValidationType getValidationType() {
-        return this.validationType;
+    /**
+     * Getter for <code>public.identified_element.v_maximum_characters</code>.
+     */
+    public Integer getVMaximumCharacters() {
+        return this.vMaximumCharacters;
     }
 
-    public void setValidationType(ValidationType validationType) {
-        this.validationType = validationType;
-    }
-
-    public String getValidationData() {
-        return this.validationData;
-    }
-
-    public void setValidationData(String validationData) {
-        this.validationData = validationData;
-    }
-
-    public String getPermittedValue() {
-        return this.permittedValue;
-    }
-
-    public void setPermittedValue(String permittedValue) {
-        this.permittedValue = permittedValue;
-    }
-
-    public JSON getData() {
-        return this.data;
-    }
-
-    public void setData(JSON data) {
-        this.data = data;
-    }
-
-    public UUID getUuid() {
-        return this.uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getExternalId() {
-        return this.externalId;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
+    /**
+     * Setter for <code>public.identified_element.v_maximum_characters</code>.
+     */
+    public void setVMaximumCharacters(Integer vMaximumCharacters) {
+        this.vMaximumCharacters = vMaximumCharacters;
     }
 
     @Override
@@ -329,25 +382,20 @@ public class IdentifiedElement implements Serializable {
         sb.append(", ").append(siVersion);
         sb.append(", ").append(siStatus);
         sb.append(", ").append(siNamespaceId);
-        sb.append(", ").append(id);
-        sb.append(", ").append(elementType);
-        sb.append(", ").append(hidden);
-        sb.append(", ").append(createdBy);
-        sb.append(", ").append(elementId);
-        sb.append(", ").append(scopedIdentifierId);
-        sb.append(", ").append(code);
-        sb.append(", ").append(isValid);
-        sb.append(", ").append(format);
-        sb.append(", ").append(datatype);
-        sb.append(", ").append(unitOfMeasure);
-        sb.append(", ").append(maximumCharacters);
-        sb.append(", ").append(description);
-        sb.append(", ").append(validationType);
-        sb.append(", ").append(validationData);
-        sb.append(", ").append(permittedValue);
-        sb.append(", ").append(data);
-        sb.append(", ").append(uuid);
-        sb.append(", ").append(externalId);
+        sb.append(", ").append(eId);
+        sb.append(", ").append(eElementType);
+        sb.append(", ").append(eCreatedBy);
+        sb.append(", ").append(eElementId);
+        sb.append(", ").append(ePermittedValue);
+        sb.append(", ").append(eUuid);
+        sb.append(", ").append(eExternalId);
+        sb.append(", ").append(vId);
+        sb.append(", ").append(vElementId);
+        sb.append(", ").append(vDatatype);
+        sb.append(", ").append(vSubtype);
+        sb.append(", ").append(vFormat);
+        sb.append(", ").append(vUnitOfMeasure);
+        sb.append(", ").append(vMaximumCharacters);
 
         sb.append(")");
         return sb.toString();

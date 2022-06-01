@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ScopedIdentifierHierarchy implements Serializable {
 
-    private static final long serialVersionUID = 1361927719;
+    private static final long serialVersionUID = 1L;
 
     private Integer superId;
     private Integer subId;
@@ -37,26 +37,44 @@ public class ScopedIdentifierHierarchy implements Serializable {
         this.order = order;
     }
 
+    /**
+     * Getter for <code>public.scoped_identifier_hierarchy.super_id</code>.
+     */
     public Integer getSuperId() {
         return this.superId;
     }
 
+    /**
+     * Setter for <code>public.scoped_identifier_hierarchy.super_id</code>.
+     */
     public void setSuperId(Integer superId) {
         this.superId = superId;
     }
 
+    /**
+     * Getter for <code>public.scoped_identifier_hierarchy.sub_id</code>.
+     */
     public Integer getSubId() {
         return this.subId;
     }
 
+    /**
+     * Setter for <code>public.scoped_identifier_hierarchy.sub_id</code>.
+     */
     public void setSubId(Integer subId) {
         this.subId = subId;
     }
 
+    /**
+     * Getter for <code>public.scoped_identifier_hierarchy.order</code>.
+     */
     public Integer getOrder() {
         return this.order;
     }
 
+    /**
+     * Setter for <code>public.scoped_identifier_hierarchy.order</code>.
+     */
     public void setOrder(Integer order) {
         this.order = order;
     }
