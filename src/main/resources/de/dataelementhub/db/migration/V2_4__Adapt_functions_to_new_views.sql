@@ -67,3 +67,21 @@ WHERE si.element_id = (SELECT id from get_value_domain_by_urn(urn))
       and si_identifier::text = SPLIT_PART(urn, ':', 2)
 )
 $$ LANGUAGE SQL;
+
+
+-- The element type constraint has to be modified to allow just "VALUE_DOMAIN" in the scoped identifier table
+
+CREATE OR REPLACE FUNCTION getelementtype(id integer)
+    RETURNS element_type
+    LANGUAGE sql
+AS
+$function$
+SELECT
+    CASE
+        WHEN "element_type"::TEXT ilike '%value_domain%' then 'VALUE_DOMAIN'
+        ELSE "element_type"
+        END
+from "element"
+WHERE "id" = $1
+$function$
+;
