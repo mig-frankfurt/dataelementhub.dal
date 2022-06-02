@@ -1,20 +1,26 @@
-drop view identified_element;
-drop view listview_element;
+DROP VIEW identified_element;
+DROP VIEW listview_element;
 
-drop table config;
-drop table permissible_code;
+DROP TABLE config;
+DROP TABLE permissible_code;
 
-alter table scoped_identifier drop column url;
+ALTER TABLE scoped_identifier DROP COLUMN url;
+ALTER TABLE scoped_identifier DROP COLUMN element_type;
+ALTER TABLE scoped_identifier DROP COLUMN uuid;
 
-alter table element drop column hidden;
-alter table element drop column scoped_identifier_id;
-alter table element drop column code;
-alter table element drop column is_valid;
-alter table element drop column format;
-alter table element drop column datatype;
-alter table element drop column unit_of_measure;
-alter table element drop column maximum_characters;
-alter table element drop column description;
-alter table element drop column validation_type;
-alter table element drop column validation_data;
-alter table element drop column data;
+ALTER TABLE element DROP COLUMN hidden;
+ALTER TABLE element DROP COLUMN scoped_identifier_id;
+ALTER TABLE element DROP COLUMN code;
+ALTER TABLE element DROP COLUMN is_valid;
+ALTER TABLE element DROP COLUMN format;
+ALTER TABLE element DROP COLUMN datatype;
+ALTER TABLE element DROP COLUMN unit_of_measure;
+ALTER TABLE element DROP COLUMN maximum_characters;
+ALTER TABLE element DROP COLUMN description;
+ALTER TABLE element DROP COLUMN validation_type;
+ALTER TABLE element DROP COLUMN validation_data;
+ALTER TABLE element DROP COLUMN data;
+ALTER TABLE element DROP COLUMN uuid;
+ALTER TABLE element DROP COLUMN external_id;
+
+ALTER TABLE import DROP COLUMN uuid;

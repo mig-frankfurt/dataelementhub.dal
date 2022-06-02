@@ -4,6 +4,7 @@ CREATE TYPE validation_datatype_type AS ENUM (
     'STRING',
     'NUMERIC',
     'DATE',
+    'ENUMERATED',
     'TBD'
     );
 
@@ -19,8 +20,6 @@ CREATE TYPE validation_subtype_type AS ENUM (
     'TIME'
     );
 
-ALTER TYPE element_type ADD VALUE 'VALUE_DOMAIN';
-
 CREATE TABLE IF NOT EXISTS validation
 (
     id                 serial primary key,
@@ -33,6 +32,19 @@ CREATE TABLE IF NOT EXISTS validation
     CONSTRAINT element_id_fkey FOREIGN KEY (element_id) REFERENCES element (id) ON DELETE CASCADE
 );
 
-ALTER TABLE scoped_identifier
-    add column hidden bool;
+ALTER TABLE concepts RENAME TO concept;
+ALTER TABLE concept_element_associations RENAME TO concept_element_association;
 
+
+ALTER TABLE scoped_identifier ADD COLUMN hidden bool;
+ALTER TABLE scoped_identifier RENAME COLUMN version TO revision;
+
+ALTER TABLE import ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
+ALTER TABLE import ADD FOREIGN KEY (namespace_id) REFERENCES element (id) ON DELETE CASCADE;
+
+ALTER TABLE staging ADD FOREIGN KEY (converted_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
+ALTER TABLE staging ADD FOREIGN KEY (scoped_identifier_id) REFERENCES scoped_identifier (id) ON DELETE CASCADE;
+
+ALTER TABLE concept ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
+
+ALTER TABLE concept_element_association ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
