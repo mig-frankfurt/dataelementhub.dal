@@ -10,7 +10,6 @@ import de.dataelementhub.dal.jooq.enums.ValidationDatatypeType;
 import de.dataelementhub.dal.jooq.enums.ValidationSubtypeType;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 
 /**
@@ -23,16 +22,15 @@ public class IdentifiedElement implements Serializable {
 
     private Integer                siId;
     private Integer                siIdentifier;
-    private Integer                siVersion;
+    private Integer                siRevision;
     private Status                 siStatus;
     private Integer                siNamespaceId;
+    private Boolean                siHidden;
     private Integer                eId;
     private ElementType            eElementType;
     private Integer                eCreatedBy;
     private Integer                eElementId;
     private String                 ePermittedValue;
-    private UUID                   eUuid;
-    private String                 eExternalId;
     private Integer                vId;
     private Integer                vElementId;
     private ValidationDatatypeType vDatatype;
@@ -46,16 +44,15 @@ public class IdentifiedElement implements Serializable {
     public IdentifiedElement(IdentifiedElement value) {
         this.siId = value.siId;
         this.siIdentifier = value.siIdentifier;
-        this.siVersion = value.siVersion;
+        this.siRevision = value.siRevision;
         this.siStatus = value.siStatus;
         this.siNamespaceId = value.siNamespaceId;
+        this.siHidden = value.siHidden;
         this.eId = value.eId;
         this.eElementType = value.eElementType;
         this.eCreatedBy = value.eCreatedBy;
         this.eElementId = value.eElementId;
         this.ePermittedValue = value.ePermittedValue;
-        this.eUuid = value.eUuid;
-        this.eExternalId = value.eExternalId;
         this.vId = value.vId;
         this.vElementId = value.vElementId;
         this.vDatatype = value.vDatatype;
@@ -68,16 +65,15 @@ public class IdentifiedElement implements Serializable {
     public IdentifiedElement(
         Integer                siId,
         Integer                siIdentifier,
-        Integer                siVersion,
+        Integer                siRevision,
         Status                 siStatus,
         Integer                siNamespaceId,
+        Boolean                siHidden,
         Integer                eId,
         ElementType            eElementType,
         Integer                eCreatedBy,
         Integer                eElementId,
         String                 ePermittedValue,
-        UUID                   eUuid,
-        String                 eExternalId,
         Integer                vId,
         Integer                vElementId,
         ValidationDatatypeType vDatatype,
@@ -88,16 +84,15 @@ public class IdentifiedElement implements Serializable {
     ) {
         this.siId = siId;
         this.siIdentifier = siIdentifier;
-        this.siVersion = siVersion;
+        this.siRevision = siRevision;
         this.siStatus = siStatus;
         this.siNamespaceId = siNamespaceId;
+        this.siHidden = siHidden;
         this.eId = eId;
         this.eElementType = eElementType;
         this.eCreatedBy = eCreatedBy;
         this.eElementId = eElementId;
         this.ePermittedValue = ePermittedValue;
-        this.eUuid = eUuid;
-        this.eExternalId = eExternalId;
         this.vId = vId;
         this.vElementId = vElementId;
         this.vDatatype = vDatatype;
@@ -136,17 +131,17 @@ public class IdentifiedElement implements Serializable {
     }
 
     /**
-     * Getter for <code>public.identified_element.si_version</code>.
+     * Getter for <code>public.identified_element.si_revision</code>.
      */
-    public Integer getSiVersion() {
-        return this.siVersion;
+    public Integer getSiRevision() {
+        return this.siRevision;
     }
 
     /**
-     * Setter for <code>public.identified_element.si_version</code>.
+     * Setter for <code>public.identified_element.si_revision</code>.
      */
-    public void setSiVersion(Integer siVersion) {
-        this.siVersion = siVersion;
+    public void setSiRevision(Integer siRevision) {
+        this.siRevision = siRevision;
     }
 
     /**
@@ -175,6 +170,20 @@ public class IdentifiedElement implements Serializable {
      */
     public void setSiNamespaceId(Integer siNamespaceId) {
         this.siNamespaceId = siNamespaceId;
+    }
+
+    /**
+     * Getter for <code>public.identified_element.si_hidden</code>.
+     */
+    public Boolean getSiHidden() {
+        return this.siHidden;
+    }
+
+    /**
+     * Setter for <code>public.identified_element.si_hidden</code>.
+     */
+    public void setSiHidden(Boolean siHidden) {
+        this.siHidden = siHidden;
     }
 
     /**
@@ -245,34 +254,6 @@ public class IdentifiedElement implements Serializable {
      */
     public void setEPermittedValue(String ePermittedValue) {
         this.ePermittedValue = ePermittedValue;
-    }
-
-    /**
-     * Getter for <code>public.identified_element.e_uuid</code>.
-     */
-    public UUID getEUuid() {
-        return this.eUuid;
-    }
-
-    /**
-     * Setter for <code>public.identified_element.e_uuid</code>.
-     */
-    public void setEUuid(UUID eUuid) {
-        this.eUuid = eUuid;
-    }
-
-    /**
-     * Getter for <code>public.identified_element.e_external_id</code>.
-     */
-    public String getEExternalId() {
-        return this.eExternalId;
-    }
-
-    /**
-     * Setter for <code>public.identified_element.e_external_id</code>.
-     */
-    public void setEExternalId(String eExternalId) {
-        this.eExternalId = eExternalId;
     }
 
     /**
@@ -379,16 +360,15 @@ public class IdentifiedElement implements Serializable {
 
         sb.append(siId);
         sb.append(", ").append(siIdentifier);
-        sb.append(", ").append(siVersion);
+        sb.append(", ").append(siRevision);
         sb.append(", ").append(siStatus);
         sb.append(", ").append(siNamespaceId);
+        sb.append(", ").append(siHidden);
         sb.append(", ").append(eId);
         sb.append(", ").append(eElementType);
         sb.append(", ").append(eCreatedBy);
         sb.append(", ").append(eElementId);
         sb.append(", ").append(ePermittedValue);
-        sb.append(", ").append(eUuid);
-        sb.append(", ").append(eExternalId);
         sb.append(", ").append(vId);
         sb.append(", ").append(vElementId);
         sb.append(", ").append(vDatatype);

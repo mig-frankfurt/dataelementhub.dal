@@ -7,7 +7,6 @@ package de.dataelementhub.dal.jooq.tables.pojos;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 
 /**
@@ -23,8 +22,6 @@ public class GetValueDomainByUrn implements Serializable {
     private Integer     createdBy;
     private Integer     elementId;
     private String      permittedValue;
-    private UUID        uuid;
-    private String      externalId;
 
     public GetValueDomainByUrn() {}
 
@@ -34,8 +31,6 @@ public class GetValueDomainByUrn implements Serializable {
         this.createdBy = value.createdBy;
         this.elementId = value.elementId;
         this.permittedValue = value.permittedValue;
-        this.uuid = value.uuid;
-        this.externalId = value.externalId;
     }
 
     public GetValueDomainByUrn(
@@ -43,17 +38,13 @@ public class GetValueDomainByUrn implements Serializable {
         ElementType elementType,
         Integer     createdBy,
         Integer     elementId,
-        String      permittedValue,
-        UUID        uuid,
-        String      externalId
+        String      permittedValue
     ) {
         this.id = id;
         this.elementType = elementType;
         this.createdBy = createdBy;
         this.elementId = elementId;
         this.permittedValue = permittedValue;
-        this.uuid = uuid;
-        this.externalId = externalId;
     }
 
     /**
@@ -126,34 +117,6 @@ public class GetValueDomainByUrn implements Serializable {
         this.permittedValue = permittedValue;
     }
 
-    /**
-     * Getter for <code>public.get_value_domain_by_urn.uuid</code>.
-     */
-    public UUID getUuid() {
-        return this.uuid;
-    }
-
-    /**
-     * Setter for <code>public.get_value_domain_by_urn.uuid</code>.
-     */
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    /**
-     * Getter for <code>public.get_value_domain_by_urn.external_id</code>.
-     */
-    public String getExternalId() {
-        return this.externalId;
-    }
-
-    /**
-     * Setter for <code>public.get_value_domain_by_urn.external_id</code>.
-     */
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("GetValueDomainByUrn (");
@@ -163,8 +126,6 @@ public class GetValueDomainByUrn implements Serializable {
         sb.append(", ").append(createdBy);
         sb.append(", ").append(elementId);
         sb.append(", ").append(permittedValue);
-        sb.append(", ").append(uuid);
-        sb.append(", ").append(externalId);
 
         sb.append(")");
         return sb.toString();

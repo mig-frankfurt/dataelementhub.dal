@@ -20,7 +20,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -77,16 +77,6 @@ public class Element extends TableImpl<ElementRecord> {
      * The column <code>public.element.permitted_value</code>.
      */
     public final TableField<ElementRecord, String> PERMITTED_VALUE = createField(DSL.name("permitted_value"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.uuid</code>.
-     */
-    public final TableField<ElementRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * The column <code>public.element.external_id</code>.
-     */
-    public final TableField<ElementRecord, String> EXTERNAL_ID = createField(DSL.name("external_id"), SQLDataType.CLOB, this, "");
 
     private Element(Name alias, Table<ElementRecord> aliased) {
         this(alias, aliased, null);
@@ -203,11 +193,11 @@ public class Element extends TableImpl<ElementRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, ElementType, Integer, Integer, String, java.util.UUID, String> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row5<Integer, ElementType, Integer, Integer, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

@@ -7,28 +7,25 @@ package de.dataelementhub.dal.jooq.tables;
 import de.dataelementhub.dal.jooq.Indexes;
 import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.jooq.Check;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row10;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
-import org.jooq.impl.Internal;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
@@ -60,14 +57,9 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     public final TableField<ScopedIdentifierRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>public.scoped_identifier.element_type</code>.
+     * The column <code>public.scoped_identifier.revision</code>.
      */
-    public final TableField<ScopedIdentifierRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
-
-    /**
-     * The column <code>public.scoped_identifier.version</code>.
-     */
-    public final TableField<ScopedIdentifierRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> REVISION = createField(DSL.name("revision"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.identifier</code>.
@@ -93,11 +85,6 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
      * The column <code>public.scoped_identifier.namespace_id</code>.
      */
     public final TableField<ScopedIdentifierRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>public.scoped_identifier.uuid</code>.
-     */
-    public final TableField<ScopedIdentifierRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.hidden</code>.
@@ -144,7 +131,7 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.SCOPED_IDENTIFIER_CREATED_BY_IDX, Indexes.SCOPED_IDENTIFIER_ELEMENT_ID_IDX, Indexes.SCOPED_IDENTIFIER_IDENTIFIER_IDX, Indexes.SCOPED_IDENTIFIER_NAMESPACE_ID_IDX, Indexes.SCOPED_IDENTIFIER_STATUS_IDX, Indexes.SCOPED_IDENTIFIER_UUID_IDX, Indexes.SCOPED_IDENTIFIER_VERSION_IDX);
+        return Arrays.asList(Indexes.SCOPED_IDENTIFIER_CREATED_BY_IDX, Indexes.SCOPED_IDENTIFIER_ELEMENT_ID_IDX, Indexes.SCOPED_IDENTIFIER_IDENTIFIER_IDX, Indexes.SCOPED_IDENTIFIER_NAMESPACE_ID_IDX, Indexes.SCOPED_IDENTIFIER_STATUS_IDX, Indexes.SCOPED_IDENTIFIER_VERSION_IDX);
     }
 
     @Override
@@ -155,11 +142,6 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     @Override
     public UniqueKey<ScopedIdentifierRecord> getPrimaryKey() {
         return Keys.SCOPED_IDENTIFIER_PKEY;
-    }
-
-    @Override
-    public List<UniqueKey<ScopedIdentifierRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.UNIQUE_ELEMENT_TYPE_IDENTIFIER);
     }
 
     @Override
@@ -204,13 +186,6 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     }
 
     @Override
-    public List<Check<ScopedIdentifierRecord>> getChecks() {
-        return Arrays.asList(
-            Internal.createCheck(this, DSL.name("et_check"), "((element_type = getelementtype(element_id)))", true)
-        );
-    }
-
-    @Override
     public ScopedIdentifier as(String alias) {
         return new ScopedIdentifier(DSL.name(alias), this);
     }
@@ -237,11 +212,11 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, Integer, Status, Integer, Integer, java.util.UUID, Boolean> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row8<Integer, Integer, Integer, Integer, Status, Integer, Integer, Boolean> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

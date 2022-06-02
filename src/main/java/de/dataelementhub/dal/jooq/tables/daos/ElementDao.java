@@ -10,7 +10,6 @@ import de.dataelementhub.dal.jooq.tables.records.ElementRecord;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -128,35 +127,5 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByPermittedValue(String... values) {
         return fetch(Element.ELEMENT.PERMITTED_VALUE, values);
-    }
-
-    /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
-        return fetchRange(Element.ELEMENT.UUID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>uuid IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByUuid(UUID... values) {
-        return fetch(Element.ELEMENT.UUID, values);
-    }
-
-    /**
-     * Fetch records that have <code>external_id BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfExternalId(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.EXTERNAL_ID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>external_id IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByExternalId(String... values) {
-        return fetch(Element.ELEMENT.EXTERNAL_ID, values);
     }
 }

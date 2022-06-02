@@ -5,14 +5,13 @@ package de.dataelementhub.dal.jooq.tables;
 
 
 import de.dataelementhub.dal.jooq.Public;
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.records.GetScopedIdentifierByUrnRecord;
 
 import org.jooq.Field;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Row10;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -50,14 +49,9 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
     public final TableField<GetScopedIdentifierByUrnRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true).defaultValue(DSL.field("nextval('scoped_identifier_id_seq'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
-     * The column <code>public.get_scoped_identifier_by_urn.element_type</code>.
+     * The column <code>public.get_scoped_identifier_by_urn.revision</code>.
      */
-    public final TableField<GetScopedIdentifierByUrnRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
-
-    /**
-     * The column <code>public.get_scoped_identifier_by_urn.version</code>.
-     */
-    public final TableField<GetScopedIdentifierByUrnRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetScopedIdentifierByUrnRecord, Integer> REVISION = createField(DSL.name("revision"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.get_scoped_identifier_by_urn.identifier</code>.
@@ -83,11 +77,6 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
      * The column <code>public.get_scoped_identifier_by_urn.namespace_id</code>.
      */
     public final TableField<GetScopedIdentifierByUrnRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>public.get_scoped_identifier_by_urn.uuid</code>.
-     */
-    public final TableField<GetScopedIdentifierByUrnRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
      * The column <code>public.get_scoped_identifier_by_urn.hidden</code>.
@@ -164,12 +153,12 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
     }
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, Integer, Status, Integer, Integer, java.util.UUID, Boolean> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row8<Integer, Integer, Integer, Integer, Status, Integer, Integer, Boolean> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**

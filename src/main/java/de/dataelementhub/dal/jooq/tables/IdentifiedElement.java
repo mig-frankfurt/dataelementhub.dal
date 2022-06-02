@@ -11,13 +11,11 @@ import de.dataelementhub.dal.jooq.enums.ValidationDatatypeType;
 import de.dataelementhub.dal.jooq.enums.ValidationSubtypeType;
 import de.dataelementhub.dal.jooq.tables.records.IdentifiedElementRecord;
 
-import java.util.UUID;
-
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row19;
+import org.jooq.Row18;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -59,9 +57,9 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
     public final TableField<IdentifiedElementRecord, Integer> SI_IDENTIFIER = createField(DSL.name("si_identifier"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.identified_element.si_version</code>.
+     * The column <code>public.identified_element.si_revision</code>.
      */
-    public final TableField<IdentifiedElementRecord, Integer> SI_VERSION = createField(DSL.name("si_version"), SQLDataType.INTEGER, this, "");
+    public final TableField<IdentifiedElementRecord, Integer> SI_REVISION = createField(DSL.name("si_revision"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.identified_element.si_status</code>.
@@ -72,6 +70,11 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
      * The column <code>public.identified_element.si_namespace_id</code>.
      */
     public final TableField<IdentifiedElementRecord, Integer> SI_NAMESPACE_ID = createField(DSL.name("si_namespace_id"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.identified_element.si_hidden</code>.
+     */
+    public final TableField<IdentifiedElementRecord, Boolean> SI_HIDDEN = createField(DSL.name("si_hidden"), SQLDataType.BOOLEAN, this, "");
 
     /**
      * The column <code>public.identified_element.e_id</code>.
@@ -97,16 +100,6 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
      * The column <code>public.identified_element.e_permitted_value</code>.
      */
     public final TableField<IdentifiedElementRecord, String> E_PERMITTED_VALUE = createField(DSL.name("e_permitted_value"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.identified_element.e_uuid</code>.
-     */
-    public final TableField<IdentifiedElementRecord, UUID> E_UUID = createField(DSL.name("e_uuid"), SQLDataType.UUID, this, "");
-
-    /**
-     * The column <code>public.identified_element.e_external_id</code>.
-     */
-    public final TableField<IdentifiedElementRecord, String> E_EXTERNAL_ID = createField(DSL.name("e_external_id"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.identified_element.v_id</code>.
@@ -148,7 +141,7 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
     }
 
     private IdentifiedElement(Name alias, Table<IdentifiedElementRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("create view \"identified_element\" as  SELECT si.id AS si_id,\n    si.identifier AS si_identifier,\n    si.version AS si_version,\n    si.status AS si_status,\n    si.namespace_id AS si_namespace_id,\n    e.id AS e_id,\n    e.element_type AS e_element_type,\n    e.created_by AS e_created_by,\n    e.element_id AS e_element_id,\n    e.permitted_value AS e_permitted_value,\n    e.uuid AS e_uuid,\n    e.external_id AS e_external_id,\n    v.id AS v_id,\n    v.element_id AS v_element_id,\n    v.datatype AS v_datatype,\n    v.subtype AS v_subtype,\n    v.format AS v_format,\n    v.unit_of_measure AS v_unit_of_measure,\n    v.maximum_characters AS v_maximum_characters\n   FROM (((scoped_identifier si\n     LEFT JOIN element ns ON ((si.namespace_id = ns.id)))\n     LEFT JOIN element e ON ((e.id = si.element_id)))\n     LEFT JOIN validation v ON ((e.id = v.element_id)));"));
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("create view \"identified_element\" as  SELECT si.id AS si_id,\n    si.identifier AS si_identifier,\n    si.revision AS si_revision,\n    si.status AS si_status,\n    si.namespace_id AS si_namespace_id,\n    si.hidden AS si_hidden,\n    e.id AS e_id,\n    e.element_type AS e_element_type,\n    e.created_by AS e_created_by,\n    e.element_id AS e_element_id,\n    e.permitted_value AS e_permitted_value,\n    v.id AS v_id,\n    v.element_id AS v_element_id,\n    v.datatype AS v_datatype,\n    v.subtype AS v_subtype,\n    v.format AS v_format,\n    v.unit_of_measure AS v_unit_of_measure,\n    v.maximum_characters AS v_maximum_characters\n   FROM (((scoped_identifier si\n     LEFT JOIN element ns ON ((si.namespace_id = ns.id)))\n     LEFT JOIN element e ON ((e.id = si.element_id)))\n     LEFT JOIN validation v ON ((e.id = v.element_id)));"));
     }
 
     /**
@@ -208,11 +201,11 @@ public class IdentifiedElement extends TableImpl<IdentifiedElementRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row19 type methods
+    // Row18 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row19<Integer, Integer, Integer, Status, Integer, Integer, ElementType, Integer, Integer, String, UUID, String, Integer, Integer, ValidationDatatypeType, ValidationSubtypeType, String, String, Integer> fieldsRow() {
-        return (Row19) super.fieldsRow();
+    public Row18<Integer, Integer, Integer, Status, Integer, Boolean, Integer, ElementType, Integer, Integer, String, Integer, Integer, ValidationDatatypeType, ValidationSubtypeType, String, String, Integer> fieldsRow() {
+        return (Row18) super.fieldsRow();
     }
 }

@@ -4,8 +4,8 @@
 package de.dataelementhub.dal.jooq;
 
 
-import de.dataelementhub.dal.jooq.tables.ConceptElementAssociations;
-import de.dataelementhub.dal.jooq.tables.Concepts;
+import de.dataelementhub.dal.jooq.tables.Concept;
+import de.dataelementhub.dal.jooq.tables.ConceptElementAssociation;
 import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.Element;
@@ -21,6 +21,7 @@ import de.dataelementhub.dal.jooq.tables.Import;
 import de.dataelementhub.dal.jooq.tables.ListviewElement;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
+import de.dataelementhub.dal.jooq.tables.ScopedIdentifierSimplified;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
@@ -41,6 +42,7 @@ import org.jooq.Catalog;
 import org.jooq.Configuration;
 import org.jooq.Field;
 import org.jooq.Result;
+import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
@@ -59,14 +61,14 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>public.concept_element_associations</code>.
+     * The table <code>public.concept</code>.
      */
-    public final ConceptElementAssociations CONCEPT_ELEMENT_ASSOCIATIONS = ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS;
+    public final Concept CONCEPT = Concept.CONCEPT;
 
     /**
-     * The table <code>public.concepts</code>.
+     * The table <code>public.concept_element_association</code>.
      */
-    public final Concepts CONCEPTS = Concepts.CONCEPTS;
+    public final ConceptElementAssociation CONCEPT_ELEMENT_ASSOCIATION = ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION;
 
     /**
      * The table <code>public.definition</code>.
@@ -320,6 +322,11 @@ public class Public extends SchemaImpl {
     public final ScopedIdentifierHierarchy SCOPED_IDENTIFIER_HIERARCHY = ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY;
 
     /**
+     * The table <code>public.scoped_identifier_simplified</code>.
+     */
+    public final ScopedIdentifierSimplified SCOPED_IDENTIFIER_SIMPLIFIED = ScopedIdentifierSimplified.SCOPED_IDENTIFIER_SIMPLIFIED;
+
+    /**
      * The table <code>public.slot</code>.
      */
     public final Slot SLOT = Slot.SLOT;
@@ -368,10 +375,17 @@ public class Public extends SchemaImpl {
     }
 
     @Override
+    public final List<Sequence<?>> getSequences() {
+        return Arrays.asList(
+            Sequences.CONCEPTS_ID_SEQ
+        );
+    }
+
+    @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS,
-            Concepts.CONCEPTS,
+            Concept.CONCEPT,
+            ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION,
             Definition.DEFINITION,
             DehubUser.DEHUB_USER,
             Element.ELEMENT,
@@ -387,6 +401,7 @@ public class Public extends SchemaImpl {
             ListviewElement.LISTVIEW_ELEMENT,
             ScopedIdentifier.SCOPED_IDENTIFIER,
             ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY,
+            ScopedIdentifierSimplified.SCOPED_IDENTIFIER_SIMPLIFIED,
             Slot.SLOT,
             Source.SOURCE,
             Staging.STAGING,

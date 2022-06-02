@@ -11,7 +11,7 @@ import de.dataelementhub.dal.jooq.tables.records.GetValueDomainByUrnRecord;
 import org.jooq.Field;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Row7;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -66,16 +66,6 @@ public class GetValueDomainByUrn extends TableImpl<GetValueDomainByUrnRecord> {
      * The column <code>public.get_value_domain_by_urn.permitted_value</code>.
      */
     public final TableField<GetValueDomainByUrnRecord, String> PERMITTED_VALUE = createField(DSL.name("permitted_value"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.get_value_domain_by_urn.uuid</code>.
-     */
-    public final TableField<GetValueDomainByUrnRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * The column <code>public.get_value_domain_by_urn.external_id</code>.
-     */
-    public final TableField<GetValueDomainByUrnRecord, String> EXTERNAL_ID = createField(DSL.name("external_id"), SQLDataType.CLOB, this, "");
 
     private GetValueDomainByUrn(Name alias, Table<GetValueDomainByUrnRecord> aliased) {
         this(alias, aliased, new Field[] {
@@ -147,12 +137,12 @@ public class GetValueDomainByUrn extends TableImpl<GetValueDomainByUrnRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, ElementType, Integer, Integer, String, java.util.UUID, String> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row5<Integer, ElementType, Integer, Integer, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**

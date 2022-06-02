@@ -150,10 +150,12 @@ public class Staging extends TableImpl<StagingRecord> {
 
     @Override
     public List<ForeignKey<StagingRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.STAGING__STAGING_IMPORT_FKEY);
+        return Arrays.asList(Keys.STAGING__STAGING_IMPORT_FKEY, Keys.STAGING__STAGING_SCOPED_IDENTIFIER_ID_FKEY, Keys.STAGING__STAGING_CONVERTED_BY_FKEY);
     }
 
     private transient Import _import_;
+    private transient ScopedIdentifier _scopedIdentifier;
+    private transient DehubUser _dehubUser;
 
     /**
      * Get the implicit join path to the <code>public.import</code> table.
@@ -163,6 +165,27 @@ public class Staging extends TableImpl<StagingRecord> {
             _import_ = new Import(this, Keys.STAGING__STAGING_IMPORT_FKEY);
 
         return _import_;
+    }
+
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
+    public ScopedIdentifier scopedIdentifier() {
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.STAGING__STAGING_SCOPED_IDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
+    }
+
+    /**
+     * Get the implicit join path to the <code>public.dehub_user</code> table.
+     */
+    public DehubUser dehubUser() {
+        if (_dehubUser == null)
+            _dehubUser = new DehubUser(this, Keys.STAGING__STAGING_CONVERTED_BY_FKEY);
+
+        return _dehubUser;
     }
 
     @Override

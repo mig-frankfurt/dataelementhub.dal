@@ -4,8 +4,8 @@
 package de.dataelementhub.dal.jooq;
 
 
-import de.dataelementhub.dal.jooq.tables.ConceptElementAssociations;
-import de.dataelementhub.dal.jooq.tables.Concepts;
+import de.dataelementhub.dal.jooq.tables.Concept;
+import de.dataelementhub.dal.jooq.tables.ConceptElementAssociation;
 import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.Element;
@@ -21,6 +21,7 @@ import de.dataelementhub.dal.jooq.tables.Import;
 import de.dataelementhub.dal.jooq.tables.ListviewElement;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
+import de.dataelementhub.dal.jooq.tables.ScopedIdentifierSimplified;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
@@ -46,14 +47,14 @@ import org.jooq.Result;
 public class Tables {
 
     /**
-     * The table <code>public.concept_element_associations</code>.
+     * The table <code>public.concept</code>.
      */
-    public static final ConceptElementAssociations CONCEPT_ELEMENT_ASSOCIATIONS = ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS;
+    public static final Concept CONCEPT = Concept.CONCEPT;
 
     /**
-     * The table <code>public.concepts</code>.
+     * The table <code>public.concept_element_association</code>.
      */
-    public static final Concepts CONCEPTS = Concepts.CONCEPTS;
+    public static final ConceptElementAssociation CONCEPT_ELEMENT_ASSOCIATION = ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION;
 
     /**
      * The table <code>public.definition</code>.
@@ -305,6 +306,11 @@ public class Tables {
      * The table <code>public.scoped_identifier_hierarchy</code>.
      */
     public static final ScopedIdentifierHierarchy SCOPED_IDENTIFIER_HIERARCHY = ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY;
+
+    /**
+     * The table <code>public.scoped_identifier_simplified</code>.
+     */
+    public static final ScopedIdentifierSimplified SCOPED_IDENTIFIER_SIMPLIFIED = ScopedIdentifierSimplified.SCOPED_IDENTIFIER_SIMPLIFIED;
 
     /**
      * The table <code>public.slot</code>.

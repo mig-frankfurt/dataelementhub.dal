@@ -5,14 +5,13 @@ package de.dataelementhub.dal.jooq.tables;
 
 
 import de.dataelementhub.dal.jooq.Public;
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.records.GetValueDomainScopedIdentifierByDataelementUrnRecord;
 
 import org.jooq.Field;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Row10;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -52,15 +51,9 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
 
     /**
      * The column
-     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.revision</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
-
-    /**
-     * The column
-     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
-     */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> REVISION = createField(DSL.name("revision"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column
@@ -91,12 +84,6 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
      * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
      */
     public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column
-     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
-     */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
 
     /**
      * The column
@@ -178,12 +165,12 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
     }
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, Integer, Status, Integer, Integer, java.util.UUID, Boolean> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row8<Integer, Integer, Integer, Integer, Status, Integer, Integer, Boolean> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**

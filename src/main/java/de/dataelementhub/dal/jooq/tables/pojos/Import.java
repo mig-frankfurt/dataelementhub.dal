@@ -8,7 +8,6 @@ import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 /**
@@ -25,7 +24,6 @@ public class Import implements Serializable {
     private Integer       namespaceId;
     private String        source;
     private String        label;
-    private UUID          uuid;
     private Integer       numberOfElements;
     private ProcessStatus status;
 
@@ -38,7 +36,6 @@ public class Import implements Serializable {
         this.namespaceId = value.namespaceId;
         this.source = value.source;
         this.label = value.label;
-        this.uuid = value.uuid;
         this.numberOfElements = value.numberOfElements;
         this.status = value.status;
     }
@@ -50,7 +47,6 @@ public class Import implements Serializable {
         Integer       namespaceId,
         String        source,
         String        label,
-        UUID          uuid,
         Integer       numberOfElements,
         ProcessStatus status
     ) {
@@ -60,7 +56,6 @@ public class Import implements Serializable {
         this.namespaceId = namespaceId;
         this.source = source;
         this.label = label;
-        this.uuid = uuid;
         this.numberOfElements = numberOfElements;
         this.status = status;
     }
@@ -150,20 +145,6 @@ public class Import implements Serializable {
     }
 
     /**
-     * Getter for <code>public.import.uuid</code>.
-     */
-    public UUID getUuid() {
-        return this.uuid;
-    }
-
-    /**
-     * Setter for <code>public.import.uuid</code>.
-     */
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    /**
      * Getter for <code>public.import.number_of_elements</code>.
      */
     public Integer getNumberOfElements() {
@@ -201,7 +182,6 @@ public class Import implements Serializable {
         sb.append(", ").append(namespaceId);
         sb.append(", ").append(source);
         sb.append(", ").append(label);
-        sb.append(", ").append(uuid);
         sb.append(", ").append(numberOfElements);
         sb.append(", ").append(status);
 
