@@ -32,9 +32,16 @@ CREATE TABLE IF NOT EXISTS validation
     CONSTRAINT element_id_fkey FOREIGN KEY (element_id) REFERENCES element (id) ON DELETE CASCADE
 );
 
+-- This constraint is no longer viable when removing element type from the scoped identifier table
+-- It has to be dropped before trying to insert the hidden flag in the next script, so it is done here
+-- To re-enable the "old" functionality, a trigger should be written before insert on the scoped
+-- identifier table.
+-- The function "getelementtype" was only used by this constraint, so it can also be dropped
+ALTER TABLE scoped_identifier DROP CONSTRAINT et_check;
+DROP FUNCTION getelementtype;
+
 ALTER TABLE concepts RENAME TO concept;
 ALTER TABLE concept_element_associations RENAME TO concept_element_association;
-
 
 ALTER TABLE scoped_identifier ADD COLUMN hidden bool;
 ALTER TABLE scoped_identifier RENAME COLUMN version TO revision;

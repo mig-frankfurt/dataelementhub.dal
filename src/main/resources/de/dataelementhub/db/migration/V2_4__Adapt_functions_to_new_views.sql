@@ -53,22 +53,6 @@ WHERE si.element_id = (SELECT id from get_value_domain_by_urn($1))
 )
 $$ LANGUAGE SQL;
 
-
-CREATE OR REPLACE FUNCTION getelementtype(id integer)
-    RETURNS element_type
-    LANGUAGE sql
-AS
-$function$
-SELECT
-    CASE
-        WHEN "element_type"::TEXT ilike '%value_domain%' then 'VALUE_DOMAIN'
-        ELSE "element_type"
-        END
-from "element"
-WHERE "id" = $1
-$function$
-;
-
 CREATE OR REPLACE FUNCTION unique_identifier() RETURNS trigger AS
 $body_start$
 BEGIN
