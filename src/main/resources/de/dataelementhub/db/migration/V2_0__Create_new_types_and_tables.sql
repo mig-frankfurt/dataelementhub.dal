@@ -55,3 +55,5 @@ ALTER TABLE staging ADD FOREIGN KEY (scoped_identifier_id) REFERENCES scoped_ide
 ALTER TABLE concept ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
 
 ALTER TABLE concept_element_association ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
+
+ALTER TABLE element_relation ADD FOREIGN KEY (created_by) REFERENCES dehub_user (id) ON DELETE CASCADE;
