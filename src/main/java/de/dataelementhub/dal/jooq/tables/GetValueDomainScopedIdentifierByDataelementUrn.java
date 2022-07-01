@@ -4,25 +4,26 @@
 package de.dataelementhub.dal.jooq.tables;
 
 
-import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.records.GetValueDomainScopedIdentifierByDataelementUrnRecord;
 
-import java.util.UUID;
+import java.util.function.Function;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
+import org.jooq.Function10;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row10;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -32,10 +33,11 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<GetValueDomainScopedIdentifierByDataelementUrnRecord> {
 
-    private static final long serialVersionUID = 668358747;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * The reference instance of
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
      */
     public static final GetValueDomainScopedIdentifierByDataelementUrn GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN = new GetValueDomainScopedIdentifierByDataelementUrn();
 
@@ -48,96 +50,110 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
     }
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('scoped_identifier_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true).defaultValue(DSL.field("nextval('scoped_identifier_id_seq'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> VERSION = createField(DSL.name("version"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> IDENTIFIER = createField(DSL.name("identifier"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> IDENTIFIER = createField(DSL.name("identifier"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, String> URL = createField(DSL.name("url"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, String> URL = createField(DSL.name("url"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Status> STATUS = createField(DSL.name("status"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Status> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     * The column
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
      */
-    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * Create a <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> table reference
-     */
-    public GetValueDomainScopedIdentifierByDataelementUrn() {
-        this(DSL.name("get_value_domain_scoped_identifier_by_dataelement_urn"), null);
-    }
-
-    /**
-     * Create an aliased <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> table reference
-     */
-    public GetValueDomainScopedIdentifierByDataelementUrn(String alias) {
-        this(DSL.name(alias), GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
-    }
-
-    /**
-     * Create an aliased <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> table reference
-     */
-    public GetValueDomainScopedIdentifierByDataelementUrn(Name alias) {
-        this(alias, GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
-    }
+    public final TableField<GetValueDomainScopedIdentifierByDataelementUrnRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
 
     private GetValueDomainScopedIdentifierByDataelementUrn(Name alias, Table<GetValueDomainScopedIdentifierByDataelementUrnRecord> aliased) {
-        this(alias, aliased, new Field[1]);
+        this(alias, aliased, new Field[] {
+            DSL.val(null, SQLDataType.CLOB)
+        });
     }
 
     private GetValueDomainScopedIdentifierByDataelementUrn(Name alias, Table<GetValueDomainScopedIdentifierByDataelementUrnRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.function());
     }
 
-    public <O extends Record> GetValueDomainScopedIdentifierByDataelementUrn(Table<O> child, ForeignKey<O, GetValueDomainScopedIdentifierByDataelementUrnRecord> key) {
-        super(child, key, GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
+    /**
+     * Create an aliased
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * table reference
+     */
+    public GetValueDomainScopedIdentifierByDataelementUrn(String alias) {
+        this(DSL.name(alias), GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
+    }
+
+    /**
+     * Create an aliased
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * table reference
+     */
+    public GetValueDomainScopedIdentifierByDataelementUrn(Name alias) {
+        this(alias, GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
+    }
+
+    /**
+     * Create a
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * table reference
+     */
+    public GetValueDomainScopedIdentifierByDataelementUrn() {
+        this(DSL.name("get_value_domain_scoped_identifier_by_dataelement_urn"), null);
     }
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN;
+        return (Identity<GetValueDomainScopedIdentifierByDataelementUrnRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -148,6 +164,11 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
     @Override
     public GetValueDomainScopedIdentifierByDataelementUrn as(Name alias) {
         return new GetValueDomainScopedIdentifierByDataelementUrn(alias, this, parameters);
+    }
+
+    @Override
+    public GetValueDomainScopedIdentifierByDataelementUrn as(Table<?> alias) {
+        return new GetValueDomainScopedIdentifierByDataelementUrn(alias.getQualifiedName(), this, parameters);
     }
 
     /**
@@ -166,30 +187,60 @@ public class GetValueDomainScopedIdentifierByDataelementUrn extends TableImpl<Ge
         return new GetValueDomainScopedIdentifierByDataelementUrn(name, null, parameters);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public GetValueDomainScopedIdentifierByDataelementUrn rename(Table<?> name) {
+        return new GetValueDomainScopedIdentifierByDataelementUrn(name.getQualifiedName(), null, parameters);
+    }
+
     // -------------------------------------------------------------------------
     // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, UUID> fieldsRow() {
+    public Row10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, java.util.UUID> fieldsRow() {
         return (Row10) super.fieldsRow();
     }
 
     /**
      * Call this table-valued function
      */
-    public GetValueDomainScopedIdentifierByDataelementUrn call(String urn) {
-        return new GetValueDomainScopedIdentifierByDataelementUrn(DSL.name(getName()), null, new Field[] { 
-              DSL.val(urn, org.jooq.impl.SQLDataType.CLOB)
+    public GetValueDomainScopedIdentifierByDataelementUrn call(
+          String urn
+    ) {
+        GetValueDomainScopedIdentifierByDataelementUrn result = new GetValueDomainScopedIdentifierByDataelementUrn(DSL.name("get_value_domain_scoped_identifier_by_dataelement_urn"), null, new Field[] {
+            DSL.val(urn, SQLDataType.CLOB)
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
     }
 
     /**
      * Call this table-valued function
      */
-    public GetValueDomainScopedIdentifierByDataelementUrn call(Field<String> urn) {
-        return new GetValueDomainScopedIdentifierByDataelementUrn(DSL.name(getName()), null, new Field[] { 
-              urn
+    public GetValueDomainScopedIdentifierByDataelementUrn call(
+          Field<String> urn
+    ) {
+        GetValueDomainScopedIdentifierByDataelementUrn result = new GetValueDomainScopedIdentifierByDataelementUrn(DSL.name("get_value_domain_scoped_identifier_by_dataelement_urn"), null, new Field[] {
+            urn
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

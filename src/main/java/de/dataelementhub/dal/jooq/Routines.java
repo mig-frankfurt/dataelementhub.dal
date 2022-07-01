@@ -29,7 +29,7 @@ import org.jooq.Result;
 
 
 /**
- * Convenience access to all stored procedures and functions in public
+ * Convenience access to all stored procedures and functions in public.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Routines {
@@ -37,7 +37,10 @@ public class Routines {
     /**
      * Call <code>public.get_element_by_urn</code>
      */
-    public static ElementRecord getElementByUrn(Configuration configuration, String urn) {
+    public static ElementRecord getElementByUrn(
+          Configuration configuration
+        , String urn
+    ) {
         GetElementByUrn f = new GetElementByUrn();
         f.setUrn(urn);
 
@@ -48,7 +51,9 @@ public class Routines {
     /**
      * Get <code>public.get_element_by_urn</code> as a field.
      */
-    public static Field<ElementRecord> getElementByUrn(String urn) {
+    public static Field<ElementRecord> getElementByUrn(
+          String urn
+    ) {
         GetElementByUrn f = new GetElementByUrn();
         f.setUrn(urn);
 
@@ -58,7 +63,9 @@ public class Routines {
     /**
      * Get <code>public.get_element_by_urn</code> as a field.
      */
-    public static Field<ElementRecord> getElementByUrn(Field<String> urn) {
+    public static Field<ElementRecord> getElementByUrn(
+          Field<String> urn
+    ) {
         GetElementByUrn f = new GetElementByUrn();
         f.setUrn(urn);
 
@@ -68,7 +75,10 @@ public class Routines {
     /**
      * Call <code>public.get_namespace_scoped_identifier_by_urn</code>
      */
-    public static ScopedIdentifierRecord getNamespaceScopedIdentifierByUrn(Configuration configuration, String urn) {
+    public static ScopedIdentifierRecord getNamespaceScopedIdentifierByUrn(
+          Configuration configuration
+        , String urn
+    ) {
         GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
         f.setUrn(urn);
 
@@ -77,9 +87,12 @@ public class Routines {
     }
 
     /**
-     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a field.
+     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a
+     * field.
      */
-    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(String urn) {
+    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(
+          String urn
+    ) {
         GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
         f.setUrn(urn);
 
@@ -87,9 +100,12 @@ public class Routines {
     }
 
     /**
-     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a field.
+     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a
+     * field.
      */
-    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(Field<String> urn) {
+    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(
+          Field<String> urn
+    ) {
         GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
         f.setUrn(urn);
 
@@ -99,7 +115,10 @@ public class Routines {
     /**
      * Call <code>public.getelementtype</code>
      */
-    public static ElementType getelementtype(Configuration configuration, Integer id) {
+    public static ElementType getelementtype(
+          Configuration configuration
+        , Integer id
+    ) {
         Getelementtype f = new Getelementtype();
         f.setId(id);
 
@@ -110,7 +129,9 @@ public class Routines {
     /**
      * Get <code>public.getelementtype</code> as a field.
      */
-    public static Field<ElementType> getelementtype(Integer id) {
+    public static Field<ElementType> getelementtype(
+          Integer id
+    ) {
         Getelementtype f = new Getelementtype();
         f.setId(id);
 
@@ -120,7 +141,9 @@ public class Routines {
     /**
      * Get <code>public.getelementtype</code> as a field.
      */
-    public static Field<ElementType> getelementtype(Field<Integer> id) {
+    public static Field<ElementType> getelementtype(
+          Field<Integer> id
+    ) {
         Getelementtype f = new Getelementtype();
         f.setId(id);
 
@@ -128,10 +151,18 @@ public class Routines {
     }
 
     /**
-     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     * @deprecated Unknown data type. If this is a qualified, user-defined type,
+     * it may have been excluded from code generation. If this is a built-in
+     * type, you can define an explicit {@link org.jooq.Binding} to specify how
+     * this type should be handled. Deprecation can be turned off using
+     * {@literal <deprecationOnUnknownTypes/>} in your code generator
+     * configuration.
      */
-    @java.lang.Deprecated
-    public static Object toTsvectorMultilang(Configuration configuration, String __1) {
+    @Deprecated
+    public static Object toTsvectorMultilang(
+          Configuration configuration
+        , String __1
+    ) {
         ToTsvectorMultilang f = new ToTsvectorMultilang();
         f.set__1(__1);
 
@@ -140,10 +171,17 @@ public class Routines {
     }
 
     /**
-     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     * @deprecated Unknown data type. If this is a qualified, user-defined type,
+     * it may have been excluded from code generation. If this is a built-in
+     * type, you can define an explicit {@link org.jooq.Binding} to specify how
+     * this type should be handled. Deprecation can be turned off using
+     * {@literal <deprecationOnUnknownTypes/>} in your code generator
+     * configuration.
      */
-    @java.lang.Deprecated
-    public static Field<Object> toTsvectorMultilang(String __1) {
+    @Deprecated
+    public static Field<Object> toTsvectorMultilang(
+          String __1
+    ) {
         ToTsvectorMultilang f = new ToTsvectorMultilang();
         f.set__1(__1);
 
@@ -151,10 +189,17 @@ public class Routines {
     }
 
     /**
-     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     * @deprecated Unknown data type. If this is a qualified, user-defined type,
+     * it may have been excluded from code generation. If this is a built-in
+     * type, you can define an explicit {@link org.jooq.Binding} to specify how
+     * this type should be handled. Deprecation can be turned off using
+     * {@literal <deprecationOnUnknownTypes/>} in your code generator
+     * configuration.
      */
-    @java.lang.Deprecated
-    public static Field<Object> toTsvectorMultilang(Field<String> __1) {
+    @Deprecated
+    public static Field<Object> toTsvectorMultilang(
+          Field<String> __1
+    ) {
         ToTsvectorMultilang f = new ToTsvectorMultilang();
         f.set__1(__1);
 
@@ -164,7 +209,10 @@ public class Routines {
     /**
      * Call <code>public.urn</code>
      */
-    public static String urn(Configuration configuration, ScopedIdentifierRecord sc) {
+    public static String urn(
+          Configuration configuration
+        , ScopedIdentifierRecord sc
+    ) {
         Urn f = new Urn();
         f.setSc(sc);
 
@@ -175,7 +223,9 @@ public class Routines {
     /**
      * Get <code>public.urn</code> as a field.
      */
-    public static Field<String> urn(ScopedIdentifierRecord sc) {
+    public static Field<String> urn(
+          ScopedIdentifierRecord sc
+    ) {
         Urn f = new Urn();
         f.setSc(sc);
 
@@ -185,7 +235,9 @@ public class Routines {
     /**
      * Get <code>public.urn</code> as a field.
      */
-    public static Field<String> urn(Field<ScopedIdentifierRecord> sc) {
+    public static Field<String> urn(
+          Field<ScopedIdentifierRecord> sc
+    ) {
         Urn f = new Urn();
         f.setSc(sc);
 
@@ -195,105 +247,175 @@ public class Routines {
     /**
      * Call <code>public.get_definition_by_urn</code>.
      */
-    public static Result<GetDefinitionByUrnRecord> getDefinitionByUrn(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn)).fetch();
+    public static Result<GetDefinitionByUrnRecord> getDefinitionByUrn(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_definition_by_urn</code> as a table.
      */
-    public static GetDefinitionByUrn getDefinitionByUrn(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn);
+    public static GetDefinitionByUrn getDefinitionByUrn(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_definition_by_urn</code> as a table.
      */
-    public static GetDefinitionByUrn getDefinitionByUrn(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(urn);
+    public static GetDefinitionByUrn getDefinitionByUrn(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn.GET_DEFINITION_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Call <code>public.get_scoped_identifier_by_urn</code>.
      */
-    public static Result<GetScopedIdentifierByUrnRecord> getScopedIdentifierByUrn(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn)).fetch();
+    public static Result<GetScopedIdentifierByUrnRecord> getScopedIdentifierByUrn(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_scoped_identifier_by_urn</code> as a table.
      */
-    public static GetScopedIdentifierByUrn getScopedIdentifierByUrn(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn);
+    public static GetScopedIdentifierByUrn getScopedIdentifierByUrn(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_scoped_identifier_by_urn</code> as a table.
      */
-    public static GetScopedIdentifierByUrn getScopedIdentifierByUrn(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(urn);
+    public static GetScopedIdentifierByUrn getScopedIdentifierByUrn(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Call <code>public.get_slot_by_urn</code>.
      */
-    public static Result<GetSlotByUrnRecord> getSlotByUrn(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn)).fetch();
+    public static Result<GetSlotByUrnRecord> getSlotByUrn(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_slot_by_urn</code> as a table.
      */
-    public static GetSlotByUrn getSlotByUrn(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn);
+    public static GetSlotByUrn getSlotByUrn(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_slot_by_urn</code> as a table.
      */
-    public static GetSlotByUrn getSlotByUrn(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(urn);
+    public static GetSlotByUrn getSlotByUrn(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetSlotByUrn.GET_SLOT_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Call <code>public.get_value_domain_by_urn</code>.
      */
-    public static Result<GetValueDomainByUrnRecord> getValueDomainByUrn(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn)).fetch();
+    public static Result<GetValueDomainByUrnRecord> getValueDomainByUrn(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
      * Get <code>public.get_value_domain_by_urn</code> as a table.
      */
-    public static GetValueDomainByUrn getValueDomainByUrn(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn);
+    public static GetValueDomainByUrn getValueDomainByUrn(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+            urn
+        );
     }
 
     /**
      * Get <code>public.get_value_domain_by_urn</code> as a table.
      */
-    public static GetValueDomainByUrn getValueDomainByUrn(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(urn);
+    public static GetValueDomainByUrn getValueDomainByUrn(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN.call(
+            urn
+        );
     }
 
     /**
-     * Call <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
+     * Call
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>.
      */
-    public static Result<GetValueDomainScopedIdentifierByDataelementUrnRecord> getValueDomainScopedIdentifierByDataelementUrn(Configuration configuration, String urn) {
-        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn)).fetch();
+    public static Result<GetValueDomainScopedIdentifierByDataelementUrnRecord> getValueDomainScopedIdentifierByDataelementUrn(
+          Configuration configuration
+        , String urn
+    ) {
+        return configuration.dsl().selectFrom(de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+              urn
+        )).fetch();
     }
 
     /**
-     * Get <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> as a table.
+     * Get
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * as a table.
      */
-    public static GetValueDomainScopedIdentifierByDataelementUrn getValueDomainScopedIdentifierByDataelementUrn(String urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn);
+    public static GetValueDomainScopedIdentifierByDataelementUrn getValueDomainScopedIdentifierByDataelementUrn(
+          String urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+            urn
+        );
     }
 
     /**
-     * Get <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code> as a table.
+     * Get
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn</code>
+     * as a table.
      */
-    public static GetValueDomainScopedIdentifierByDataelementUrn getValueDomainScopedIdentifierByDataelementUrn(Field<String> urn) {
-        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(urn);
+    public static GetValueDomainScopedIdentifierByDataelementUrn getValueDomainScopedIdentifierByDataelementUrn(
+          Field<String> urn
+    ) {
+        return de.dataelementhub.dal.jooq.tables.GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN.call(
+            urn
+        );
     }
 }

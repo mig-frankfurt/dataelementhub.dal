@@ -23,7 +23,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetValueDomainByUrnRecord extends TableRecordImpl<GetValueDomainByUrnRecord> implements Record19<Integer, ElementType, Boolean, Integer, Integer, Integer, String, Boolean, String, String, String, Integer, String, ValidationType, String, String, JSON, UUID, String> {
 
-    private static final long serialVersionUID = -1344044117;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.get_value_domain_by_urn.id</code>.
@@ -96,14 +96,16 @@ public class GetValueDomainByUrnRecord extends TableRecordImpl<GetValueDomainByU
     }
 
     /**
-     * Setter for <code>public.get_value_domain_by_urn.scoped_identifier_id</code>.
+     * Setter for
+     * <code>public.get_value_domain_by_urn.scoped_identifier_id</code>.
      */
     public void setScopedIdentifierId(Integer value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_by_urn.scoped_identifier_id</code>.
+     * Getter for
+     * <code>public.get_value_domain_by_urn.scoped_identifier_id</code>.
      */
     public Integer getScopedIdentifierId() {
         return (Integer) get(5);
@@ -180,14 +182,16 @@ public class GetValueDomainByUrnRecord extends TableRecordImpl<GetValueDomainByU
     }
 
     /**
-     * Setter for <code>public.get_value_domain_by_urn.maximum_characters</code>.
+     * Setter for
+     * <code>public.get_value_domain_by_urn.maximum_characters</code>.
      */
     public void setMaximumCharacters(Integer value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_by_urn.maximum_characters</code>.
+     * Getter for
+     * <code>public.get_value_domain_by_urn.maximum_characters</code>.
      */
     public Integer getMaximumCharacters() {
         return (Integer) get(11);
@@ -745,24 +749,53 @@ public class GetValueDomainByUrnRecord extends TableRecordImpl<GetValueDomainByU
     public GetValueDomainByUrnRecord(Integer id, ElementType elementType, Boolean hidden, Integer createdBy, Integer elementId, Integer scopedIdentifierId, String code, Boolean isValid, String format, String datatype, String unitOfMeasure, Integer maximumCharacters, String description, ValidationType validationType, String validationData, String permittedValue, JSON data, UUID uuid, String externalId) {
         super(GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN);
 
-        set(0, id);
-        set(1, elementType);
-        set(2, hidden);
-        set(3, createdBy);
-        set(4, elementId);
-        set(5, scopedIdentifierId);
-        set(6, code);
-        set(7, isValid);
-        set(8, format);
-        set(9, datatype);
-        set(10, unitOfMeasure);
-        set(11, maximumCharacters);
-        set(12, description);
-        set(13, validationType);
-        set(14, validationData);
-        set(15, permittedValue);
-        set(16, data);
-        set(17, uuid);
-        set(18, externalId);
+        setId(id);
+        setElementType(elementType);
+        setHidden(hidden);
+        setCreatedBy(createdBy);
+        setElementId(elementId);
+        setScopedIdentifierId(scopedIdentifierId);
+        setCode(code);
+        setIsValid(isValid);
+        setFormat(format);
+        setDatatype(datatype);
+        setUnitOfMeasure(unitOfMeasure);
+        setMaximumCharacters(maximumCharacters);
+        setDescription(description);
+        setValidationType(validationType);
+        setValidationData(validationData);
+        setPermittedValue(permittedValue);
+        setData(data);
+        setUuid(uuid);
+        setExternalId(externalId);
+    }
+
+    /**
+     * Create a detached, initialised GetValueDomainByUrnRecord
+     */
+    public GetValueDomainByUrnRecord(de.dataelementhub.dal.jooq.tables.pojos.GetValueDomainByUrn value) {
+        super(GetValueDomainByUrn.GET_VALUE_DOMAIN_BY_URN);
+
+        if (value != null) {
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setHidden(value.getHidden());
+            setCreatedBy(value.getCreatedBy());
+            setElementId(value.getElementId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setCode(value.getCode());
+            setIsValid(value.getIsValid());
+            setFormat(value.getFormat());
+            setDatatype(value.getDatatype());
+            setUnitOfMeasure(value.getUnitOfMeasure());
+            setMaximumCharacters(value.getMaximumCharacters());
+            setDescription(value.getDescription());
+            setValidationType(value.getValidationType());
+            setValidationData(value.getValidationData());
+            setPermittedValue(value.getPermittedValue());
+            setData(value.getData());
+            setUuid(value.getUuid());
+            setExternalId(value.getExternalId());
+        }
     }
 }

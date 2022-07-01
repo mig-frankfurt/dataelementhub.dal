@@ -11,18 +11,23 @@ import de.dataelementhub.dal.jooq.tables.records.PermissibleCodeRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function2;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row2;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -32,7 +37,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
 
-    private static final long serialVersionUID = 358147131;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.permissible_code</code>
@@ -48,20 +53,22 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
     }
 
     /**
-     * The column <code>public.permissible_code.code_scoped_identifier_id</code>.
+     * The column
+     * <code>public.permissible_code.code_scoped_identifier_id</code>.
      */
-    public final TableField<PermissibleCodeRecord, Integer> CODE_SCOPED_IDENTIFIER_ID = createField(DSL.name("code_scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<PermissibleCodeRecord, Integer> CODE_SCOPED_IDENTIFIER_ID = createField(DSL.name("code_scoped_identifier_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.permissible_code.catalog_value_domain_id</code>.
      */
-    public final TableField<PermissibleCodeRecord, Integer> CATALOG_VALUE_DOMAIN_ID = createField(DSL.name("catalog_value_domain_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<PermissibleCodeRecord, Integer> CATALOG_VALUE_DOMAIN_ID = createField(DSL.name("catalog_value_domain_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.permissible_code</code> table reference
-     */
-    public PermissibleCode() {
-        this(DSL.name("permissible_code"), null);
+    private PermissibleCode(Name alias, Table<PermissibleCodeRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private PermissibleCode(Name alias, Table<PermissibleCodeRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -78,12 +85,11 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
         this(alias, PERMISSIBLE_CODE);
     }
 
-    private PermissibleCode(Name alias, Table<PermissibleCodeRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private PermissibleCode(Name alias, Table<PermissibleCodeRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.permissible_code</code> table reference
+     */
+    public PermissibleCode() {
+        this(DSL.name("permissible_code"), null);
     }
 
     public <O extends Record> PermissibleCode(Table<O> child, ForeignKey<O, PermissibleCodeRecord> key) {
@@ -92,25 +98,41 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.PERMISSIBLE_CODE_CATALOG_ID_IDX, Indexes.PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_IDX);
+        return Arrays.asList(Indexes.PERMISSIBLE_CODE_CATALOG_ID_IDX, Indexes.PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_IDX);
     }
 
     @Override
     public List<ForeignKey<PermissibleCodeRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<PermissibleCodeRecord, ?>>asList(Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_FKEY, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CATALOG_ID_FKEY);
+        return Arrays.asList(Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_FKEY, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CATALOG_ID_FKEY);
     }
 
+    private transient ScopedIdentifier _scopedIdentifier;
+    private transient Element _element;
+
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
     public ScopedIdentifier scopedIdentifier() {
-        return new ScopedIdentifier(this, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_FKEY);
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.element</code> table.
+     */
     public Element element() {
-        return new Element(this, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CATALOG_ID_FKEY);
+        if (_element == null)
+            _element = new Element(this, Keys.PERMISSIBLE_CODE__PERMISSIBLE_CODE_CATALOG_ID_FKEY);
+
+        return _element;
     }
 
     @Override
@@ -121,6 +143,11 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
     @Override
     public PermissibleCode as(Name alias) {
         return new PermissibleCode(alias, this);
+    }
+
+    @Override
+    public PermissibleCode as(Table<?> alias) {
+        return new PermissibleCode(alias.getQualifiedName(), this);
     }
 
     /**
@@ -139,6 +166,14 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
         return new PermissibleCode(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public PermissibleCode rename(Table<?> name) {
+        return new PermissibleCode(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
@@ -146,5 +181,19 @@ public class PermissibleCode extends TableImpl<PermissibleCodeRecord> {
     @Override
     public Row2<Integer, Integer> fieldsRow() {
         return (Row2) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function2<? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

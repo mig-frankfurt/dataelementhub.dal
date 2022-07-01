@@ -19,7 +19,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SlotRecord extends UpdatableRecordImpl<SlotRecord> implements Record4<Integer, Integer, String, String> {
 
-    private static final long serialVersionUID = -1363209114;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.slot.id</code>.
@@ -210,9 +210,23 @@ public class SlotRecord extends UpdatableRecordImpl<SlotRecord> implements Recor
     public SlotRecord(Integer id, Integer scopedIdentifierId, String key, String value) {
         super(Slot.SLOT);
 
-        set(0, id);
-        set(1, scopedIdentifierId);
-        set(2, key);
-        set(3, value);
+        setId(id);
+        setScopedIdentifierId(scopedIdentifierId);
+        setKey(key);
+        setValue(value);
+    }
+
+    /**
+     * Create a detached, initialised SlotRecord
+     */
+    public SlotRecord(de.dataelementhub.dal.jooq.tables.pojos.Slot value) {
+        super(Slot.SLOT);
+
+        if (value != null) {
+            setId(value.getId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setKey(value.getKey());
+            setValue(value.getValue());
+        }
     }
 }

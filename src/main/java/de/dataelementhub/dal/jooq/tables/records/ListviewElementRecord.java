@@ -21,7 +21,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ListviewElementRecord extends TableRecordImpl<ListviewElementRecord> {
 
-    private static final long serialVersionUID = 1743051461;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.listview_element.si_id</code>.
@@ -390,30 +390,65 @@ public class ListviewElementRecord extends TableRecordImpl<ListviewElementRecord
     public ListviewElementRecord(Integer siId, Integer siIdentifier, Integer siVersion, Status siStatus, Integer siNamespaceId, String vdDatatype, Integer id, ElementType elementType, Boolean hidden, Integer createdBy, Integer elementId, Integer scopedIdentifierId, String code, Boolean isValid, String format, String datatype, String unitOfMeasure, Integer maximumCharacters, String description, ValidationType validationType, String validationData, String permittedValue, JSON data, UUID uuid, String externalId) {
         super(ListviewElement.LISTVIEW_ELEMENT);
 
-        set(0, siId);
-        set(1, siIdentifier);
-        set(2, siVersion);
-        set(3, siStatus);
-        set(4, siNamespaceId);
-        set(5, vdDatatype);
-        set(6, id);
-        set(7, elementType);
-        set(8, hidden);
-        set(9, createdBy);
-        set(10, elementId);
-        set(11, scopedIdentifierId);
-        set(12, code);
-        set(13, isValid);
-        set(14, format);
-        set(15, datatype);
-        set(16, unitOfMeasure);
-        set(17, maximumCharacters);
-        set(18, description);
-        set(19, validationType);
-        set(20, validationData);
-        set(21, permittedValue);
-        set(22, data);
-        set(23, uuid);
-        set(24, externalId);
+        setSiId(siId);
+        setSiIdentifier(siIdentifier);
+        setSiVersion(siVersion);
+        setSiStatus(siStatus);
+        setSiNamespaceId(siNamespaceId);
+        setVdDatatype(vdDatatype);
+        setId(id);
+        setElementType(elementType);
+        setHidden(hidden);
+        setCreatedBy(createdBy);
+        setElementId(elementId);
+        setScopedIdentifierId(scopedIdentifierId);
+        setCode(code);
+        setIsValid(isValid);
+        setFormat(format);
+        setDatatype(datatype);
+        setUnitOfMeasure(unitOfMeasure);
+        setMaximumCharacters(maximumCharacters);
+        setDescription(description);
+        setValidationType(validationType);
+        setValidationData(validationData);
+        setPermittedValue(permittedValue);
+        setData(data);
+        setUuid(uuid);
+        setExternalId(externalId);
+    }
+
+    /**
+     * Create a detached, initialised ListviewElementRecord
+     */
+    public ListviewElementRecord(de.dataelementhub.dal.jooq.tables.pojos.ListviewElement value) {
+        super(ListviewElement.LISTVIEW_ELEMENT);
+
+        if (value != null) {
+            setSiId(value.getSiId());
+            setSiIdentifier(value.getSiIdentifier());
+            setSiVersion(value.getSiVersion());
+            setSiStatus(value.getSiStatus());
+            setSiNamespaceId(value.getSiNamespaceId());
+            setVdDatatype(value.getVdDatatype());
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setHidden(value.getHidden());
+            setCreatedBy(value.getCreatedBy());
+            setElementId(value.getElementId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setCode(value.getCode());
+            setIsValid(value.getIsValid());
+            setFormat(value.getFormat());
+            setDatatype(value.getDatatype());
+            setUnitOfMeasure(value.getUnitOfMeasure());
+            setMaximumCharacters(value.getMaximumCharacters());
+            setDescription(value.getDescription());
+            setValidationType(value.getValidationType());
+            setValidationData(value.getValidationData());
+            setPermittedValue(value.getPermittedValue());
+            setData(value.getData());
+            setUuid(value.getUuid());
+            setExternalId(value.getExternalId());
+        }
     }
 }

@@ -22,7 +22,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class StagingRecord extends UpdatableRecordImpl<StagingRecord> implements Record10<Integer, String, ElementType, String, Integer, Integer, LocalDateTime, Integer, String, String> {
 
-    private static final long serialVersionUID = -682246354;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.staging.id</code>.
@@ -429,15 +429,35 @@ public class StagingRecord extends UpdatableRecordImpl<StagingRecord> implements
     public StagingRecord(Integer id, String data, ElementType elementType, String designation, Integer importId, Integer scopedIdentifierId, LocalDateTime convertedAt, Integer convertedBy, String stagedElementId, String members) {
         super(Staging.STAGING);
 
-        set(0, id);
-        set(1, data);
-        set(2, elementType);
-        set(3, designation);
-        set(4, importId);
-        set(5, scopedIdentifierId);
-        set(6, convertedAt);
-        set(7, convertedBy);
-        set(8, stagedElementId);
-        set(9, members);
+        setId(id);
+        setData(data);
+        setElementType(elementType);
+        setDesignation(designation);
+        setImportId(importId);
+        setScopedIdentifierId(scopedIdentifierId);
+        setConvertedAt(convertedAt);
+        setConvertedBy(convertedBy);
+        setStagedElementId(stagedElementId);
+        setMembers(members);
+    }
+
+    /**
+     * Create a detached, initialised StagingRecord
+     */
+    public StagingRecord(de.dataelementhub.dal.jooq.tables.pojos.Staging value) {
+        super(Staging.STAGING);
+
+        if (value != null) {
+            setId(value.getId());
+            setData(value.getData());
+            setElementType(value.getElementType());
+            setDesignation(value.getDesignation());
+            setImportId(value.getImportId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setConvertedAt(value.getConvertedAt());
+            setConvertedBy(value.getConvertedBy());
+            setStagedElementId(value.getStagedElementId());
+            setMembers(value.getMembers());
+        }
     }
 }

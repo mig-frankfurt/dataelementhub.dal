@@ -9,6 +9,7 @@ import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.records.SourceRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -40,7 +41,8 @@ public class SourceDao extends DAOImpl<SourceRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Source.SOURCE.ID, lowerInclusive, upperInclusive);
@@ -61,7 +63,15 @@ public class SourceDao extends DAOImpl<SourceRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>name BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchOptionalById(Integer value) {
+        return fetchOptional(Source.SOURCE.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>name BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchRangeOfName(String lowerInclusive, String upperInclusive) {
         return fetchRange(Source.SOURCE.NAME, lowerInclusive, upperInclusive);
@@ -82,7 +92,15 @@ public class SourceDao extends DAOImpl<SourceRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>prefix BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>name = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchOptionalByName(String value) {
+        return fetchOptional(Source.SOURCE.NAME, value);
+    }
+
+    /**
+     * Fetch records that have <code>prefix BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchRangeOfPrefix(String lowerInclusive, String upperInclusive) {
         return fetchRange(Source.SOURCE.PREFIX, lowerInclusive, upperInclusive);
@@ -103,7 +121,15 @@ public class SourceDao extends DAOImpl<SourceRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>base_url BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>prefix = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchOptionalByPrefix(String value) {
+        return fetchOptional(Source.SOURCE.PREFIX, value);
+    }
+
+    /**
+     * Fetch records that have <code>base_url BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchRangeOfBaseUrl(String lowerInclusive, String upperInclusive) {
         return fetchRange(Source.SOURCE.BASE_URL, lowerInclusive, upperInclusive);
@@ -124,7 +150,15 @@ public class SourceDao extends DAOImpl<SourceRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>type BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>base_url = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchOptionalByBaseUrl(String value) {
+        return fetchOptional(Source.SOURCE.BASE_URL, value);
+    }
+
+    /**
+     * Fetch records that have <code>type BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Source> fetchRangeOfType(SourceType lowerInclusive, SourceType upperInclusive) {
         return fetchRange(Source.SOURCE.TYPE, lowerInclusive, upperInclusive);

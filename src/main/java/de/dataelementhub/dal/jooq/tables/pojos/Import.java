@@ -17,16 +17,16 @@ import java.util.UUID;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import implements Serializable {
 
-    private static final long serialVersionUID = 1610586787;
+    private static final long serialVersionUID = 1L;
 
-    private Integer       id;
+    private Integer id;
     private LocalDateTime createdAt;
-    private Integer       createdBy;
-    private Integer       namespaceId;
-    private String        source;
-    private String        label;
-    private UUID          uuid;
-    private Integer       numberOfElements;
+    private Integer createdBy;
+    private Integer namespaceId;
+    private String source;
+    private String label;
+    private UUID uuid;
+    private Integer numberOfElements;
     private ProcessStatus status;
 
     public Import() {}
@@ -44,14 +44,14 @@ public class Import implements Serializable {
     }
 
     public Import(
-        Integer       id,
+        Integer id,
         LocalDateTime createdAt,
-        Integer       createdBy,
-        Integer       namespaceId,
-        String        source,
-        String        label,
-        UUID          uuid,
-        Integer       numberOfElements,
+        Integer createdBy,
+        Integer namespaceId,
+        String source,
+        String label,
+        UUID uuid,
+        Integer numberOfElements,
         ProcessStatus status
     ) {
         this.id = id;
@@ -65,76 +65,212 @@ public class Import implements Serializable {
         this.status = status;
     }
 
+    /**
+     * Getter for <code>public.import.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.import.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.import.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.import.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.import.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.import.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.import.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for <code>public.import.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for <code>public.import.source</code>.
+     */
     public String getSource() {
         return this.source;
     }
 
+    /**
+     * Setter for <code>public.import.source</code>.
+     */
     public void setSource(String source) {
         this.source = source;
     }
 
+    /**
+     * Getter for <code>public.import.label</code>.
+     */
     public String getLabel() {
         return this.label;
     }
 
+    /**
+     * Setter for <code>public.import.label</code>.
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * Getter for <code>public.import.uuid</code>.
+     */
     public UUID getUuid() {
         return this.uuid;
     }
 
+    /**
+     * Setter for <code>public.import.uuid</code>.
+     */
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
+    /**
+     * Getter for <code>public.import.number_of_elements</code>.
+     */
     public Integer getNumberOfElements() {
         return this.numberOfElements;
     }
 
+    /**
+     * Setter for <code>public.import.number_of_elements</code>.
+     */
     public void setNumberOfElements(Integer numberOfElements) {
         this.numberOfElements = numberOfElements;
     }
 
+    /**
+     * Getter for <code>public.import.status</code>.
+     */
     public ProcessStatus getStatus() {
         return this.status;
     }
 
+    /**
+     * Setter for <code>public.import.status</code>.
+     */
     public void setStatus(ProcessStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Import other = (Import) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.createdAt == null) {
+            if (other.createdAt != null)
+                return false;
+        }
+        else if (!this.createdAt.equals(other.createdAt))
+            return false;
+        if (this.createdBy == null) {
+            if (other.createdBy != null)
+                return false;
+        }
+        else if (!this.createdBy.equals(other.createdBy))
+            return false;
+        if (this.namespaceId == null) {
+            if (other.namespaceId != null)
+                return false;
+        }
+        else if (!this.namespaceId.equals(other.namespaceId))
+            return false;
+        if (this.source == null) {
+            if (other.source != null)
+                return false;
+        }
+        else if (!this.source.equals(other.source))
+            return false;
+        if (this.label == null) {
+            if (other.label != null)
+                return false;
+        }
+        else if (!this.label.equals(other.label))
+            return false;
+        if (this.uuid == null) {
+            if (other.uuid != null)
+                return false;
+        }
+        else if (!this.uuid.equals(other.uuid))
+            return false;
+        if (this.numberOfElements == null) {
+            if (other.numberOfElements != null)
+                return false;
+        }
+        else if (!this.numberOfElements.equals(other.numberOfElements))
+            return false;
+        if (this.status == null) {
+            if (other.status != null)
+                return false;
+        }
+        else if (!this.status.equals(other.status))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.createdAt == null) ? 0 : this.createdAt.hashCode());
+        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
+        result = prime * result + ((this.namespaceId == null) ? 0 : this.namespaceId.hashCode());
+        result = prime * result + ((this.source == null) ? 0 : this.source.hashCode());
+        result = prime * result + ((this.label == null) ? 0 : this.label.hashCode());
+        result = prime * result + ((this.uuid == null) ? 0 : this.uuid.hashCode());
+        result = prime * result + ((this.numberOfElements == null) ? 0 : this.numberOfElements.hashCode());
+        result = prime * result + ((this.status == null) ? 0 : this.status.hashCode());
+        return result;
     }
 
     @Override

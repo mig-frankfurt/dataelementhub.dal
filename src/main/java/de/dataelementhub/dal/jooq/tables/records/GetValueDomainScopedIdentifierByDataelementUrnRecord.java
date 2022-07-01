@@ -22,143 +22,163 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetValueDomainScopedIdentifierByDataelementUrnRecord extends TableRecordImpl<GetValueDomainScopedIdentifierByDataelementUrnRecord> implements Record10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, UUID> {
 
-    private static final long serialVersionUID = 1137017418;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
      */
     public void setId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
      */
     public Integer getId() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
      */
     public void setElementType(ElementType value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
      */
     public ElementType getElementType() {
         return (ElementType) get(1);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
      */
     public void setVersion(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
      */
     public Integer getVersion() {
         return (Integer) get(2);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
      */
     public void setIdentifier(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
      */
     public Integer getIdentifier() {
         return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
      */
     public void setUrl(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
      */
     public String getUrl() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
      */
     public void setCreatedBy(Integer value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
      */
     public Integer getCreatedBy() {
         return (Integer) get(5);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
      */
     public void setStatus(Status value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
      */
     public Status getStatus() {
         return (Status) get(6);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
      */
     public void setElementId(Integer value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
      */
     public Integer getElementId() {
         return (Integer) get(7);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
      */
     public void setNamespaceId(Integer value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
      */
     public Integer getNamespaceId() {
         return (Integer) get(8);
     }
 
     /**
-     * Setter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
      */
     public void setUuid(UUID value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
      */
     public UUID getUuid() {
         return (UUID) get(9);
@@ -415,20 +435,42 @@ public class GetValueDomainScopedIdentifierByDataelementUrnRecord extends TableR
     }
 
     /**
-     * Create a detached, initialised GetValueDomainScopedIdentifierByDataelementUrnRecord
+     * Create a detached, initialised
+     * GetValueDomainScopedIdentifierByDataelementUrnRecord
      */
     public GetValueDomainScopedIdentifierByDataelementUrnRecord(Integer id, ElementType elementType, Integer version, Integer identifier, String url, Integer createdBy, Status status, Integer elementId, Integer namespaceId, UUID uuid) {
         super(GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
 
-        set(0, id);
-        set(1, elementType);
-        set(2, version);
-        set(3, identifier);
-        set(4, url);
-        set(5, createdBy);
-        set(6, status);
-        set(7, elementId);
-        set(8, namespaceId);
-        set(9, uuid);
+        setId(id);
+        setElementType(elementType);
+        setVersion(version);
+        setIdentifier(identifier);
+        setUrl(url);
+        setCreatedBy(createdBy);
+        setStatus(status);
+        setElementId(elementId);
+        setNamespaceId(namespaceId);
+        setUuid(uuid);
+    }
+
+    /**
+     * Create a detached, initialised
+     * GetValueDomainScopedIdentifierByDataelementUrnRecord
+     */
+    public GetValueDomainScopedIdentifierByDataelementUrnRecord(de.dataelementhub.dal.jooq.tables.pojos.GetValueDomainScopedIdentifierByDataelementUrn value) {
+        super(GetValueDomainScopedIdentifierByDataelementUrn.GET_VALUE_DOMAIN_SCOPED_IDENTIFIER_BY_DATAELEMENT_URN);
+
+        if (value != null) {
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setVersion(value.getVersion());
+            setIdentifier(value.getIdentifier());
+            setUrl(value.getUrl());
+            setCreatedBy(value.getCreatedBy());
+            setStatus(value.getStatus());
+            setElementId(value.getElementId());
+            setNamespaceId(value.getNamespaceId());
+            setUuid(value.getUuid());
+        }
     }
 }

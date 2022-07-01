@@ -10,6 +10,7 @@ import de.dataelementhub.dal.jooq.tables.records.StagingRecord;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -41,7 +42,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Staging.STAGING.ID, lowerInclusive, upperInclusive);
@@ -62,7 +64,15 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>data BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchOptionalById(Integer value) {
+        return fetchOptional(Staging.STAGING.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>data BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfData(String lowerInclusive, String upperInclusive) {
         return fetchRange(Staging.STAGING.DATA, lowerInclusive, upperInclusive);
@@ -76,7 +86,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfElementType(ElementType lowerInclusive, ElementType upperInclusive) {
         return fetchRange(Staging.STAGING.ELEMENT_TYPE, lowerInclusive, upperInclusive);
@@ -90,7 +101,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>designation BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>designation BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfDesignation(String lowerInclusive, String upperInclusive) {
         return fetchRange(Staging.STAGING.DESIGNATION, lowerInclusive, upperInclusive);
@@ -104,7 +116,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>import_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>import_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfImportId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Staging.STAGING.IMPORT_ID, lowerInclusive, upperInclusive);
@@ -118,7 +131,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfScopedIdentifierId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Staging.STAGING.SCOPED_IDENTIFIER_ID, lowerInclusive, upperInclusive);
@@ -132,7 +146,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>converted_at BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>converted_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfConvertedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
         return fetchRange(Staging.STAGING.CONVERTED_AT, lowerInclusive, upperInclusive);
@@ -146,7 +161,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>converted_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>converted_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfConvertedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Staging.STAGING.CONVERTED_BY, lowerInclusive, upperInclusive);
@@ -160,7 +176,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>staged_element_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>staged_element_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfStagedElementId(String lowerInclusive, String upperInclusive) {
         return fetchRange(Staging.STAGING.STAGED_ELEMENT_ID, lowerInclusive, upperInclusive);
@@ -174,7 +191,8 @@ public class StagingDao extends DAOImpl<StagingRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>members BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>members BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Staging> fetchRangeOfMembers(String lowerInclusive, String upperInclusive) {
         return fetchRange(Staging.STAGING.MEMBERS, lowerInclusive, upperInclusive);

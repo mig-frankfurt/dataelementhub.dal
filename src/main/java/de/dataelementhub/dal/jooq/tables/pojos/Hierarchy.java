@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Hierarchy implements Serializable {
 
-    private static final long serialVersionUID = -272869694;
+    private static final long serialVersionUID = 1L;
 
     private Integer root;
     private Integer super_;
@@ -37,28 +37,86 @@ public class Hierarchy implements Serializable {
         this.sub = sub;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.root</code>.
+     */
     public Integer getRoot() {
         return this.root;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.root</code>.
+     */
     public void setRoot(Integer root) {
         this.root = root;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.super</code>.
+     */
     public Integer getSuper() {
         return this.super_;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.super</code>.
+     */
     public void setSuper(Integer super_) {
         this.super_ = super_;
     }
 
+    /**
+     * Getter for <code>public.hierarchy.sub</code>.
+     */
     public Integer getSub() {
         return this.sub;
     }
 
+    /**
+     * Setter for <code>public.hierarchy.sub</code>.
+     */
     public void setSub(Integer sub) {
         this.sub = sub;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Hierarchy other = (Hierarchy) obj;
+        if (this.root == null) {
+            if (other.root != null)
+                return false;
+        }
+        else if (!this.root.equals(other.root))
+            return false;
+        if (this.super_ == null) {
+            if (other.super_ != null)
+                return false;
+        }
+        else if (!this.super_.equals(other.super_))
+            return false;
+        if (this.sub == null) {
+            if (other.sub != null)
+                return false;
+        }
+        else if (!this.sub.equals(other.sub))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.root == null) ? 0 : this.root.hashCode());
+        result = prime * result + ((this.super_ == null) ? 0 : this.super_.hashCode());
+        result = prime * result + ((this.sub == null) ? 0 : this.sub.hashCode());
+        return result;
     }
 
     @Override

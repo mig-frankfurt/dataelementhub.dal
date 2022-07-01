@@ -10,19 +10,24 @@ import de.dataelementhub.dal.jooq.tables.records.DehubUserRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function6;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row6;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -32,7 +37,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DehubUser extends TableImpl<DehubUserRecord> {
 
-    private static final long serialVersionUID = 815222752;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.dehub_user</code>
@@ -50,38 +55,39 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
     /**
      * The column <code>public.dehub_user.id</code>.
      */
-    public final TableField<DehubUserRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('dehub_user_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<DehubUserRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.dehub_user.auth_id</code>.
      */
-    public final TableField<DehubUserRecord, String> AUTH_ID = createField(DSL.name("auth_id"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DehubUserRecord, String> AUTH_ID = createField(DSL.name("auth_id"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.dehub_user.first_name</code>.
      */
-    public final TableField<DehubUserRecord, String> FIRST_NAME = createField(DSL.name("first_name"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<DehubUserRecord, String> FIRST_NAME = createField(DSL.name("first_name"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.dehub_user.last_name</code>.
      */
-    public final TableField<DehubUserRecord, String> LAST_NAME = createField(DSL.name("last_name"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<DehubUserRecord, String> LAST_NAME = createField(DSL.name("last_name"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.dehub_user.user_name</code>.
      */
-    public final TableField<DehubUserRecord, String> USER_NAME = createField(DSL.name("user_name"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DehubUserRecord, String> USER_NAME = createField(DSL.name("user_name"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.dehub_user.email</code>.
      */
-    public final TableField<DehubUserRecord, String> EMAIL = createField(DSL.name("email"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DehubUserRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.CLOB.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.dehub_user</code> table reference
-     */
-    public DehubUser() {
-        this(DSL.name("dehub_user"), null);
+    private DehubUser(Name alias, Table<DehubUserRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private DehubUser(Name alias, Table<DehubUserRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -98,12 +104,11 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
         this(alias, DEHUB_USER);
     }
 
-    private DehubUser(Name alias, Table<DehubUserRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private DehubUser(Name alias, Table<DehubUserRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.dehub_user</code> table reference
+     */
+    public DehubUser() {
+        this(DSL.name("dehub_user"), null);
     }
 
     public <O extends Record> DehubUser(Table<O> child, ForeignKey<O, DehubUserRecord> key) {
@@ -112,12 +117,12 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<DehubUserRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_DEHUB_USER;
+        return (Identity<DehubUserRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -126,8 +131,8 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
     }
 
     @Override
-    public List<UniqueKey<DehubUserRecord>> getKeys() {
-        return Arrays.<UniqueKey<DehubUserRecord>>asList(Keys.DEHUB_USER_PKEY, Keys.DEHUB_USER_AUTH_ID_KEY);
+    public List<UniqueKey<DehubUserRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.DEHUB_USER_AUTH_ID_KEY);
     }
 
     @Override
@@ -138,6 +143,11 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
     @Override
     public DehubUser as(Name alias) {
         return new DehubUser(alias, this);
+    }
+
+    @Override
+    public DehubUser as(Table<?> alias) {
+        return new DehubUser(alias.getQualifiedName(), this);
     }
 
     /**
@@ -156,6 +166,14 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
         return new DehubUser(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public DehubUser rename(Table<?> name) {
+        return new DehubUser(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
@@ -163,5 +181,19 @@ public class DehubUser extends TableImpl<DehubUserRecord> {
     @Override
     public Row6<Integer, String, String, String, String, String> fieldsRow() {
         return (Row6) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function6<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

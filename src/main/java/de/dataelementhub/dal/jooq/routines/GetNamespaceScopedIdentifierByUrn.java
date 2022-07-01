@@ -11,6 +11,7 @@ import org.jooq.Field;
 import org.jooq.Parameter;
 import org.jooq.impl.AbstractRoutine;
 import org.jooq.impl.Internal;
+import org.jooq.impl.SQLDataType;
 
 
 /**
@@ -19,17 +20,19 @@ import org.jooq.impl.Internal;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetNamespaceScopedIdentifierByUrn extends AbstractRoutine<ScopedIdentifierRecord> {
 
-    private static final long serialVersionUID = 1721717771;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * The parameter <code>public.get_namespace_scoped_identifier_by_urn.RETURN_VALUE</code>.
+     * The parameter
+     * <code>public.get_namespace_scoped_identifier_by_urn.RETURN_VALUE</code>.
      */
     public static final Parameter<ScopedIdentifierRecord> RETURN_VALUE = Internal.createParameter("RETURN_VALUE", de.dataelementhub.dal.jooq.tables.ScopedIdentifier.SCOPED_IDENTIFIER.getDataType(), false, false);
 
     /**
-     * The parameter <code>public.get_namespace_scoped_identifier_by_urn.urn</code>.
+     * The parameter
+     * <code>public.get_namespace_scoped_identifier_by_urn.urn</code>.
      */
-    public static final Parameter<String> URN = Internal.createParameter("urn", org.jooq.impl.SQLDataType.CLOB, false, false);
+    public static final Parameter<String> URN = Internal.createParameter("urn", SQLDataType.CLOB, false, false);
 
     /**
      * Create a new routine call instance
@@ -49,7 +52,8 @@ public class GetNamespaceScopedIdentifierByUrn extends AbstractRoutine<ScopedIde
     }
 
     /**
-     * Set the <code>urn</code> parameter to the function to be used with a {@link org.jooq.Select} statement
+     * Set the <code>urn</code> parameter to the function to be used with a
+     * {@link org.jooq.Select} statement
      */
     public void setUrn(Field<String> field) {
         setField(URN, field);

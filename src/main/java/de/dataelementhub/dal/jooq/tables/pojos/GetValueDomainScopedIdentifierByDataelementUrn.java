@@ -17,18 +17,18 @@ import java.util.UUID;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializable {
 
-    private static final long serialVersionUID = -101051131;
+    private static final long serialVersionUID = 1L;
 
-    private Integer     id;
+    private Integer id;
     private ElementType elementType;
-    private Integer     version;
-    private Integer     identifier;
-    private String      url;
-    private Integer     createdBy;
-    private Status      status;
-    private Integer     elementId;
-    private Integer     namespaceId;
-    private UUID        uuid;
+    private Integer version;
+    private Integer identifier;
+    private String url;
+    private Integer createdBy;
+    private Status status;
+    private Integer elementId;
+    private Integer namespaceId;
+    private UUID uuid;
 
     public GetValueDomainScopedIdentifierByDataelementUrn() {}
 
@@ -46,16 +46,16 @@ public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializa
     }
 
     public GetValueDomainScopedIdentifierByDataelementUrn(
-        Integer     id,
+        Integer id,
         ElementType elementType,
-        Integer     version,
-        Integer     identifier,
-        String      url,
-        Integer     createdBy,
-        Status      status,
-        Integer     elementId,
-        Integer     namespaceId,
-        UUID        uuid
+        Integer version,
+        Integer identifier,
+        String url,
+        Integer createdBy,
+        Status status,
+        Integer elementId,
+        Integer namespaceId,
+        UUID uuid
     ) {
         this.id = id;
         this.elementType = elementType;
@@ -69,84 +69,253 @@ public class GetValueDomainScopedIdentifierByDataelementUrn implements Serializa
         this.uuid = uuid;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     */
     public ElementType getElementType() {
         return this.elementType;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_type</code>.
+     */
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     */
     public Integer getVersion() {
         return this.version;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.version</code>.
+     */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     */
     public Integer getIdentifier() {
         return this.identifier;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.identifier</code>.
+     */
     public void setIdentifier(Integer identifier) {
         this.identifier = identifier;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
+     */
     public String getUrl() {
         return this.url;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.url</code>.
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     */
     public Status getStatus() {
         return this.status;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.status</code>.
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     */
     public Integer getElementId() {
         return this.elementId;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.element_id</code>.
+     */
     public void setElementId(Integer elementId) {
         this.elementId = elementId;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     */
     public UUID getUuid() {
         return this.uuid;
     }
 
+    /**
+     * Setter for
+     * <code>public.get_value_domain_scoped_identifier_by_dataelement_urn.uuid</code>.
+     */
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final GetValueDomainScopedIdentifierByDataelementUrn other = (GetValueDomainScopedIdentifierByDataelementUrn) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.elementType == null) {
+            if (other.elementType != null)
+                return false;
+        }
+        else if (!this.elementType.equals(other.elementType))
+            return false;
+        if (this.version == null) {
+            if (other.version != null)
+                return false;
+        }
+        else if (!this.version.equals(other.version))
+            return false;
+        if (this.identifier == null) {
+            if (other.identifier != null)
+                return false;
+        }
+        else if (!this.identifier.equals(other.identifier))
+            return false;
+        if (this.url == null) {
+            if (other.url != null)
+                return false;
+        }
+        else if (!this.url.equals(other.url))
+            return false;
+        if (this.createdBy == null) {
+            if (other.createdBy != null)
+                return false;
+        }
+        else if (!this.createdBy.equals(other.createdBy))
+            return false;
+        if (this.status == null) {
+            if (other.status != null)
+                return false;
+        }
+        else if (!this.status.equals(other.status))
+            return false;
+        if (this.elementId == null) {
+            if (other.elementId != null)
+                return false;
+        }
+        else if (!this.elementId.equals(other.elementId))
+            return false;
+        if (this.namespaceId == null) {
+            if (other.namespaceId != null)
+                return false;
+        }
+        else if (!this.namespaceId.equals(other.namespaceId))
+            return false;
+        if (this.uuid == null) {
+            if (other.uuid != null)
+                return false;
+        }
+        else if (!this.uuid.equals(other.uuid))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.elementType == null) ? 0 : this.elementType.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
+        result = prime * result + ((this.identifier == null) ? 0 : this.identifier.hashCode());
+        result = prime * result + ((this.url == null) ? 0 : this.url.hashCode());
+        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
+        result = prime * result + ((this.status == null) ? 0 : this.status.hashCode());
+        result = prime * result + ((this.elementId == null) ? 0 : this.elementId.hashCode());
+        result = prime * result + ((this.namespaceId == null) ? 0 : this.namespaceId.hashCode());
+        result = prime * result + ((this.uuid == null) ? 0 : this.uuid.hashCode());
+        return result;
     }
 
     @Override

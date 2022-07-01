@@ -22,7 +22,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ElementRelationRecord extends UpdatableRecordImpl<ElementRelationRecord> implements Record7<String, Integer, String, Integer, RelationType, Integer, LocalDateTime> {
 
-    private static final long serialVersionUID = -661132656;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.element_relation.left_urn</code>.
@@ -321,12 +321,29 @@ public class ElementRelationRecord extends UpdatableRecordImpl<ElementRelationRe
     public ElementRelationRecord(String leftUrn, Integer leftSource, String rightUrn, Integer rightSource, RelationType relation, Integer createdBy, LocalDateTime createdAt) {
         super(ElementRelation.ELEMENT_RELATION);
 
-        set(0, leftUrn);
-        set(1, leftSource);
-        set(2, rightUrn);
-        set(3, rightSource);
-        set(4, relation);
-        set(5, createdBy);
-        set(6, createdAt);
+        setLeftUrn(leftUrn);
+        setLeftSource(leftSource);
+        setRightUrn(rightUrn);
+        setRightSource(rightSource);
+        setRelation(relation);
+        setCreatedBy(createdBy);
+        setCreatedAt(createdAt);
+    }
+
+    /**
+     * Create a detached, initialised ElementRelationRecord
+     */
+    public ElementRelationRecord(de.dataelementhub.dal.jooq.tables.pojos.ElementRelation value) {
+        super(ElementRelation.ELEMENT_RELATION);
+
+        if (value != null) {
+            setLeftUrn(value.getLeftUrn());
+            setLeftSource(value.getLeftSource());
+            setRightUrn(value.getRightUrn());
+            setRightSource(value.getRightSource());
+            setRelation(value.getRelation());
+            setCreatedBy(value.getCreatedBy());
+            setCreatedAt(value.getCreatedAt());
+        }
     }
 }

@@ -21,7 +21,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class IdentifiedElementRecord extends TableRecordImpl<IdentifiedElementRecord> {
 
-    private static final long serialVersionUID = 1707287856;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.identified_element.si_id</code>.
@@ -376,29 +376,63 @@ public class IdentifiedElementRecord extends TableRecordImpl<IdentifiedElementRe
     public IdentifiedElementRecord(Integer siId, Integer siIdentifier, Integer siVersion, Status siStatus, Integer siNamespaceId, Integer id, ElementType elementType, Boolean hidden, Integer createdBy, Integer elementId, Integer scopedIdentifierId, String code, Boolean isValid, String format, String datatype, String unitOfMeasure, Integer maximumCharacters, String description, ValidationType validationType, String validationData, String permittedValue, JSON data, UUID uuid, String externalId) {
         super(IdentifiedElement.IDENTIFIED_ELEMENT);
 
-        set(0, siId);
-        set(1, siIdentifier);
-        set(2, siVersion);
-        set(3, siStatus);
-        set(4, siNamespaceId);
-        set(5, id);
-        set(6, elementType);
-        set(7, hidden);
-        set(8, createdBy);
-        set(9, elementId);
-        set(10, scopedIdentifierId);
-        set(11, code);
-        set(12, isValid);
-        set(13, format);
-        set(14, datatype);
-        set(15, unitOfMeasure);
-        set(16, maximumCharacters);
-        set(17, description);
-        set(18, validationType);
-        set(19, validationData);
-        set(20, permittedValue);
-        set(21, data);
-        set(22, uuid);
-        set(23, externalId);
+        setSiId(siId);
+        setSiIdentifier(siIdentifier);
+        setSiVersion(siVersion);
+        setSiStatus(siStatus);
+        setSiNamespaceId(siNamespaceId);
+        setId(id);
+        setElementType(elementType);
+        setHidden(hidden);
+        setCreatedBy(createdBy);
+        setElementId(elementId);
+        setScopedIdentifierId(scopedIdentifierId);
+        setCode(code);
+        setIsValid(isValid);
+        setFormat(format);
+        setDatatype(datatype);
+        setUnitOfMeasure(unitOfMeasure);
+        setMaximumCharacters(maximumCharacters);
+        setDescription(description);
+        setValidationType(validationType);
+        setValidationData(validationData);
+        setPermittedValue(permittedValue);
+        setData(data);
+        setUuid(uuid);
+        setExternalId(externalId);
+    }
+
+    /**
+     * Create a detached, initialised IdentifiedElementRecord
+     */
+    public IdentifiedElementRecord(de.dataelementhub.dal.jooq.tables.pojos.IdentifiedElement value) {
+        super(IdentifiedElement.IDENTIFIED_ELEMENT);
+
+        if (value != null) {
+            setSiId(value.getSiId());
+            setSiIdentifier(value.getSiIdentifier());
+            setSiVersion(value.getSiVersion());
+            setSiStatus(value.getSiStatus());
+            setSiNamespaceId(value.getSiNamespaceId());
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setHidden(value.getHidden());
+            setCreatedBy(value.getCreatedBy());
+            setElementId(value.getElementId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setCode(value.getCode());
+            setIsValid(value.getIsValid());
+            setFormat(value.getFormat());
+            setDatatype(value.getDatatype());
+            setUnitOfMeasure(value.getUnitOfMeasure());
+            setMaximumCharacters(value.getMaximumCharacters());
+            setDescription(value.getDescription());
+            setValidationType(value.getValidationType());
+            setValidationData(value.getValidationData());
+            setPermittedValue(value.getPermittedValue());
+            setData(value.getData());
+            setUuid(value.getUuid());
+            setExternalId(value.getExternalId());
+        }
     }
 }

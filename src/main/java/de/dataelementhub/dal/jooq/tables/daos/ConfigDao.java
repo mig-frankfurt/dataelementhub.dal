@@ -8,6 +8,7 @@ import de.dataelementhub.dal.jooq.tables.Config;
 import de.dataelementhub.dal.jooq.tables.records.ConfigRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.JSON;
@@ -40,7 +41,8 @@ public class ConfigDao extends DAOImpl<ConfigRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Config> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Config.CONFIG.ID, lowerInclusive, upperInclusive);
@@ -61,7 +63,15 @@ public class ConfigDao extends DAOImpl<ConfigRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>name BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Config> fetchOptionalById(Integer value) {
+        return fetchOptional(Config.CONFIG.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>name BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Config> fetchRangeOfName(String lowerInclusive, String upperInclusive) {
         return fetchRange(Config.CONFIG.NAME, lowerInclusive, upperInclusive);
@@ -82,7 +92,15 @@ public class ConfigDao extends DAOImpl<ConfigRecord, de.dataelementhub.dal.jooq.
     }
 
     /**
-     * Fetch records that have <code>value BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>name = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Config> fetchOptionalByName(String value) {
+        return fetchOptional(Config.CONFIG.NAME, value);
+    }
+
+    /**
+     * Fetch records that have <code>value BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Config> fetchRangeOfValue(JSON lowerInclusive, JSON upperInclusive) {
         return fetchRange(Config.CONFIG.VALUE, lowerInclusive, upperInclusive);

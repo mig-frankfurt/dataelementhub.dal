@@ -19,7 +19,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserSourceCredentialsRecord extends UpdatableRecordImpl<UserSourceCredentialsRecord> implements Record3<Integer, String, Integer> {
 
-    private static final long serialVersionUID = -948560472;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.user_source_credentials.user_id</code>.
@@ -174,8 +174,21 @@ public class UserSourceCredentialsRecord extends UpdatableRecordImpl<UserSourceC
     public UserSourceCredentialsRecord(Integer userId, String credential, Integer sourceId) {
         super(UserSourceCredentials.USER_SOURCE_CREDENTIALS);
 
-        set(0, userId);
-        set(1, credential);
-        set(2, sourceId);
+        setUserId(userId);
+        setCredential(credential);
+        setSourceId(sourceId);
+    }
+
+    /**
+     * Create a detached, initialised UserSourceCredentialsRecord
+     */
+    public UserSourceCredentialsRecord(de.dataelementhub.dal.jooq.tables.pojos.UserSourceCredentials value) {
+        super(UserSourceCredentials.USER_SOURCE_CREDENTIALS);
+
+        if (value != null) {
+            setUserId(value.getUserId());
+            setCredential(value.getCredential());
+            setSourceId(value.getSourceId());
+        }
     }
 }

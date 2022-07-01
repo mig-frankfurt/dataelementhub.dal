@@ -42,7 +42,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>left_urn BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>left_urn BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfLeftUrn(String lowerInclusive, String upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.LEFT_URN, lowerInclusive, upperInclusive);
@@ -56,7 +57,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>left_source BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>left_source BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfLeftSource(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.LEFT_SOURCE, lowerInclusive, upperInclusive);
@@ -70,7 +72,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>right_urn BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>right_urn BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfRightUrn(String lowerInclusive, String upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.RIGHT_URN, lowerInclusive, upperInclusive);
@@ -84,7 +87,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>right_source BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>right_source BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfRightSource(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.RIGHT_SOURCE, lowerInclusive, upperInclusive);
@@ -98,7 +102,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>relation BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>relation BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfRelation(RelationType lowerInclusive, RelationType upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.RELATION, lowerInclusive, upperInclusive);
@@ -112,7 +117,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfCreatedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.CREATED_BY, lowerInclusive, upperInclusive);
@@ -126,7 +132,8 @@ public class ElementRelationDao extends DAOImpl<ElementRelationRecord, de.datael
     }
 
     /**
-     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ElementRelation> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
         return fetchRange(ElementRelation.ELEMENT_RELATION.CREATED_AT, lowerInclusive, upperInclusive);

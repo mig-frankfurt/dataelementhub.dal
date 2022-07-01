@@ -11,20 +11,25 @@ import de.dataelementhub.dal.jooq.tables.records.SlotRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function4;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row4;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -34,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Slot extends TableImpl<SlotRecord> {
 
-    private static final long serialVersionUID = 371312737;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.slot</code>
@@ -52,28 +57,29 @@ public class Slot extends TableImpl<SlotRecord> {
     /**
      * The column <code>public.slot.id</code>.
      */
-    public final TableField<SlotRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('slot_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<SlotRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.slot.scoped_identifier_id</code>.
      */
-    public final TableField<SlotRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<SlotRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.slot.key</code>.
      */
-    public final TableField<SlotRecord, String> KEY = createField(DSL.name("key"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<SlotRecord, String> KEY = createField(DSL.name("key"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.slot.value</code>.
      */
-    public final TableField<SlotRecord, String> VALUE = createField(DSL.name("value"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<SlotRecord, String> VALUE = createField(DSL.name("value"), SQLDataType.CLOB.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.slot</code> table reference
-     */
-    public Slot() {
-        this(DSL.name("slot"), null);
+    private Slot(Name alias, Table<SlotRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Slot(Name alias, Table<SlotRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -90,12 +96,11 @@ public class Slot extends TableImpl<SlotRecord> {
         this(alias, SLOT);
     }
 
-    private Slot(Name alias, Table<SlotRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Slot(Name alias, Table<SlotRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.slot</code> table reference
+     */
+    public Slot() {
+        this(DSL.name("slot"), null);
     }
 
     public <O extends Record> Slot(Table<O> child, ForeignKey<O, SlotRecord> key) {
@@ -104,17 +109,17 @@ public class Slot extends TableImpl<SlotRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.SLOT_SCOPED_IDENTIFIER_ID_IDX);
+        return Arrays.asList(Indexes.SLOT_SCOPED_IDENTIFIER_ID_IDX);
     }
 
     @Override
     public Identity<SlotRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_SLOT;
+        return (Identity<SlotRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -123,17 +128,21 @@ public class Slot extends TableImpl<SlotRecord> {
     }
 
     @Override
-    public List<UniqueKey<SlotRecord>> getKeys() {
-        return Arrays.<UniqueKey<SlotRecord>>asList(Keys.SLOT_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<SlotRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<SlotRecord, ?>>asList(Keys.SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY);
+        return Arrays.asList(Keys.SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY);
     }
 
+    private transient ScopedIdentifier _scopedIdentifier;
+
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
     public ScopedIdentifier scopedIdentifier() {
-        return new ScopedIdentifier(this, Keys.SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY);
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
     }
 
     @Override
@@ -144,6 +153,11 @@ public class Slot extends TableImpl<SlotRecord> {
     @Override
     public Slot as(Name alias) {
         return new Slot(alias, this);
+    }
+
+    @Override
+    public Slot as(Table<?> alias) {
+        return new Slot(alias.getQualifiedName(), this);
     }
 
     /**
@@ -162,6 +176,14 @@ public class Slot extends TableImpl<SlotRecord> {
         return new Slot(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Slot rename(Table<?> name) {
+        return new Slot(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
@@ -169,5 +191,19 @@ public class Slot extends TableImpl<SlotRecord> {
     @Override
     public Row4<Integer, Integer, String, String> fieldsRow() {
         return (Row4) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }
