@@ -18,7 +18,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetSlotByUrnRecord extends TableRecordImpl<GetSlotByUrnRecord> implements Record4<Integer, Integer, String, String> {
 
-    private static final long serialVersionUID = 431570180;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.get_slot_by_urn.id</code>.
@@ -200,9 +200,23 @@ public class GetSlotByUrnRecord extends TableRecordImpl<GetSlotByUrnRecord> impl
     public GetSlotByUrnRecord(Integer id, Integer scopedIdentifierId, String key, String value) {
         super(GetSlotByUrn.GET_SLOT_BY_URN);
 
-        set(0, id);
-        set(1, scopedIdentifierId);
-        set(2, key);
-        set(3, value);
+        setId(id);
+        setScopedIdentifierId(scopedIdentifierId);
+        setKey(key);
+        setValue(value);
+    }
+
+    /**
+     * Create a detached, initialised GetSlotByUrnRecord
+     */
+    public GetSlotByUrnRecord(de.dataelementhub.dal.jooq.tables.pojos.GetSlotByUrn value) {
+        super(GetSlotByUrn.GET_SLOT_BY_URN);
+
+        if (value != null) {
+            setId(value.getId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setKey(value.getKey());
+            setValue(value.getValue());
+        }
     }
 }

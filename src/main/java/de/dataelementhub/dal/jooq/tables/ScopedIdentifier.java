@@ -13,23 +13,27 @@ import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+import java.util.function.Function;
 
 import org.jooq.Check;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function10;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row10;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -39,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
 
-    private static final long serialVersionUID = 1034159605;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.scoped_identifier</code>
@@ -57,58 +61,59 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     /**
      * The column <code>public.scoped_identifier.id</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('scoped_identifier_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.scoped_identifier.element_type</code>.
      */
-    public final TableField<ScopedIdentifierRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
+    public final TableField<ScopedIdentifierRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
      * The column <code>public.scoped_identifier.version</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> VERSION = createField(DSL.name("version"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.identifier</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> IDENTIFIER = createField(DSL.name("identifier"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> IDENTIFIER = createField(DSL.name("identifier"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.url</code>.
      */
-    public final TableField<ScopedIdentifierRecord, String> URL = createField(DSL.name("url"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, String> URL = createField(DSL.name("url"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.created_by</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.status</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Status> STATUS = createField(DSL.name("status"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
+    public final TableField<ScopedIdentifierRecord, Status> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.Status.class), this, "");
 
     /**
      * The column <code>public.scoped_identifier.element_id</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.namespace_id</code>.
      */
-    public final TableField<ScopedIdentifierRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier.uuid</code>.
      */
-    public final TableField<ScopedIdentifierRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
+    public final TableField<ScopedIdentifierRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.scoped_identifier</code> table reference
-     */
-    public ScopedIdentifier() {
-        this(DSL.name("scoped_identifier"), null);
+    private ScopedIdentifier(Name alias, Table<ScopedIdentifierRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private ScopedIdentifier(Name alias, Table<ScopedIdentifierRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -125,12 +130,11 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
         this(alias, SCOPED_IDENTIFIER);
     }
 
-    private ScopedIdentifier(Name alias, Table<ScopedIdentifierRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private ScopedIdentifier(Name alias, Table<ScopedIdentifierRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.scoped_identifier</code> table reference
+     */
+    public ScopedIdentifier() {
+        this(DSL.name("scoped_identifier"), null);
     }
 
     public <O extends Record> ScopedIdentifier(Table<O> child, ForeignKey<O, ScopedIdentifierRecord> key) {
@@ -139,17 +143,17 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.SCOPED_IDENTIFIER_CREATED_BY_IDX, Indexes.SCOPED_IDENTIFIER_ELEMENT_ID_IDX, Indexes.SCOPED_IDENTIFIER_IDENTIFIER_IDX, Indexes.SCOPED_IDENTIFIER_NAMESPACE_ID_IDX, Indexes.SCOPED_IDENTIFIER_STATUS_IDX, Indexes.SCOPED_IDENTIFIER_UUID_IDX, Indexes.SCOPED_IDENTIFIER_VERSION_IDX);
+        return Arrays.asList(Indexes.SCOPED_IDENTIFIER_CREATED_BY_IDX, Indexes.SCOPED_IDENTIFIER_ELEMENT_ID_IDX, Indexes.SCOPED_IDENTIFIER_IDENTIFIER_IDX, Indexes.SCOPED_IDENTIFIER_NAMESPACE_ID_IDX, Indexes.SCOPED_IDENTIFIER_STATUS_IDX, Indexes.SCOPED_IDENTIFIER_UUID_IDX, Indexes.SCOPED_IDENTIFIER_VERSION_IDX);
     }
 
     @Override
     public Identity<ScopedIdentifierRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_SCOPED_IDENTIFIER;
+        return (Identity<ScopedIdentifierRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -158,31 +162,55 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     }
 
     @Override
-    public List<UniqueKey<ScopedIdentifierRecord>> getKeys() {
-        return Arrays.<UniqueKey<ScopedIdentifierRecord>>asList(Keys.SCOPED_IDENTIFIER_PKEY, Keys.UNIQUE_ELEMENT_TYPE_IDENTIFIER);
+    public List<UniqueKey<ScopedIdentifierRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.UNIQUE_ELEMENT_TYPE_IDENTIFIER);
     }
 
     @Override
     public List<ForeignKey<ScopedIdentifierRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<ScopedIdentifierRecord, ?>>asList(Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_CREATED_BY_FKEY, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_ELEMENT_ID_FKEY, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_NAMESPACE_ID2_FKEY);
+        return Arrays.asList(Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_CREATED_BY_FKEY, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_ELEMENT_ID_FKEY, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_NAMESPACE_ID2_FKEY);
     }
 
+    private transient DehubUser _dehubUser;
+    private transient Element _scopedIdentifierElementIdFkey;
+    private transient Element _scopedIdentifierNamespaceId2Fkey;
+
+    /**
+     * Get the implicit join path to the <code>public.dehub_user</code> table.
+     */
     public DehubUser dehubUser() {
-        return new DehubUser(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_CREATED_BY_FKEY);
+        if (_dehubUser == null)
+            _dehubUser = new DehubUser(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_CREATED_BY_FKEY);
+
+        return _dehubUser;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.element</code> table, via
+     * the <code>scoped_identifier_element_id_fkey</code> key.
+     */
     public Element scopedIdentifierElementIdFkey() {
-        return new Element(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_ELEMENT_ID_FKEY);
+        if (_scopedIdentifierElementIdFkey == null)
+            _scopedIdentifierElementIdFkey = new Element(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_ELEMENT_ID_FKEY);
+
+        return _scopedIdentifierElementIdFkey;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.element</code> table, via
+     * the <code>scoped_identifier_namespace_id2_fkey</code> key.
+     */
     public Element scopedIdentifierNamespaceId2Fkey() {
-        return new Element(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_NAMESPACE_ID2_FKEY);
+        if (_scopedIdentifierNamespaceId2Fkey == null)
+            _scopedIdentifierNamespaceId2Fkey = new Element(this, Keys.SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_NAMESPACE_ID2_FKEY);
+
+        return _scopedIdentifierNamespaceId2Fkey;
     }
 
     @Override
     public List<Check<ScopedIdentifierRecord>> getChecks() {
-        return Arrays.<Check<ScopedIdentifierRecord>>asList(
-              Internal.createCheck(this, DSL.name("et_check"), "((element_type = getelementtype(element_id)))", true)
+        return Arrays.asList(
+            Internal.createCheck(this, DSL.name("et_check"), "((element_type = getelementtype(element_id)))", true)
         );
     }
 
@@ -194,6 +222,11 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
     @Override
     public ScopedIdentifier as(Name alias) {
         return new ScopedIdentifier(alias, this);
+    }
+
+    @Override
+    public ScopedIdentifier as(Table<?> alias) {
+        return new ScopedIdentifier(alias.getQualifiedName(), this);
     }
 
     /**
@@ -212,12 +245,34 @@ public class ScopedIdentifier extends TableImpl<ScopedIdentifierRecord> {
         return new ScopedIdentifier(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public ScopedIdentifier rename(Table<?> name) {
+        return new ScopedIdentifier(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, UUID> fieldsRow() {
+    public Row10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, java.util.UUID> fieldsRow() {
         return (Row10) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

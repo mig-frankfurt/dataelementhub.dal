@@ -14,15 +14,15 @@ import java.time.LocalDateTime;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Concepts implements Serializable {
 
-    private static final long serialVersionUID = 1907718042;
+    private static final long serialVersionUID = 1L;
 
-    private Integer       id;
-    private String        system;
-    private String        version;
-    private String        term;
-    private String        text;
-    private Integer       sourceId;
-    private Integer       createdBy;
+    private Integer id;
+    private String system;
+    private String version;
+    private String term;
+    private String text;
+    private Integer sourceId;
+    private Integer createdBy;
     private LocalDateTime createdAt;
 
     public Concepts() {}
@@ -39,13 +39,13 @@ public class Concepts implements Serializable {
     }
 
     public Concepts(
-        Integer       id,
-        String        system,
-        String        version,
-        String        term,
-        String        text,
-        Integer       sourceId,
-        Integer       createdBy,
+        Integer id,
+        String system,
+        String version,
+        String term,
+        String text,
+        Integer sourceId,
+        Integer createdBy,
         LocalDateTime createdAt
     ) {
         this.id = id;
@@ -58,68 +58,191 @@ public class Concepts implements Serializable {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Getter for <code>public.concepts.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.concepts.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.concepts.system</code>.
+     */
     public String getSystem() {
         return this.system;
     }
 
+    /**
+     * Setter for <code>public.concepts.system</code>.
+     */
     public void setSystem(String system) {
         this.system = system;
     }
 
+    /**
+     * Getter for <code>public.concepts.version</code>.
+     */
     public String getVersion() {
         return this.version;
     }
 
+    /**
+     * Setter for <code>public.concepts.version</code>.
+     */
     public void setVersion(String version) {
         this.version = version;
     }
 
+    /**
+     * Getter for <code>public.concepts.term</code>.
+     */
     public String getTerm() {
         return this.term;
     }
 
+    /**
+     * Setter for <code>public.concepts.term</code>.
+     */
     public void setTerm(String term) {
         this.term = term;
     }
 
+    /**
+     * Getter for <code>public.concepts.text</code>.
+     */
     public String getText() {
         return this.text;
     }
 
+    /**
+     * Setter for <code>public.concepts.text</code>.
+     */
     public void setText(String text) {
         this.text = text;
     }
 
+    /**
+     * Getter for <code>public.concepts.source_id</code>.
+     */
     public Integer getSourceId() {
         return this.sourceId;
     }
 
+    /**
+     * Setter for <code>public.concepts.source_id</code>.
+     */
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 
+    /**
+     * Getter for <code>public.concepts.created_by</code>.
+     */
     public Integer getCreatedBy() {
         return this.createdBy;
     }
 
+    /**
+     * Setter for <code>public.concepts.created_by</code>.
+     */
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Getter for <code>public.concepts.created_at</code>.
+     */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
+    /**
+     * Setter for <code>public.concepts.created_at</code>.
+     */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Concepts other = (Concepts) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.system == null) {
+            if (other.system != null)
+                return false;
+        }
+        else if (!this.system.equals(other.system))
+            return false;
+        if (this.version == null) {
+            if (other.version != null)
+                return false;
+        }
+        else if (!this.version.equals(other.version))
+            return false;
+        if (this.term == null) {
+            if (other.term != null)
+                return false;
+        }
+        else if (!this.term.equals(other.term))
+            return false;
+        if (this.text == null) {
+            if (other.text != null)
+                return false;
+        }
+        else if (!this.text.equals(other.text))
+            return false;
+        if (this.sourceId == null) {
+            if (other.sourceId != null)
+                return false;
+        }
+        else if (!this.sourceId.equals(other.sourceId))
+            return false;
+        if (this.createdBy == null) {
+            if (other.createdBy != null)
+                return false;
+        }
+        else if (!this.createdBy.equals(other.createdBy))
+            return false;
+        if (this.createdAt == null) {
+            if (other.createdAt != null)
+                return false;
+        }
+        else if (!this.createdAt.equals(other.createdAt))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.system == null) ? 0 : this.system.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
+        result = prime * result + ((this.term == null) ? 0 : this.term.hashCode());
+        result = prime * result + ((this.text == null) ? 0 : this.text.hashCode());
+        result = prime * result + ((this.sourceId == null) ? 0 : this.sourceId.hashCode());
+        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
+        result = prime * result + ((this.createdAt == null) ? 0 : this.createdAt.hashCode());
+        return result;
     }
 
     @Override

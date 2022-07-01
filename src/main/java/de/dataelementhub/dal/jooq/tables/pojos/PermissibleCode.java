@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PermissibleCode implements Serializable {
 
-    private static final long serialVersionUID = -336805880;
+    private static final long serialVersionUID = 1L;
 
     private Integer codeScopedIdentifierId;
     private Integer catalogValueDomainId;
@@ -33,20 +33,67 @@ public class PermissibleCode implements Serializable {
         this.catalogValueDomainId = catalogValueDomainId;
     }
 
+    /**
+     * Getter for
+     * <code>public.permissible_code.code_scoped_identifier_id</code>.
+     */
     public Integer getCodeScopedIdentifierId() {
         return this.codeScopedIdentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.permissible_code.code_scoped_identifier_id</code>.
+     */
     public void setCodeScopedIdentifierId(Integer codeScopedIdentifierId) {
         this.codeScopedIdentifierId = codeScopedIdentifierId;
     }
 
+    /**
+     * Getter for <code>public.permissible_code.catalog_value_domain_id</code>.
+     */
     public Integer getCatalogValueDomainId() {
         return this.catalogValueDomainId;
     }
 
+    /**
+     * Setter for <code>public.permissible_code.catalog_value_domain_id</code>.
+     */
     public void setCatalogValueDomainId(Integer catalogValueDomainId) {
         this.catalogValueDomainId = catalogValueDomainId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final PermissibleCode other = (PermissibleCode) obj;
+        if (this.codeScopedIdentifierId == null) {
+            if (other.codeScopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.codeScopedIdentifierId.equals(other.codeScopedIdentifierId))
+            return false;
+        if (this.catalogValueDomainId == null) {
+            if (other.catalogValueDomainId != null)
+                return false;
+        }
+        else if (!this.catalogValueDomainId.equals(other.catalogValueDomainId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.codeScopedIdentifierId == null) ? 0 : this.codeScopedIdentifierId.hashCode());
+        result = prime * result + ((this.catalogValueDomainId == null) ? 0 : this.catalogValueDomainId.hashCode());
+        return result;
     }
 
     @Override

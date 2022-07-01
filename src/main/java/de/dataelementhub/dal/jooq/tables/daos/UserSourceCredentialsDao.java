@@ -40,7 +40,8 @@ public class UserSourceCredentialsDao extends DAOImpl<UserSourceCredentialsRecor
     }
 
     /**
-     * Fetch records that have <code>user_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>user_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.UserSourceCredentials> fetchRangeOfUserId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID, lowerInclusive, upperInclusive);
@@ -54,7 +55,8 @@ public class UserSourceCredentialsDao extends DAOImpl<UserSourceCredentialsRecor
     }
 
     /**
-     * Fetch records that have <code>credential BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>credential BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.UserSourceCredentials> fetchRangeOfCredential(String lowerInclusive, String upperInclusive) {
         return fetchRange(UserSourceCredentials.USER_SOURCE_CREDENTIALS.CREDENTIAL, lowerInclusive, upperInclusive);
@@ -68,7 +70,8 @@ public class UserSourceCredentialsDao extends DAOImpl<UserSourceCredentialsRecor
     }
 
     /**
-     * Fetch records that have <code>source_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>source_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.UserSourceCredentials> fetchRangeOfSourceId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID, lowerInclusive, upperInclusive);

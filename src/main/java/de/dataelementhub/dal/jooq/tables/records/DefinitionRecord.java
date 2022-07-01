@@ -19,7 +19,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefinitionRecord extends UpdatableRecordImpl<DefinitionRecord> implements Record6<Integer, Integer, String, String, String, Integer> {
 
-    private static final long serialVersionUID = 236233654;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.definition.id</code>.
@@ -282,11 +282,27 @@ public class DefinitionRecord extends UpdatableRecordImpl<DefinitionRecord> impl
     public DefinitionRecord(Integer id, Integer scopedIdentifierId, String designation, String definition, String language, Integer elementId) {
         super(Definition.DEFINITION);
 
-        set(0, id);
-        set(1, scopedIdentifierId);
-        set(2, designation);
-        set(3, definition);
-        set(4, language);
-        set(5, elementId);
+        setId(id);
+        setScopedIdentifierId(scopedIdentifierId);
+        setDesignation(designation);
+        setDefinition(definition);
+        setLanguage(language);
+        setElementId(elementId);
+    }
+
+    /**
+     * Create a detached, initialised DefinitionRecord
+     */
+    public DefinitionRecord(de.dataelementhub.dal.jooq.tables.pojos.Definition value) {
+        super(Definition.DEFINITION);
+
+        if (value != null) {
+            setId(value.getId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setDesignation(value.getDesignation());
+            setDefinition(value.getDefinition());
+            setLanguage(value.getLanguage());
+            setElementId(value.getElementId());
+        }
     }
 }

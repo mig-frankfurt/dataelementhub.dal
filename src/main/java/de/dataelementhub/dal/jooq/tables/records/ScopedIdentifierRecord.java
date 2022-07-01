@@ -23,7 +23,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ScopedIdentifierRecord extends UpdatableRecordImpl<ScopedIdentifierRecord> implements Record10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, UUID> {
 
-    private static final long serialVersionUID = 1783089186;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.scoped_identifier.id</code>.
@@ -430,15 +430,35 @@ public class ScopedIdentifierRecord extends UpdatableRecordImpl<ScopedIdentifier
     public ScopedIdentifierRecord(Integer id, ElementType elementType, Integer version, Integer identifier, String url, Integer createdBy, Status status, Integer elementId, Integer namespaceId, UUID uuid) {
         super(ScopedIdentifier.SCOPED_IDENTIFIER);
 
-        set(0, id);
-        set(1, elementType);
-        set(2, version);
-        set(3, identifier);
-        set(4, url);
-        set(5, createdBy);
-        set(6, status);
-        set(7, elementId);
-        set(8, namespaceId);
-        set(9, uuid);
+        setId(id);
+        setElementType(elementType);
+        setVersion(version);
+        setIdentifier(identifier);
+        setUrl(url);
+        setCreatedBy(createdBy);
+        setStatus(status);
+        setElementId(elementId);
+        setNamespaceId(namespaceId);
+        setUuid(uuid);
+    }
+
+    /**
+     * Create a detached, initialised ScopedIdentifierRecord
+     */
+    public ScopedIdentifierRecord(de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier value) {
+        super(ScopedIdentifier.SCOPED_IDENTIFIER);
+
+        if (value != null) {
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setVersion(value.getVersion());
+            setIdentifier(value.getIdentifier());
+            setUrl(value.getUrl());
+            setCreatedBy(value.getCreatedBy());
+            setStatus(value.getStatus());
+            setElementId(value.getElementId());
+            setNamespaceId(value.getNamespaceId());
+            setUuid(value.getUuid());
+        }
     }
 }

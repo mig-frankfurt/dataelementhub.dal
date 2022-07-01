@@ -10,22 +10,24 @@ import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function9;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row9;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -35,7 +37,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Import extends TableImpl<ImportRecord> {
 
-    private static final long serialVersionUID = 1736929810;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.import</code>
@@ -53,53 +55,54 @@ public class Import extends TableImpl<ImportRecord> {
     /**
      * The column <code>public.import.id</code>.
      */
-    public final TableField<ImportRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('import_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<ImportRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.import.created_at</code>.
      */
-    public final TableField<ImportRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false).defaultValue(org.jooq.impl.DSL.field("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<ImportRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
     /**
      * The column <code>public.import.created_by</code>.
      */
-    public final TableField<ImportRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ImportRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.import.namespace_id</code>.
      */
-    public final TableField<ImportRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ImportRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.import.source</code>.
      */
-    public final TableField<ImportRecord, String> SOURCE = createField(DSL.name("source"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<ImportRecord, String> SOURCE = createField(DSL.name("source"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.import.label</code>.
      */
-    public final TableField<ImportRecord, String> LABEL = createField(DSL.name("label"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<ImportRecord, String> LABEL = createField(DSL.name("label"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.import.uuid</code>.
      */
-    public final TableField<ImportRecord, UUID> UUID = createField(DSL.name("uuid"), org.jooq.impl.SQLDataType.UUID, this, "");
+    public final TableField<ImportRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID, this, "");
 
     /**
      * The column <code>public.import.number_of_elements</code>.
      */
-    public final TableField<ImportRecord, Integer> NUMBER_OF_ELEMENTS = createField(DSL.name("number_of_elements"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<ImportRecord, Integer> NUMBER_OF_ELEMENTS = createField(DSL.name("number_of_elements"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.import.status</code>.
      */
-    public final TableField<ImportRecord, ProcessStatus> STATUS = createField(DSL.name("status"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ProcessStatus.class), this, "");
+    public final TableField<ImportRecord, ProcessStatus> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ProcessStatus.class), this, "");
 
-    /**
-     * Create a <code>public.import</code> table reference
-     */
-    public Import() {
-        this(DSL.name("import"), null);
+    private Import(Name alias, Table<ImportRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Import(Name alias, Table<ImportRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -116,12 +119,11 @@ public class Import extends TableImpl<ImportRecord> {
         this(alias, IMPORT);
     }
 
-    private Import(Name alias, Table<ImportRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Import(Name alias, Table<ImportRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.import</code> table reference
+     */
+    public Import() {
+        this(DSL.name("import"), null);
     }
 
     public <O extends Record> Import(Table<O> child, ForeignKey<O, ImportRecord> key) {
@@ -130,22 +132,17 @@ public class Import extends TableImpl<ImportRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<ImportRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_IMPORT;
+        return (Identity<ImportRecord, Integer>) super.getIdentity();
     }
 
     @Override
     public UniqueKey<ImportRecord> getPrimaryKey() {
         return Keys.IMPORT_PKEY;
-    }
-
-    @Override
-    public List<UniqueKey<ImportRecord>> getKeys() {
-        return Arrays.<UniqueKey<ImportRecord>>asList(Keys.IMPORT_PKEY);
     }
 
     @Override
@@ -156,6 +153,11 @@ public class Import extends TableImpl<ImportRecord> {
     @Override
     public Import as(Name alias) {
         return new Import(alias, this);
+    }
+
+    @Override
+    public Import as(Table<?> alias) {
+        return new Import(alias.getQualifiedName(), this);
     }
 
     /**
@@ -174,12 +176,34 @@ public class Import extends TableImpl<ImportRecord> {
         return new Import(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Import rename(Table<?> name) {
+        return new Import(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row9 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, UUID, Integer, ProcessStatus> fieldsRow() {
+    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, java.util.UUID, Integer, ProcessStatus> fieldsRow() {
         return (Row9) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function9<? super Integer, ? super LocalDateTime, ? super Integer, ? super Integer, ? super String, ? super String, ? super java.util.UUID, ? super Integer, ? super ProcessStatus, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function9<? super Integer, ? super LocalDateTime, ? super Integer, ? super Integer, ? super String, ? super String, ? super java.util.UUID, ? super Integer, ? super ProcessStatus, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

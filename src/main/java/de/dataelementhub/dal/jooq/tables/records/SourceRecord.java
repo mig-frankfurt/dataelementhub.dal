@@ -20,7 +20,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SourceRecord extends UpdatableRecordImpl<SourceRecord> implements Record5<Integer, String, String, String, SourceType> {
 
-    private static final long serialVersionUID = 323969356;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.source.id</code>.
@@ -247,10 +247,25 @@ public class SourceRecord extends UpdatableRecordImpl<SourceRecord> implements R
     public SourceRecord(Integer id, String name, String prefix, String baseUrl, SourceType type) {
         super(Source.SOURCE);
 
-        set(0, id);
-        set(1, name);
-        set(2, prefix);
-        set(3, baseUrl);
-        set(4, type);
+        setId(id);
+        setName(name);
+        setPrefix(prefix);
+        setBaseUrl(baseUrl);
+        setType(type);
+    }
+
+    /**
+     * Create a detached, initialised SourceRecord
+     */
+    public SourceRecord(de.dataelementhub.dal.jooq.tables.pojos.Source value) {
+        super(Source.SOURCE);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+            setPrefix(value.getPrefix());
+            setBaseUrl(value.getBaseUrl());
+            setType(value.getType());
+        }
     }
 }

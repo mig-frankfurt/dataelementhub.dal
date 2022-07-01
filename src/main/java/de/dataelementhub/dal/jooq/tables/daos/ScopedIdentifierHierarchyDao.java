@@ -40,7 +40,8 @@ public class ScopedIdentifierHierarchyDao extends DAOImpl<ScopedIdentifierHierar
     }
 
     /**
-     * Fetch records that have <code>super_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>super_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifierHierarchy> fetchRangeOfSuperId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUPER_ID, lowerInclusive, upperInclusive);
@@ -54,7 +55,8 @@ public class ScopedIdentifierHierarchyDao extends DAOImpl<ScopedIdentifierHierar
     }
 
     /**
-     * Fetch records that have <code>sub_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>sub_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifierHierarchy> fetchRangeOfSubId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUB_ID, lowerInclusive, upperInclusive);
@@ -68,7 +70,8 @@ public class ScopedIdentifierHierarchyDao extends DAOImpl<ScopedIdentifierHierar
     }
 
     /**
-     * Fetch records that have <code>order BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>order BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifierHierarchy> fetchRangeOfOrder(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.ORDER, lowerInclusive, upperInclusive);

@@ -15,12 +15,12 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Source implements Serializable {
 
-    private static final long serialVersionUID = 56376345;
+    private static final long serialVersionUID = 1L;
 
-    private Integer    id;
-    private String     name;
-    private String     prefix;
-    private String     baseUrl;
+    private Integer id;
+    private String name;
+    private String prefix;
+    private String baseUrl;
     private SourceType type;
 
     public Source() {}
@@ -34,10 +34,10 @@ public class Source implements Serializable {
     }
 
     public Source(
-        Integer    id,
-        String     name,
-        String     prefix,
-        String     baseUrl,
+        Integer id,
+        String name,
+        String prefix,
+        String baseUrl,
         SourceType type
     ) {
         this.id = id;
@@ -47,44 +47,128 @@ public class Source implements Serializable {
         this.type = type;
     }
 
+    /**
+     * Getter for <code>public.source.id</code>.
+     */
     public Integer getId() {
         return this.id;
     }
 
+    /**
+     * Setter for <code>public.source.id</code>.
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Getter for <code>public.source.name</code>.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Setter for <code>public.source.name</code>.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for <code>public.source.prefix</code>.
+     */
     public String getPrefix() {
         return this.prefix;
     }
 
+    /**
+     * Setter for <code>public.source.prefix</code>.
+     */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
+    /**
+     * Getter for <code>public.source.base_url</code>.
+     */
     public String getBaseUrl() {
         return this.baseUrl;
     }
 
+    /**
+     * Setter for <code>public.source.base_url</code>.
+     */
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    /**
+     * Getter for <code>public.source.type</code>.
+     */
     public SourceType getType() {
         return this.type;
     }
 
+    /**
+     * Setter for <code>public.source.type</code>.
+     */
     public void setType(SourceType type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Source other = (Source) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.name == null) {
+            if (other.name != null)
+                return false;
+        }
+        else if (!this.name.equals(other.name))
+            return false;
+        if (this.prefix == null) {
+            if (other.prefix != null)
+                return false;
+        }
+        else if (!this.prefix.equals(other.prefix))
+            return false;
+        if (this.baseUrl == null) {
+            if (other.baseUrl != null)
+                return false;
+        }
+        else if (!this.baseUrl.equals(other.baseUrl))
+            return false;
+        if (this.type == null) {
+            if (other.type != null)
+                return false;
+        }
+        else if (!this.type.equals(other.type))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
+        result = prime * result + ((this.prefix == null) ? 0 : this.prefix.hashCode());
+        result = prime * result + ((this.baseUrl == null) ? 0 : this.baseUrl.hashCode());
+        result = prime * result + ((this.type == null) ? 0 : this.type.hashCode());
+        return result;
     }
 
     @Override

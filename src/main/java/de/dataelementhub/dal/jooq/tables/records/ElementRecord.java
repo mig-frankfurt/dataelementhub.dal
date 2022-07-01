@@ -24,7 +24,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ElementRecord extends UpdatableRecordImpl<ElementRecord> implements Record19<Integer, ElementType, Boolean, Integer, Integer, Integer, String, Boolean, String, String, String, Integer, String, ValidationType, String, String, JSON, UUID, String> {
 
-    private static final long serialVersionUID = -1059562700;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.element.id</code>.
@@ -755,24 +755,53 @@ public class ElementRecord extends UpdatableRecordImpl<ElementRecord> implements
     public ElementRecord(Integer id, ElementType elementType, Boolean hidden, Integer createdBy, Integer elementId, Integer scopedIdentifierId, String code, Boolean isValid, String format, String datatype, String unitOfMeasure, Integer maximumCharacters, String description, ValidationType validationType, String validationData, String permittedValue, JSON data, UUID uuid, String externalId) {
         super(Element.ELEMENT);
 
-        set(0, id);
-        set(1, elementType);
-        set(2, hidden);
-        set(3, createdBy);
-        set(4, elementId);
-        set(5, scopedIdentifierId);
-        set(6, code);
-        set(7, isValid);
-        set(8, format);
-        set(9, datatype);
-        set(10, unitOfMeasure);
-        set(11, maximumCharacters);
-        set(12, description);
-        set(13, validationType);
-        set(14, validationData);
-        set(15, permittedValue);
-        set(16, data);
-        set(17, uuid);
-        set(18, externalId);
+        setId(id);
+        setElementType(elementType);
+        setHidden(hidden);
+        setCreatedBy(createdBy);
+        setElementId(elementId);
+        setScopedIdentifierId(scopedIdentifierId);
+        setCode(code);
+        setIsValid(isValid);
+        setFormat(format);
+        setDatatype(datatype);
+        setUnitOfMeasure(unitOfMeasure);
+        setMaximumCharacters(maximumCharacters);
+        setDescription(description);
+        setValidationType(validationType);
+        setValidationData(validationData);
+        setPermittedValue(permittedValue);
+        setData(data);
+        setUuid(uuid);
+        setExternalId(externalId);
+    }
+
+    /**
+     * Create a detached, initialised ElementRecord
+     */
+    public ElementRecord(de.dataelementhub.dal.jooq.tables.pojos.Element value) {
+        super(Element.ELEMENT);
+
+        if (value != null) {
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setHidden(value.getHidden());
+            setCreatedBy(value.getCreatedBy());
+            setElementId(value.getElementId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setCode(value.getCode());
+            setIsValid(value.getIsValid());
+            setFormat(value.getFormat());
+            setDatatype(value.getDatatype());
+            setUnitOfMeasure(value.getUnitOfMeasure());
+            setMaximumCharacters(value.getMaximumCharacters());
+            setDescription(value.getDescription());
+            setValidationType(value.getValidationType());
+            setValidationData(value.getValidationData());
+            setPermittedValue(value.getPermittedValue());
+            setData(value.getData());
+            setUuid(value.getUuid());
+            setExternalId(value.getExternalId());
+        }
     }
 }

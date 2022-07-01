@@ -10,6 +10,7 @@ import de.dataelementhub.dal.jooq.tables.Element;
 import de.dataelementhub.dal.jooq.tables.records.ElementRecord;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.jooq.Configuration;
@@ -43,7 +44,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Element.ELEMENT.ID, lowerInclusive, upperInclusive);
@@ -64,7 +66,15 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchOptionalById(Integer value) {
+        return fetchOptional(Element.ELEMENT.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfElementType(ElementType lowerInclusive, ElementType upperInclusive) {
         return fetchRange(Element.ELEMENT.ELEMENT_TYPE, lowerInclusive, upperInclusive);
@@ -78,7 +88,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>hidden BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>hidden BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfHidden(Boolean lowerInclusive, Boolean upperInclusive) {
         return fetchRange(Element.ELEMENT.HIDDEN, lowerInclusive, upperInclusive);
@@ -92,7 +103,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfCreatedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Element.ELEMENT.CREATED_BY, lowerInclusive, upperInclusive);
@@ -106,7 +118,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfElementId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Element.ELEMENT.ELEMENT_ID, lowerInclusive, upperInclusive);
@@ -120,7 +133,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfScopedIdentifierId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Element.ELEMENT.SCOPED_IDENTIFIER_ID, lowerInclusive, upperInclusive);
@@ -134,7 +148,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>code BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>code BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfCode(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.CODE, lowerInclusive, upperInclusive);
@@ -148,7 +163,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>is_valid BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>is_valid BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfIsValid(Boolean lowerInclusive, Boolean upperInclusive) {
         return fetchRange(Element.ELEMENT.IS_VALID, lowerInclusive, upperInclusive);
@@ -162,7 +178,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>format BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>format BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfFormat(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.FORMAT, lowerInclusive, upperInclusive);
@@ -176,7 +193,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>datatype BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>datatype BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfDatatype(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.DATATYPE, lowerInclusive, upperInclusive);
@@ -190,7 +208,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>unit_of_measure BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>unit_of_measure BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfUnitOfMeasure(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.UNIT_OF_MEASURE, lowerInclusive, upperInclusive);
@@ -204,7 +223,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>maximum_characters BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>maximum_characters BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfMaximumCharacters(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Element.ELEMENT.MAXIMUM_CHARACTERS, lowerInclusive, upperInclusive);
@@ -218,7 +238,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>description BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>description BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfDescription(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.DESCRIPTION, lowerInclusive, upperInclusive);
@@ -232,7 +253,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>validation_type BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>validation_type BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfValidationType(ValidationType lowerInclusive, ValidationType upperInclusive) {
         return fetchRange(Element.ELEMENT.VALIDATION_TYPE, lowerInclusive, upperInclusive);
@@ -246,7 +268,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>validation_data BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>validation_data BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfValidationData(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.VALIDATION_DATA, lowerInclusive, upperInclusive);
@@ -260,7 +283,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>permitted_value BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>permitted_value BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfPermittedValue(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.PERMITTED_VALUE, lowerInclusive, upperInclusive);
@@ -274,7 +298,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>data BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>data BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfData(JSON lowerInclusive, JSON upperInclusive) {
         return fetchRange(Element.ELEMENT.DATA, lowerInclusive, upperInclusive);
@@ -288,7 +313,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
         return fetchRange(Element.ELEMENT.UUID, lowerInclusive, upperInclusive);
@@ -302,7 +328,8 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>external_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>external_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfExternalId(String lowerInclusive, String upperInclusive) {
         return fetchRange(Element.ELEMENT.EXTERNAL_ID, lowerInclusive, upperInclusive);

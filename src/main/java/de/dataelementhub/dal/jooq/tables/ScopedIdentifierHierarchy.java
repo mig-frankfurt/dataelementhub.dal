@@ -11,19 +11,24 @@ import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierHierarchyRecord
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function3;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row3;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +38,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarchyRecord> {
 
-    private static final long serialVersionUID = -583669432;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.scoped_identifier_hierarchy</code>
@@ -51,38 +56,17 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
     /**
      * The column <code>public.scoped_identifier_hierarchy.super_id</code>.
      */
-    public final TableField<ScopedIdentifierHierarchyRecord, Integer> SUPER_ID = createField(DSL.name("super_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierHierarchyRecord, Integer> SUPER_ID = createField(DSL.name("super_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier_hierarchy.sub_id</code>.
      */
-    public final TableField<ScopedIdentifierHierarchyRecord, Integer> SUB_ID = createField(DSL.name("sub_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ScopedIdentifierHierarchyRecord, Integer> SUB_ID = createField(DSL.name("sub_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.scoped_identifier_hierarchy.order</code>.
      */
-    public final TableField<ScopedIdentifierHierarchyRecord, Integer> ORDER = createField(DSL.name("order"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("1", org.jooq.impl.SQLDataType.INTEGER)), this, "");
-
-    /**
-     * Create a <code>public.scoped_identifier_hierarchy</code> table reference
-     */
-    public ScopedIdentifierHierarchy() {
-        this(DSL.name("scoped_identifier_hierarchy"), null);
-    }
-
-    /**
-     * Create an aliased <code>public.scoped_identifier_hierarchy</code> table reference
-     */
-    public ScopedIdentifierHierarchy(String alias) {
-        this(DSL.name(alias), SCOPED_IDENTIFIER_HIERARCHY);
-    }
-
-    /**
-     * Create an aliased <code>public.scoped_identifier_hierarchy</code> table reference
-     */
-    public ScopedIdentifierHierarchy(Name alias) {
-        this(alias, SCOPED_IDENTIFIER_HIERARCHY);
-    }
+    public final TableField<ScopedIdentifierHierarchyRecord, Integer> ORDER = createField(DSL.name("order"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("1", SQLDataType.INTEGER)), this, "");
 
     private ScopedIdentifierHierarchy(Name alias, Table<ScopedIdentifierHierarchyRecord> aliased) {
         this(alias, aliased, null);
@@ -92,18 +76,41 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
         super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
+    /**
+     * Create an aliased <code>public.scoped_identifier_hierarchy</code> table
+     * reference
+     */
+    public ScopedIdentifierHierarchy(String alias) {
+        this(DSL.name(alias), SCOPED_IDENTIFIER_HIERARCHY);
+    }
+
+    /**
+     * Create an aliased <code>public.scoped_identifier_hierarchy</code> table
+     * reference
+     */
+    public ScopedIdentifierHierarchy(Name alias) {
+        this(alias, SCOPED_IDENTIFIER_HIERARCHY);
+    }
+
+    /**
+     * Create a <code>public.scoped_identifier_hierarchy</code> table reference
+     */
+    public ScopedIdentifierHierarchy() {
+        this(DSL.name("scoped_identifier_hierarchy"), null);
+    }
+
     public <O extends Record> ScopedIdentifierHierarchy(Table<O> child, ForeignKey<O, ScopedIdentifierHierarchyRecord> key) {
         super(child, key, SCOPED_IDENTIFIER_HIERARCHY);
     }
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_IDX, Indexes.SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_IDX);
+        return Arrays.asList(Indexes.SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_IDX, Indexes.SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_IDX);
     }
 
     @Override
@@ -112,21 +119,34 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
     }
 
     @Override
-    public List<UniqueKey<ScopedIdentifierHierarchyRecord>> getKeys() {
-        return Arrays.<UniqueKey<ScopedIdentifierHierarchyRecord>>asList(Keys.SCOPED_IDENTIFIER_HIERARCHY_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<ScopedIdentifierHierarchyRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<ScopedIdentifierHierarchyRecord, ?>>asList(Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_FKEY, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY);
+        return Arrays.asList(Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_FKEY, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY);
     }
 
+    private transient ScopedIdentifier _scopedIdentifierHierarchySuperIdFkey;
+    private transient ScopedIdentifier _scopedIdentifierHierarchySubIdFkey;
+
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table, via the <code>scoped_identifier_hierarchy_super_id_fkey</code>
+     * key.
+     */
     public ScopedIdentifier scopedIdentifierHierarchySuperIdFkey() {
-        return new ScopedIdentifier(this, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_FKEY);
+        if (_scopedIdentifierHierarchySuperIdFkey == null)
+            _scopedIdentifierHierarchySuperIdFkey = new ScopedIdentifier(this, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_FKEY);
+
+        return _scopedIdentifierHierarchySuperIdFkey;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table, via the <code>scoped_identifier_hierarchy_sub_id_fkey</code> key.
+     */
     public ScopedIdentifier scopedIdentifierHierarchySubIdFkey() {
-        return new ScopedIdentifier(this, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY);
+        if (_scopedIdentifierHierarchySubIdFkey == null)
+            _scopedIdentifierHierarchySubIdFkey = new ScopedIdentifier(this, Keys.SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY);
+
+        return _scopedIdentifierHierarchySubIdFkey;
     }
 
     @Override
@@ -137,6 +157,11 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
     @Override
     public ScopedIdentifierHierarchy as(Name alias) {
         return new ScopedIdentifierHierarchy(alias, this);
+    }
+
+    @Override
+    public ScopedIdentifierHierarchy as(Table<?> alias) {
+        return new ScopedIdentifierHierarchy(alias.getQualifiedName(), this);
     }
 
     /**
@@ -155,6 +180,14 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
         return new ScopedIdentifierHierarchy(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public ScopedIdentifierHierarchy rename(Table<?> name) {
+        return new ScopedIdentifierHierarchy(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
@@ -162,5 +195,19 @@ public class ScopedIdentifierHierarchy extends TableImpl<ScopedIdentifierHierarc
     @Override
     public Row3<Integer, Integer, Integer> fieldsRow() {
         return (Row3) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

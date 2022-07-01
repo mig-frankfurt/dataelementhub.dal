@@ -21,7 +21,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ConceptsRecord extends UpdatableRecordImpl<ConceptsRecord> implements Record8<Integer, String, String, String, String, Integer, Integer, LocalDateTime> {
 
-    private static final long serialVersionUID = 296425284;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.concepts.id</code>.
@@ -356,13 +356,31 @@ public class ConceptsRecord extends UpdatableRecordImpl<ConceptsRecord> implemen
     public ConceptsRecord(Integer id, String system, String version, String term, String text, Integer sourceId, Integer createdBy, LocalDateTime createdAt) {
         super(Concepts.CONCEPTS);
 
-        set(0, id);
-        set(1, system);
-        set(2, version);
-        set(3, term);
-        set(4, text);
-        set(5, sourceId);
-        set(6, createdBy);
-        set(7, createdAt);
+        setId(id);
+        setSystem(system);
+        setVersion(version);
+        setTerm(term);
+        setText(text);
+        setSourceId(sourceId);
+        setCreatedBy(createdBy);
+        setCreatedAt(createdAt);
+    }
+
+    /**
+     * Create a detached, initialised ConceptsRecord
+     */
+    public ConceptsRecord(de.dataelementhub.dal.jooq.tables.pojos.Concepts value) {
+        super(Concepts.CONCEPTS);
+
+        if (value != null) {
+            setId(value.getId());
+            setSystem(value.getSystem());
+            setVersion(value.getVersion());
+            setTerm(value.getTerm());
+            setText(value.getText());
+            setSourceId(value.getSourceId());
+            setCreatedBy(value.getCreatedBy());
+            setCreatedAt(value.getCreatedAt());
+        }
     }
 }

@@ -11,19 +11,24 @@ import de.dataelementhub.dal.jooq.tables.records.SourceRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function5;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row5;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +38,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Source extends TableImpl<SourceRecord> {
 
-    private static final long serialVersionUID = 640963765;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.source</code>
@@ -51,33 +56,34 @@ public class Source extends TableImpl<SourceRecord> {
     /**
      * The column <code>public.source.id</code>.
      */
-    public final TableField<SourceRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('source_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<SourceRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.source.name</code>.
      */
-    public final TableField<SourceRecord, String> NAME = createField(DSL.name("name"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<SourceRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.source.prefix</code>.
      */
-    public final TableField<SourceRecord, String> PREFIX = createField(DSL.name("prefix"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<SourceRecord, String> PREFIX = createField(DSL.name("prefix"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.source.base_url</code>.
      */
-    public final TableField<SourceRecord, String> BASE_URL = createField(DSL.name("base_url"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<SourceRecord, String> BASE_URL = createField(DSL.name("base_url"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.source.type</code>.
      */
-    public final TableField<SourceRecord, SourceType> TYPE = createField(DSL.name("type"), org.jooq.impl.SQLDataType.VARCHAR.nullable(false).defaultValue(org.jooq.impl.DSL.field("'OTHER'::source_type", org.jooq.impl.SQLDataType.VARCHAR)).asEnumDataType(de.dataelementhub.dal.jooq.enums.SourceType.class), this, "");
+    public final TableField<SourceRecord, SourceType> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR.nullable(false).defaultValue(DSL.field("'OTHER'::source_type", SQLDataType.VARCHAR)).asEnumDataType(de.dataelementhub.dal.jooq.enums.SourceType.class), this, "");
 
-    /**
-     * Create a <code>public.source</code> table reference
-     */
-    public Source() {
-        this(DSL.name("source"), null);
+    private Source(Name alias, Table<SourceRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Source(Name alias, Table<SourceRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -94,12 +100,11 @@ public class Source extends TableImpl<SourceRecord> {
         this(alias, SOURCE);
     }
 
-    private Source(Name alias, Table<SourceRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Source(Name alias, Table<SourceRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.source</code> table reference
+     */
+    public Source() {
+        this(DSL.name("source"), null);
     }
 
     public <O extends Record> Source(Table<O> child, ForeignKey<O, SourceRecord> key) {
@@ -108,12 +113,12 @@ public class Source extends TableImpl<SourceRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<SourceRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_SOURCE;
+        return (Identity<SourceRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -122,8 +127,8 @@ public class Source extends TableImpl<SourceRecord> {
     }
 
     @Override
-    public List<UniqueKey<SourceRecord>> getKeys() {
-        return Arrays.<UniqueKey<SourceRecord>>asList(Keys.SOURCE_PKEY, Keys.SOURCE_NAME_KEY, Keys.SOURCE_PREFIX_KEY, Keys.SOURCE_BASE_URL_KEY);
+    public List<UniqueKey<SourceRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.SOURCE_NAME_KEY, Keys.SOURCE_PREFIX_KEY, Keys.SOURCE_BASE_URL_KEY);
     }
 
     @Override
@@ -134,6 +139,11 @@ public class Source extends TableImpl<SourceRecord> {
     @Override
     public Source as(Name alias) {
         return new Source(alias, this);
+    }
+
+    @Override
+    public Source as(Table<?> alias) {
+        return new Source(alias.getQualifiedName(), this);
     }
 
     /**
@@ -152,6 +162,14 @@ public class Source extends TableImpl<SourceRecord> {
         return new Source(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Source rename(Table<?> name) {
+        return new Source(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row5 type methods
     // -------------------------------------------------------------------------
@@ -159,5 +177,19 @@ public class Source extends TableImpl<SourceRecord> {
     @Override
     public Row5<Integer, String, String, String, SourceType> fieldsRow() {
         return (Row5) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function5<? super Integer, ? super String, ? super String, ? super String, ? super SourceType, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Integer, ? super String, ? super String, ? super String, ? super SourceType, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

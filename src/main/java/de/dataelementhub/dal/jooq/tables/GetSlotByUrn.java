@@ -4,21 +4,24 @@
 package de.dataelementhub.dal.jooq.tables;
 
 
-import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.tables.records.GetSlotByUrnRecord;
 
+import java.util.function.Function;
+
 import org.jooq.Field;
-import org.jooq.ForeignKey;
+import org.jooq.Function4;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row4;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -28,7 +31,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
 
-    private static final long serialVersionUID = -469992622;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.get_slot_by_urn</code>
@@ -46,28 +49,31 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
     /**
      * The column <code>public.get_slot_by_urn.id</code>.
      */
-    public final TableField<GetSlotByUrnRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('slot_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<GetSlotByUrnRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true).defaultValue(DSL.field("nextval('slot_id_seq'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.get_slot_by_urn.scoped_identifier_id</code>.
      */
-    public final TableField<GetSlotByUrnRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetSlotByUrnRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.get_slot_by_urn.key</code>.
      */
-    public final TableField<GetSlotByUrnRecord, String> KEY = createField(DSL.name("key"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GetSlotByUrnRecord, String> KEY = createField(DSL.name("key"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.get_slot_by_urn.value</code>.
      */
-    public final TableField<GetSlotByUrnRecord, String> VALUE = createField(DSL.name("value"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GetSlotByUrnRecord, String> VALUE = createField(DSL.name("value"), SQLDataType.CLOB.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.get_slot_by_urn</code> table reference
-     */
-    public GetSlotByUrn() {
-        this(DSL.name("get_slot_by_urn"), null);
+    private GetSlotByUrn(Name alias, Table<GetSlotByUrnRecord> aliased) {
+        this(alias, aliased, new Field[] {
+            DSL.val(null, SQLDataType.CLOB)
+        });
+    }
+
+    private GetSlotByUrn(Name alias, Table<GetSlotByUrnRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.function());
     }
 
     /**
@@ -84,26 +90,21 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
         this(alias, GET_SLOT_BY_URN);
     }
 
-    private GetSlotByUrn(Name alias, Table<GetSlotByUrnRecord> aliased) {
-        this(alias, aliased, new Field[1]);
-    }
-
-    private GetSlotByUrn(Name alias, Table<GetSlotByUrnRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.function());
-    }
-
-    public <O extends Record> GetSlotByUrn(Table<O> child, ForeignKey<O, GetSlotByUrnRecord> key) {
-        super(child, key, GET_SLOT_BY_URN);
+    /**
+     * Create a <code>public.get_slot_by_urn</code> table reference
+     */
+    public GetSlotByUrn() {
+        this(DSL.name("get_slot_by_urn"), null);
     }
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<GetSlotByUrnRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_GET_SLOT_BY_URN;
+        return (Identity<GetSlotByUrnRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -114,6 +115,11 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
     @Override
     public GetSlotByUrn as(Name alias) {
         return new GetSlotByUrn(alias, this, parameters);
+    }
+
+    @Override
+    public GetSlotByUrn as(Table<?> alias) {
+        return new GetSlotByUrn(alias.getQualifiedName(), this, parameters);
     }
 
     /**
@@ -132,6 +138,14 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
         return new GetSlotByUrn(name, null, parameters);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public GetSlotByUrn rename(Table<?> name) {
+        return new GetSlotByUrn(name.getQualifiedName(), null, parameters);
+    }
+
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
@@ -144,18 +158,40 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
     /**
      * Call this table-valued function
      */
-    public GetSlotByUrn call(String urn) {
-        return new GetSlotByUrn(DSL.name(getName()), null, new Field[] { 
-              DSL.val(urn, org.jooq.impl.SQLDataType.CLOB)
+    public GetSlotByUrn call(
+          String urn
+    ) {
+        GetSlotByUrn result = new GetSlotByUrn(DSL.name("get_slot_by_urn"), null, new Field[] {
+            DSL.val(urn, SQLDataType.CLOB)
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
     }
 
     /**
      * Call this table-valued function
      */
-    public GetSlotByUrn call(Field<String> urn) {
-        return new GetSlotByUrn(DSL.name(getName()), null, new Field[] { 
-              urn
+    public GetSlotByUrn call(
+          Field<String> urn
+    ) {
+        GetSlotByUrn result = new GetSlotByUrn(DSL.name("get_slot_by_urn"), null, new Field[] {
+            urn
         });
+
+        return aliased() ? result.as(getUnqualifiedName()) : result;
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

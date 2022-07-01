@@ -22,7 +22,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetScopedIdentifierByUrnRecord extends TableRecordImpl<GetScopedIdentifierByUrnRecord> implements Record10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, UUID> {
 
-    private static final long serialVersionUID = -262886100;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.get_scoped_identifier_by_urn.id</code>.
@@ -420,15 +420,35 @@ public class GetScopedIdentifierByUrnRecord extends TableRecordImpl<GetScopedIde
     public GetScopedIdentifierByUrnRecord(Integer id, ElementType elementType, Integer version, Integer identifier, String url, Integer createdBy, Status status, Integer elementId, Integer namespaceId, UUID uuid) {
         super(GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN);
 
-        set(0, id);
-        set(1, elementType);
-        set(2, version);
-        set(3, identifier);
-        set(4, url);
-        set(5, createdBy);
-        set(6, status);
-        set(7, elementId);
-        set(8, namespaceId);
-        set(9, uuid);
+        setId(id);
+        setElementType(elementType);
+        setVersion(version);
+        setIdentifier(identifier);
+        setUrl(url);
+        setCreatedBy(createdBy);
+        setStatus(status);
+        setElementId(elementId);
+        setNamespaceId(namespaceId);
+        setUuid(uuid);
+    }
+
+    /**
+     * Create a detached, initialised GetScopedIdentifierByUrnRecord
+     */
+    public GetScopedIdentifierByUrnRecord(de.dataelementhub.dal.jooq.tables.pojos.GetScopedIdentifierByUrn value) {
+        super(GetScopedIdentifierByUrn.GET_SCOPED_IDENTIFIER_BY_URN);
+
+        if (value != null) {
+            setId(value.getId());
+            setElementType(value.getElementType());
+            setVersion(value.getVersion());
+            setIdentifier(value.getIdentifier());
+            setUrl(value.getUrl());
+            setCreatedBy(value.getCreatedBy());
+            setStatus(value.getStatus());
+            setElementId(value.getElementId());
+            setNamespaceId(value.getNamespaceId());
+            setUuid(value.getUuid());
+        }
     }
 }
