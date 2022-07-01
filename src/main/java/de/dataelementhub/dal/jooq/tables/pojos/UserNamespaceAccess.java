@@ -15,10 +15,10 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserNamespaceAccess implements Serializable {
 
-    private static final long serialVersionUID = -1830867828;
+    private static final long serialVersionUID = 1L;
 
-    private Integer         userId;
-    private Integer         namespaceId;
+    private Integer userId;
+    private Integer namespaceId;
     private AccessLevelType accessLevel;
 
     public UserNamespaceAccess() {}
@@ -30,8 +30,8 @@ public class UserNamespaceAccess implements Serializable {
     }
 
     public UserNamespaceAccess(
-        Integer         userId,
-        Integer         namespaceId,
+        Integer userId,
+        Integer namespaceId,
         AccessLevelType accessLevel
     ) {
         this.userId = userId;
@@ -39,28 +39,86 @@ public class UserNamespaceAccess implements Serializable {
         this.accessLevel = accessLevel;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.user_id</code>.
+     */
     public Integer getUserId() {
         return this.userId;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.user_id</code>.
+     */
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.namespace_id</code>.
+     */
     public Integer getNamespaceId() {
         return this.namespaceId;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.namespace_id</code>.
+     */
     public void setNamespaceId(Integer namespaceId) {
         this.namespaceId = namespaceId;
     }
 
+    /**
+     * Getter for <code>public.user_namespace_access.access_level</code>.
+     */
     public AccessLevelType getAccessLevel() {
         return this.accessLevel;
     }
 
+    /**
+     * Setter for <code>public.user_namespace_access.access_level</code>.
+     */
     public void setAccessLevel(AccessLevelType accessLevel) {
         this.accessLevel = accessLevel;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final UserNamespaceAccess other = (UserNamespaceAccess) obj;
+        if (this.userId == null) {
+            if (other.userId != null)
+                return false;
+        }
+        else if (!this.userId.equals(other.userId))
+            return false;
+        if (this.namespaceId == null) {
+            if (other.namespaceId != null)
+                return false;
+        }
+        else if (!this.namespaceId.equals(other.namespaceId))
+            return false;
+        if (this.accessLevel == null) {
+            if (other.accessLevel != null)
+                return false;
+        }
+        else if (!this.accessLevel.equals(other.accessLevel))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
+        result = prime * result + ((this.namespaceId == null) ? 0 : this.namespaceId.hashCode());
+        result = prime * result + ((this.accessLevel == null) ? 0 : this.accessLevel.hashCode());
+        return result;
     }
 
     @Override

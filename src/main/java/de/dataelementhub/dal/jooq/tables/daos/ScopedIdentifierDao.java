@@ -10,6 +10,7 @@ import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.jooq.Configuration;
@@ -42,7 +43,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.ID, lowerInclusive, upperInclusive);
@@ -63,7 +65,15 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchOptionalById(Integer value) {
+        return fetchOptional(ScopedIdentifier.SCOPED_IDENTIFIER.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfElementType(ElementType lowerInclusive, ElementType upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_TYPE, lowerInclusive, upperInclusive);
@@ -77,7 +87,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>version BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>version BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfVersion(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.VERSION, lowerInclusive, upperInclusive);
@@ -91,7 +102,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>identifier BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>identifier BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfIdentifier(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.IDENTIFIER, lowerInclusive, upperInclusive);
@@ -105,7 +117,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>url BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>url BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfUrl(String lowerInclusive, String upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.URL, lowerInclusive, upperInclusive);
@@ -119,7 +132,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfCreatedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.CREATED_BY, lowerInclusive, upperInclusive);
@@ -133,7 +147,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>status BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>status BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfStatus(Status lowerInclusive, Status upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.STATUS, lowerInclusive, upperInclusive);
@@ -147,7 +162,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfElementId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_ID, lowerInclusive, upperInclusive);
@@ -161,7 +177,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>namespace_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>namespace_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfNamespaceId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.NAMESPACE_ID, lowerInclusive, upperInclusive);
@@ -175,7 +192,8 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
         return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.UUID, lowerInclusive, upperInclusive);

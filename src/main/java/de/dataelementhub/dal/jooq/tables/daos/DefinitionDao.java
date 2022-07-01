@@ -8,6 +8,7 @@ import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.records.DefinitionRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -39,7 +40,8 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Definition.DEFINITION.ID, lowerInclusive, upperInclusive);
@@ -60,7 +62,15 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchOptionalById(Integer value) {
+        return fetchOptional(Definition.DEFINITION.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfScopedIdentifierId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Definition.DEFINITION.SCOPED_IDENTIFIER_ID, lowerInclusive, upperInclusive);
@@ -74,7 +84,8 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>designation BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>designation BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfDesignation(String lowerInclusive, String upperInclusive) {
         return fetchRange(Definition.DEFINITION.DESIGNATION, lowerInclusive, upperInclusive);
@@ -88,7 +99,8 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>definition BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>definition BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfDefinition(String lowerInclusive, String upperInclusive) {
         return fetchRange(Definition.DEFINITION.DEFINITION_, lowerInclusive, upperInclusive);
@@ -102,7 +114,8 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>language BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>language BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfLanguage(String lowerInclusive, String upperInclusive) {
         return fetchRange(Definition.DEFINITION.LANGUAGE, lowerInclusive, upperInclusive);
@@ -116,7 +129,8 @@ public class DefinitionDao extends DAOImpl<DefinitionRecord, de.dataelementhub.d
     }
 
     /**
-     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>element_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Definition> fetchRangeOfElementId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Definition.DEFINITION.ELEMENT_ID, lowerInclusive, upperInclusive);

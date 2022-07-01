@@ -18,31 +18,35 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ValueDomainPermissibleValueRecord extends TableRecordImpl<ValueDomainPermissibleValueRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -679907354;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     * Setter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
      */
     public void setValueDomainScopedIdentifierId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     * Getter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
      */
     public Integer getValueDomainScopedIdentifierId() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     * Setter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
      */
     public void setPermissibleValueScopedIdentifierId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     * Getter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
      */
     public Integer getPermissibleValueScopedIdentifierId() {
         return (Integer) get(1);
@@ -128,7 +132,19 @@ public class ValueDomainPermissibleValueRecord extends TableRecordImpl<ValueDoma
     public ValueDomainPermissibleValueRecord(Integer valueDomainScopedIdentifierId, Integer permissibleValueScopedIdentifierId) {
         super(ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE);
 
-        set(0, valueDomainScopedIdentifierId);
-        set(1, permissibleValueScopedIdentifierId);
+        setValueDomainScopedIdentifierId(valueDomainScopedIdentifierId);
+        setPermissibleValueScopedIdentifierId(permissibleValueScopedIdentifierId);
+    }
+
+    /**
+     * Create a detached, initialised ValueDomainPermissibleValueRecord
+     */
+    public ValueDomainPermissibleValueRecord(de.dataelementhub.dal.jooq.tables.pojos.ValueDomainPermissibleValue value) {
+        super(ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE);
+
+        if (value != null) {
+            setValueDomainScopedIdentifierId(value.getValueDomainScopedIdentifierId());
+            setPermissibleValueScopedIdentifierId(value.getPermissibleValueScopedIdentifierId());
+        }
     }
 }

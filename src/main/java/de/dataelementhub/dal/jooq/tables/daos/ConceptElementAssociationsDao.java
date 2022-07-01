@@ -42,7 +42,8 @@ public class ConceptElementAssociationsDao extends DAOImpl<ConceptElementAssocia
     }
 
     /**
-     * Fetch records that have <code>concept_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>concept_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations> fetchRangeOfConceptId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.CONCEPT_ID, lowerInclusive, upperInclusive);
@@ -56,7 +57,8 @@ public class ConceptElementAssociationsDao extends DAOImpl<ConceptElementAssocia
     }
 
     /**
-     * Fetch records that have <code>scopedidentifier_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>scopedidentifier_id BETWEEN lowerInclusive
+     * AND upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations> fetchRangeOfScopedidentifierId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.SCOPEDIDENTIFIER_ID, lowerInclusive, upperInclusive);
@@ -70,7 +72,8 @@ public class ConceptElementAssociationsDao extends DAOImpl<ConceptElementAssocia
     }
 
     /**
-     * Fetch records that have <code>linktype BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>linktype BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations> fetchRangeOfLinktype(RelationType lowerInclusive, RelationType upperInclusive) {
         return fetchRange(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.LINKTYPE, lowerInclusive, upperInclusive);
@@ -84,7 +87,8 @@ public class ConceptElementAssociationsDao extends DAOImpl<ConceptElementAssocia
     }
 
     /**
-     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations> fetchRangeOfCreatedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.CREATED_BY, lowerInclusive, upperInclusive);
@@ -98,7 +102,8 @@ public class ConceptElementAssociationsDao extends DAOImpl<ConceptElementAssocia
     }
 
     /**
-     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ConceptElementAssociations> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
         return fetchRange(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.CREATED_AT, lowerInclusive, upperInclusive);

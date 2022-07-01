@@ -12,19 +12,24 @@ import de.dataelementhub.dal.jooq.tables.records.UserNamespaceAccessRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function3;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row3;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -34,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
 
-    private static final long serialVersionUID = -1390144982;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.user_namespace_access</code>
@@ -52,38 +57,17 @@ public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
     /**
      * The column <code>public.user_namespace_access.user_id</code>.
      */
-    public final TableField<UserNamespaceAccessRecord, Integer> USER_ID = createField(DSL.name("user_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<UserNamespaceAccessRecord, Integer> USER_ID = createField(DSL.name("user_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.user_namespace_access.namespace_id</code>.
      */
-    public final TableField<UserNamespaceAccessRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<UserNamespaceAccessRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.user_namespace_access.access_level</code>.
      */
-    public final TableField<UserNamespaceAccessRecord, AccessLevelType> ACCESS_LEVEL = createField(DSL.name("access_level"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.AccessLevelType.class), this, "");
-
-    /**
-     * Create a <code>public.user_namespace_access</code> table reference
-     */
-    public UserNamespaceAccess() {
-        this(DSL.name("user_namespace_access"), null);
-    }
-
-    /**
-     * Create an aliased <code>public.user_namespace_access</code> table reference
-     */
-    public UserNamespaceAccess(String alias) {
-        this(DSL.name(alias), USER_NAMESPACE_ACCESS);
-    }
-
-    /**
-     * Create an aliased <code>public.user_namespace_access</code> table reference
-     */
-    public UserNamespaceAccess(Name alias) {
-        this(alias, USER_NAMESPACE_ACCESS);
-    }
+    public final TableField<UserNamespaceAccessRecord, AccessLevelType> ACCESS_LEVEL = createField(DSL.name("access_level"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.AccessLevelType.class), this, "");
 
     private UserNamespaceAccess(Name alias, Table<UserNamespaceAccessRecord> aliased) {
         this(alias, aliased, null);
@@ -93,36 +77,74 @@ public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
         super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
+    /**
+     * Create an aliased <code>public.user_namespace_access</code> table
+     * reference
+     */
+    public UserNamespaceAccess(String alias) {
+        this(DSL.name(alias), USER_NAMESPACE_ACCESS);
+    }
+
+    /**
+     * Create an aliased <code>public.user_namespace_access</code> table
+     * reference
+     */
+    public UserNamespaceAccess(Name alias) {
+        this(alias, USER_NAMESPACE_ACCESS);
+    }
+
+    /**
+     * Create a <code>public.user_namespace_access</code> table reference
+     */
+    public UserNamespaceAccess() {
+        this(DSL.name("user_namespace_access"), null);
+    }
+
     public <O extends Record> UserNamespaceAccess(Table<O> child, ForeignKey<O, UserNamespaceAccessRecord> key) {
         super(child, key, USER_NAMESPACE_ACCESS);
     }
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.USER_NAMESPACE_ACCESS_NAMESPACE_ID_IDX, Indexes.USER_NAMESPACE_ACCESS_USER_ID_IDX);
+        return Arrays.asList(Indexes.USER_NAMESPACE_ACCESS_NAMESPACE_ID_IDX, Indexes.USER_NAMESPACE_ACCESS_USER_ID_IDX);
     }
 
     @Override
-    public List<UniqueKey<UserNamespaceAccessRecord>> getKeys() {
-        return Arrays.<UniqueKey<UserNamespaceAccessRecord>>asList(Keys.USER_NAMESPACE_ACCESS_UNIQUE);
+    public List<UniqueKey<UserNamespaceAccessRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.USER_NAMESPACE_ACCESS_UNIQUE);
     }
 
     @Override
     public List<ForeignKey<UserNamespaceAccessRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<UserNamespaceAccessRecord, ?>>asList(Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY);
+        return Arrays.asList(Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY);
     }
 
+    private transient DehubUser _dehubUser;
+    private transient Element _element;
+
+    /**
+     * Get the implicit join path to the <code>public.dehub_user</code> table.
+     */
     public DehubUser dehubUser() {
-        return new DehubUser(this, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY);
+        if (_dehubUser == null)
+            _dehubUser = new DehubUser(this, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY);
+
+        return _dehubUser;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.element</code> table.
+     */
     public Element element() {
-        return new Element(this, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY);
+        if (_element == null)
+            _element = new Element(this, Keys.USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY);
+
+        return _element;
     }
 
     @Override
@@ -133,6 +155,11 @@ public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
     @Override
     public UserNamespaceAccess as(Name alias) {
         return new UserNamespaceAccess(alias, this);
+    }
+
+    @Override
+    public UserNamespaceAccess as(Table<?> alias) {
+        return new UserNamespaceAccess(alias.getQualifiedName(), this);
     }
 
     /**
@@ -151,6 +178,14 @@ public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
         return new UserNamespaceAccess(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public UserNamespaceAccess rename(Table<?> name) {
+        return new UserNamespaceAccess(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
@@ -158,5 +193,19 @@ public class UserNamespaceAccess extends TableImpl<UserNamespaceAccessRecord> {
     @Override
     public Row3<Integer, Integer, AccessLevelType> fieldsRow() {
         return (Row3) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function3<? super Integer, ? super Integer, ? super AccessLevelType, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Integer, ? super Integer, ? super AccessLevelType, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

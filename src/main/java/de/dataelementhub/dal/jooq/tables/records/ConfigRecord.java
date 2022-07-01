@@ -20,7 +20,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ConfigRecord extends UpdatableRecordImpl<ConfigRecord> implements Record3<Integer, String, JSON> {
 
-    private static final long serialVersionUID = -831897278;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.config.id</code>.
@@ -175,8 +175,21 @@ public class ConfigRecord extends UpdatableRecordImpl<ConfigRecord> implements R
     public ConfigRecord(Integer id, String name, JSON value) {
         super(Config.CONFIG);
 
-        set(0, id);
-        set(1, name);
-        set(2, value);
+        setId(id);
+        setName(name);
+        setValue(value);
+    }
+
+    /**
+     * Create a detached, initialised ConfigRecord
+     */
+    public ConfigRecord(de.dataelementhub.dal.jooq.tables.pojos.Config value) {
+        super(Config.CONFIG);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+            setValue(value.getValue());
+        }
     }
 }

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ValueDomainPermissibleValue implements Serializable {
 
-    private static final long serialVersionUID = -544109773;
+    private static final long serialVersionUID = 1L;
 
     private Integer valueDomainScopedIdentifierId;
     private Integer permissibleValueScopedIdentifierId;
@@ -33,20 +33,69 @@ public class ValueDomainPermissibleValue implements Serializable {
         this.permissibleValueScopedIdentifierId = permissibleValueScopedIdentifierId;
     }
 
+    /**
+     * Getter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     */
     public Integer getValueDomainScopedIdentifierId() {
         return this.valueDomainScopedIdentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.value_domain_permissible_value.value_domain_scoped_identifier_id</code>.
+     */
     public void setValueDomainScopedIdentifierId(Integer valueDomainScopedIdentifierId) {
         this.valueDomainScopedIdentifierId = valueDomainScopedIdentifierId;
     }
 
+    /**
+     * Getter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     */
     public Integer getPermissibleValueScopedIdentifierId() {
         return this.permissibleValueScopedIdentifierId;
     }
 
+    /**
+     * Setter for
+     * <code>public.value_domain_permissible_value.permissible_value_scoped_identifier_id</code>.
+     */
     public void setPermissibleValueScopedIdentifierId(Integer permissibleValueScopedIdentifierId) {
         this.permissibleValueScopedIdentifierId = permissibleValueScopedIdentifierId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final ValueDomainPermissibleValue other = (ValueDomainPermissibleValue) obj;
+        if (this.valueDomainScopedIdentifierId == null) {
+            if (other.valueDomainScopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.valueDomainScopedIdentifierId.equals(other.valueDomainScopedIdentifierId))
+            return false;
+        if (this.permissibleValueScopedIdentifierId == null) {
+            if (other.permissibleValueScopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.permissibleValueScopedIdentifierId.equals(other.permissibleValueScopedIdentifierId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.valueDomainScopedIdentifierId == null) ? 0 : this.valueDomainScopedIdentifierId.hashCode());
+        result = prime * result + ((this.permissibleValueScopedIdentifierId == null) ? 0 : this.permissibleValueScopedIdentifierId.hashCode());
+        return result;
     }
 
     @Override

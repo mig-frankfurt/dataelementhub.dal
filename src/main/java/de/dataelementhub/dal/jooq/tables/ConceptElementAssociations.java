@@ -12,18 +12,23 @@ import de.dataelementhub.dal.jooq.tables.records.ConceptElementAssociationsRecor
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row5;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,10 +38,11 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ConceptElementAssociations extends TableImpl<ConceptElementAssociationsRecord> {
 
-    private static final long serialVersionUID = -41127027;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>public.concept_element_associations</code>
+     * The reference instance of
+     * <code>public.concept_element_associations</code>
      */
     public static final ConceptElementAssociations CONCEPT_ELEMENT_ASSOCIATIONS = new ConceptElementAssociations();
 
@@ -51,48 +57,28 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
     /**
      * The column <code>public.concept_element_associations.concept_id</code>.
      */
-    public final TableField<ConceptElementAssociationsRecord, Integer> CONCEPT_ID = createField(DSL.name("concept_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ConceptElementAssociationsRecord, Integer> CONCEPT_ID = createField(DSL.name("concept_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.concept_element_associations.scopedidentifier_id</code>.
+     * The column
+     * <code>public.concept_element_associations.scopedidentifier_id</code>.
      */
-    public final TableField<ConceptElementAssociationsRecord, Integer> SCOPEDIDENTIFIER_ID = createField(DSL.name("scopedidentifier_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ConceptElementAssociationsRecord, Integer> SCOPEDIDENTIFIER_ID = createField(DSL.name("scopedidentifier_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.concept_element_associations.linktype</code>.
      */
-    public final TableField<ConceptElementAssociationsRecord, RelationType> LINKTYPE = createField(DSL.name("linktype"), org.jooq.impl.SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.RelationType.class), this, "");
+    public final TableField<ConceptElementAssociationsRecord, RelationType> LINKTYPE = createField(DSL.name("linktype"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.RelationType.class), this, "");
 
     /**
      * The column <code>public.concept_element_associations.created_by</code>.
      */
-    public final TableField<ConceptElementAssociationsRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ConceptElementAssociationsRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.concept_element_associations.created_at</code>.
      */
-    public final TableField<ConceptElementAssociationsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false).defaultValue(org.jooq.impl.DSL.field("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.LOCALDATETIME)), this, "");
-
-    /**
-     * Create a <code>public.concept_element_associations</code> table reference
-     */
-    public ConceptElementAssociations() {
-        this(DSL.name("concept_element_associations"), null);
-    }
-
-    /**
-     * Create an aliased <code>public.concept_element_associations</code> table reference
-     */
-    public ConceptElementAssociations(String alias) {
-        this(DSL.name(alias), CONCEPT_ELEMENT_ASSOCIATIONS);
-    }
-
-    /**
-     * Create an aliased <code>public.concept_element_associations</code> table reference
-     */
-    public ConceptElementAssociations(Name alias) {
-        this(alias, CONCEPT_ELEMENT_ASSOCIATIONS);
-    }
+    public final TableField<ConceptElementAssociationsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
     private ConceptElementAssociations(Name alias, Table<ConceptElementAssociationsRecord> aliased) {
         this(alias, aliased, null);
@@ -102,13 +88,36 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
         super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
+    /**
+     * Create an aliased <code>public.concept_element_associations</code> table
+     * reference
+     */
+    public ConceptElementAssociations(String alias) {
+        this(DSL.name(alias), CONCEPT_ELEMENT_ASSOCIATIONS);
+    }
+
+    /**
+     * Create an aliased <code>public.concept_element_associations</code> table
+     * reference
+     */
+    public ConceptElementAssociations(Name alias) {
+        this(alias, CONCEPT_ELEMENT_ASSOCIATIONS);
+    }
+
+    /**
+     * Create a <code>public.concept_element_associations</code> table reference
+     */
+    public ConceptElementAssociations() {
+        this(DSL.name("concept_element_associations"), null);
+    }
+
     public <O extends Record> ConceptElementAssociations(Table<O> child, ForeignKey<O, ConceptElementAssociationsRecord> key) {
         super(child, key, CONCEPT_ELEMENT_ASSOCIATIONS);
     }
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
@@ -117,21 +126,32 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
     }
 
     @Override
-    public List<UniqueKey<ConceptElementAssociationsRecord>> getKeys() {
-        return Arrays.<UniqueKey<ConceptElementAssociationsRecord>>asList(Keys.CONCEPT_ELEMENT_ASSOCIATIONS_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<ConceptElementAssociationsRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<ConceptElementAssociationsRecord, ?>>asList(Keys.CONCEPT_ELEMENT_ASSOCIATIONS__CONCEPT_ID_FKEY, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__SCOPEDIDENTIFIER_ID_FKEY);
+        return Arrays.asList(Keys.CONCEPT_ELEMENT_ASSOCIATIONS__CONCEPT_ID_FKEY, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__SCOPEDIDENTIFIER_ID_FKEY);
     }
 
+    private transient Concepts _concepts;
+    private transient ScopedIdentifier _scopedIdentifier;
+
+    /**
+     * Get the implicit join path to the <code>public.concepts</code> table.
+     */
     public Concepts concepts() {
-        return new Concepts(this, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__CONCEPT_ID_FKEY);
+        if (_concepts == null)
+            _concepts = new Concepts(this, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__CONCEPT_ID_FKEY);
+
+        return _concepts;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
     public ScopedIdentifier scopedIdentifier() {
-        return new ScopedIdentifier(this, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__SCOPEDIDENTIFIER_ID_FKEY);
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.CONCEPT_ELEMENT_ASSOCIATIONS__SCOPEDIDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
     }
 
     @Override
@@ -142,6 +162,11 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
     @Override
     public ConceptElementAssociations as(Name alias) {
         return new ConceptElementAssociations(alias, this);
+    }
+
+    @Override
+    public ConceptElementAssociations as(Table<?> alias) {
+        return new ConceptElementAssociations(alias.getQualifiedName(), this);
     }
 
     /**
@@ -160,6 +185,14 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
         return new ConceptElementAssociations(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public ConceptElementAssociations rename(Table<?> name) {
+        return new ConceptElementAssociations(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row5 type methods
     // -------------------------------------------------------------------------
@@ -167,5 +200,19 @@ public class ConceptElementAssociations extends TableImpl<ConceptElementAssociat
     @Override
     public Row5<Integer, Integer, RelationType, Integer, LocalDateTime> fieldsRow() {
         return (Row5) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function5<? super Integer, ? super Integer, ? super RelationType, ? super Integer, ? super LocalDateTime, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Integer, ? super Integer, ? super RelationType, ? super Integer, ? super LocalDateTime, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

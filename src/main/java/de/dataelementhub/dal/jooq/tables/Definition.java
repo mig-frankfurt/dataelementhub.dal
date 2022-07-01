@@ -11,20 +11,25 @@ import de.dataelementhub.dal.jooq.tables.records.DefinitionRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function6;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row6;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -34,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Definition extends TableImpl<DefinitionRecord> {
 
-    private static final long serialVersionUID = -255740018;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.definition</code>
@@ -52,38 +57,39 @@ public class Definition extends TableImpl<DefinitionRecord> {
     /**
      * The column <code>public.definition.id</code>.
      */
-    public final TableField<DefinitionRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('definition_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<DefinitionRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.definition.scoped_identifier_id</code>.
      */
-    public final TableField<DefinitionRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<DefinitionRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.definition.designation</code>.
      */
-    public final TableField<DefinitionRecord, String> DESIGNATION = createField(DSL.name("designation"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DefinitionRecord, String> DESIGNATION = createField(DSL.name("designation"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.definition.definition</code>.
      */
-    public final TableField<DefinitionRecord, String> DEFINITION_ = createField(DSL.name("definition"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<DefinitionRecord, String> DEFINITION_ = createField(DSL.name("definition"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.definition.language</code>.
      */
-    public final TableField<DefinitionRecord, String> LANGUAGE = createField(DSL.name("language"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DefinitionRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.definition.element_id</code>.
      */
-    public final TableField<DefinitionRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<DefinitionRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.definition</code> table reference
-     */
-    public Definition() {
-        this(DSL.name("definition"), null);
+    private Definition(Name alias, Table<DefinitionRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Definition(Name alias, Table<DefinitionRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -100,12 +106,11 @@ public class Definition extends TableImpl<DefinitionRecord> {
         this(alias, DEFINITION);
     }
 
-    private Definition(Name alias, Table<DefinitionRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Definition(Name alias, Table<DefinitionRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.definition</code> table reference
+     */
+    public Definition() {
+        this(DSL.name("definition"), null);
     }
 
     public <O extends Record> Definition(Table<O> child, ForeignKey<O, DefinitionRecord> key) {
@@ -114,17 +119,17 @@ public class Definition extends TableImpl<DefinitionRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.DEFINITION_ELEMENT_ID_IDX, Indexes.DEFINITION_SCOPED_IDENTIFIER_ID_IDX);
+        return Arrays.asList(Indexes.DEFINITION_ELEMENT_ID_IDX, Indexes.DEFINITION_SCOPED_IDENTIFIER_ID_IDX);
     }
 
     @Override
     public Identity<DefinitionRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_DEFINITION;
+        return (Identity<DefinitionRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -133,21 +138,32 @@ public class Definition extends TableImpl<DefinitionRecord> {
     }
 
     @Override
-    public List<UniqueKey<DefinitionRecord>> getKeys() {
-        return Arrays.<UniqueKey<DefinitionRecord>>asList(Keys.DEFINITION_PKEY);
-    }
-
-    @Override
     public List<ForeignKey<DefinitionRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<DefinitionRecord, ?>>asList(Keys.DEFINITION__DEFINITION_SCOPEDIDENTIFIER_ID_FKEY, Keys.DEFINITION__DEFINITION_ELEMENT_ID_FKEY);
+        return Arrays.asList(Keys.DEFINITION__DEFINITION_SCOPEDIDENTIFIER_ID_FKEY, Keys.DEFINITION__DEFINITION_ELEMENT_ID_FKEY);
     }
 
+    private transient ScopedIdentifier _scopedIdentifier;
+    private transient Element _element;
+
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
     public ScopedIdentifier scopedIdentifier() {
-        return new ScopedIdentifier(this, Keys.DEFINITION__DEFINITION_SCOPEDIDENTIFIER_ID_FKEY);
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.DEFINITION__DEFINITION_SCOPEDIDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.element</code> table.
+     */
     public Element element() {
-        return new Element(this, Keys.DEFINITION__DEFINITION_ELEMENT_ID_FKEY);
+        if (_element == null)
+            _element = new Element(this, Keys.DEFINITION__DEFINITION_ELEMENT_ID_FKEY);
+
+        return _element;
     }
 
     @Override
@@ -158,6 +174,11 @@ public class Definition extends TableImpl<DefinitionRecord> {
     @Override
     public Definition as(Name alias) {
         return new Definition(alias, this);
+    }
+
+    @Override
+    public Definition as(Table<?> alias) {
+        return new Definition(alias.getQualifiedName(), this);
     }
 
     /**
@@ -176,6 +197,14 @@ public class Definition extends TableImpl<DefinitionRecord> {
         return new Definition(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Definition rename(Table<?> name) {
+        return new Definition(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
@@ -183,5 +212,19 @@ public class Definition extends TableImpl<DefinitionRecord> {
     @Override
     public Row6<Integer, Integer, String, String, String, Integer> fieldsRow() {
         return (Row6) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

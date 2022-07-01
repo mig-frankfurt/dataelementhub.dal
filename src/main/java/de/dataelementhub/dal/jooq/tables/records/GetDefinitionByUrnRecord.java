@@ -18,7 +18,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetDefinitionByUrnRecord extends TableRecordImpl<GetDefinitionByUrnRecord> implements Record6<Integer, Integer, String, String, String, Integer> {
 
-    private static final long serialVersionUID = -2014615137;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.get_definition_by_urn.id</code>.
@@ -35,14 +35,16 @@ public class GetDefinitionByUrnRecord extends TableRecordImpl<GetDefinitionByUrn
     }
 
     /**
-     * Setter for <code>public.get_definition_by_urn.scoped_identifier_id</code>.
+     * Setter for
+     * <code>public.get_definition_by_urn.scoped_identifier_id</code>.
      */
     public void setScopedIdentifierId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>public.get_definition_by_urn.scoped_identifier_id</code>.
+     * Getter for
+     * <code>public.get_definition_by_urn.scoped_identifier_id</code>.
      */
     public Integer getScopedIdentifierId() {
         return (Integer) get(1);
@@ -272,11 +274,27 @@ public class GetDefinitionByUrnRecord extends TableRecordImpl<GetDefinitionByUrn
     public GetDefinitionByUrnRecord(Integer id, Integer scopedIdentifierId, String designation, String definition, String language, Integer elementId) {
         super(GetDefinitionByUrn.GET_DEFINITION_BY_URN);
 
-        set(0, id);
-        set(1, scopedIdentifierId);
-        set(2, designation);
-        set(3, definition);
-        set(4, language);
-        set(5, elementId);
+        setId(id);
+        setScopedIdentifierId(scopedIdentifierId);
+        setDesignation(designation);
+        setDefinition(definition);
+        setLanguage(language);
+        setElementId(elementId);
+    }
+
+    /**
+     * Create a detached, initialised GetDefinitionByUrnRecord
+     */
+    public GetDefinitionByUrnRecord(de.dataelementhub.dal.jooq.tables.pojos.GetDefinitionByUrn value) {
+        super(GetDefinitionByUrn.GET_DEFINITION_BY_URN);
+
+        if (value != null) {
+            setId(value.getId());
+            setScopedIdentifierId(value.getScopedIdentifierId());
+            setDesignation(value.getDesignation());
+            setDefinition(value.getDefinition());
+            setLanguage(value.getLanguage());
+            setElementId(value.getElementId());
+        }
     }
 }

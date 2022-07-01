@@ -10,20 +10,25 @@ import de.dataelementhub.dal.jooq.tables.records.ConfigRecord;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function3;
 import org.jooq.Identity;
 import org.jooq.JSON;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row3;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +38,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Config extends TableImpl<ConfigRecord> {
 
-    private static final long serialVersionUID = 459157572;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.config</code>
@@ -51,23 +56,24 @@ public class Config extends TableImpl<ConfigRecord> {
     /**
      * The column <code>public.config.id</code>.
      */
-    public final TableField<ConfigRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('config_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<ConfigRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.config.name</code>.
      */
-    public final TableField<ConfigRecord, String> NAME = createField(DSL.name("name"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ConfigRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.config.value</code>.
      */
-    public final TableField<ConfigRecord, JSON> VALUE = createField(DSL.name("value"), org.jooq.impl.SQLDataType.JSON.nullable(false), this, "");
+    public final TableField<ConfigRecord, JSON> VALUE = createField(DSL.name("value"), SQLDataType.JSON.nullable(false), this, "");
 
-    /**
-     * Create a <code>public.config</code> table reference
-     */
-    public Config() {
-        this(DSL.name("config"), null);
+    private Config(Name alias, Table<ConfigRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Config(Name alias, Table<ConfigRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -84,12 +90,11 @@ public class Config extends TableImpl<ConfigRecord> {
         this(alias, CONFIG);
     }
 
-    private Config(Name alias, Table<ConfigRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Config(Name alias, Table<ConfigRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.config</code> table reference
+     */
+    public Config() {
+        this(DSL.name("config"), null);
     }
 
     public <O extends Record> Config(Table<O> child, ForeignKey<O, ConfigRecord> key) {
@@ -98,12 +103,12 @@ public class Config extends TableImpl<ConfigRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<ConfigRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_CONFIG;
+        return (Identity<ConfigRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -112,8 +117,8 @@ public class Config extends TableImpl<ConfigRecord> {
     }
 
     @Override
-    public List<UniqueKey<ConfigRecord>> getKeys() {
-        return Arrays.<UniqueKey<ConfigRecord>>asList(Keys.CONFIG_PKEY, Keys.CONFIG_NAME_KEY);
+    public List<UniqueKey<ConfigRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.CONFIG_NAME_KEY);
     }
 
     @Override
@@ -124,6 +129,11 @@ public class Config extends TableImpl<ConfigRecord> {
     @Override
     public Config as(Name alias) {
         return new Config(alias, this);
+    }
+
+    @Override
+    public Config as(Table<?> alias) {
+        return new Config(alias.getQualifiedName(), this);
     }
 
     /**
@@ -142,6 +152,14 @@ public class Config extends TableImpl<ConfigRecord> {
         return new Config(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Config rename(Table<?> name) {
+        return new Config(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
@@ -149,5 +167,19 @@ public class Config extends TableImpl<ConfigRecord> {
     @Override
     public Row3<Integer, String, JSON> fieldsRow() {
         return (Row3) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function3<? super Integer, ? super String, ? super JSON, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Integer, ? super String, ? super JSON, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

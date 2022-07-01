@@ -11,6 +11,7 @@ import org.jooq.Field;
 import org.jooq.Parameter;
 import org.jooq.impl.AbstractRoutine;
 import org.jooq.impl.Internal;
+import org.jooq.impl.SQLDataType;
 
 
 /**
@@ -19,7 +20,7 @@ import org.jooq.impl.Internal;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GetElementByUrn extends AbstractRoutine<ElementRecord> {
 
-    private static final long serialVersionUID = 185959532;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The parameter <code>public.get_element_by_urn.RETURN_VALUE</code>.
@@ -29,7 +30,7 @@ public class GetElementByUrn extends AbstractRoutine<ElementRecord> {
     /**
      * The parameter <code>public.get_element_by_urn.urn</code>.
      */
-    public static final Parameter<String> URN = Internal.createParameter("urn", org.jooq.impl.SQLDataType.CLOB, false, false);
+    public static final Parameter<String> URN = Internal.createParameter("urn", SQLDataType.CLOB, false, false);
 
     /**
      * Create a new routine call instance
@@ -49,7 +50,8 @@ public class GetElementByUrn extends AbstractRoutine<ElementRecord> {
     }
 
     /**
-     * Set the <code>urn</code> parameter to the function to be used with a {@link org.jooq.Select} statement
+     * Set the <code>urn</code> parameter to the function to be used with a
+     * {@link org.jooq.Select} statement
      */
     public void setUrn(Field<String> field) {
         setField(URN, field);

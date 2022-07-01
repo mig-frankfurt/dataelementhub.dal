@@ -11,19 +11,24 @@ import de.dataelementhub.dal.jooq.tables.records.ConceptsRecord;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function8;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row8;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +38,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Concepts extends TableImpl<ConceptsRecord> {
 
-    private static final long serialVersionUID = -458892407;
+    private static final long serialVersionUID = 1L;
 
     /**
      * The reference instance of <code>public.concepts</code>
@@ -51,48 +56,49 @@ public class Concepts extends TableImpl<ConceptsRecord> {
     /**
      * The column <code>public.concepts.id</code>.
      */
-    public final TableField<ConceptsRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('concepts_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+    public final TableField<ConceptsRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.concepts.system</code>.
      */
-    public final TableField<ConceptsRecord, String> SYSTEM = createField(DSL.name("system"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ConceptsRecord, String> SYSTEM = createField(DSL.name("system"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.concepts.version</code>.
      */
-    public final TableField<ConceptsRecord, String> VERSION = createField(DSL.name("version"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<ConceptsRecord, String> VERSION = createField(DSL.name("version"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.concepts.term</code>.
      */
-    public final TableField<ConceptsRecord, String> TERM = createField(DSL.name("term"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<ConceptsRecord, String> TERM = createField(DSL.name("term"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.concepts.text</code>.
      */
-    public final TableField<ConceptsRecord, String> TEXT = createField(DSL.name("text"), org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<ConceptsRecord, String> TEXT = createField(DSL.name("text"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.concepts.source_id</code>.
      */
-    public final TableField<ConceptsRecord, Integer> SOURCE_ID = createField(DSL.name("source_id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ConceptsRecord, Integer> SOURCE_ID = createField(DSL.name("source_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.concepts.created_by</code>.
      */
-    public final TableField<ConceptsRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<ConceptsRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.concepts.created_at</code>.
      */
-    public final TableField<ConceptsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false).defaultValue(org.jooq.impl.DSL.field("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<ConceptsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
-    /**
-     * Create a <code>public.concepts</code> table reference
-     */
-    public Concepts() {
-        this(DSL.name("concepts"), null);
+    private Concepts(Name alias, Table<ConceptsRecord> aliased) {
+        this(alias, aliased, null);
+    }
+
+    private Concepts(Name alias, Table<ConceptsRecord> aliased, Field<?>[] parameters) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
     }
 
     /**
@@ -109,12 +115,11 @@ public class Concepts extends TableImpl<ConceptsRecord> {
         this(alias, CONCEPTS);
     }
 
-    private Concepts(Name alias, Table<ConceptsRecord> aliased) {
-        this(alias, aliased, null);
-    }
-
-    private Concepts(Name alias, Table<ConceptsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    /**
+     * Create a <code>public.concepts</code> table reference
+     */
+    public Concepts() {
+        this(DSL.name("concepts"), null);
     }
 
     public <O extends Record> Concepts(Table<O> child, ForeignKey<O, ConceptsRecord> key) {
@@ -123,12 +128,12 @@ public class Concepts extends TableImpl<ConceptsRecord> {
 
     @Override
     public Schema getSchema() {
-        return Public.PUBLIC;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public Identity<ConceptsRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_CONCEPTS;
+        return (Identity<ConceptsRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -137,17 +142,25 @@ public class Concepts extends TableImpl<ConceptsRecord> {
     }
 
     @Override
-    public List<UniqueKey<ConceptsRecord>> getKeys() {
-        return Arrays.<UniqueKey<ConceptsRecord>>asList(Keys.CONCEPTS_PKEY, Keys.CONCEPTS_SOURCE_ID_SYSTEM_VERSION_TERM_TEXT_KEY);
+    public List<UniqueKey<ConceptsRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.CONCEPTS_SOURCE_ID_SYSTEM_VERSION_TERM_TEXT_KEY);
     }
 
     @Override
     public List<ForeignKey<ConceptsRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<ConceptsRecord, ?>>asList(Keys.CONCEPTS__SOURCE_ID_FKEY);
+        return Arrays.asList(Keys.CONCEPTS__SOURCE_ID_FKEY);
     }
 
+    private transient Source _source;
+
+    /**
+     * Get the implicit join path to the <code>public.source</code> table.
+     */
     public Source source() {
-        return new Source(this, Keys.CONCEPTS__SOURCE_ID_FKEY);
+        if (_source == null)
+            _source = new Source(this, Keys.CONCEPTS__SOURCE_ID_FKEY);
+
+        return _source;
     }
 
     @Override
@@ -158,6 +171,11 @@ public class Concepts extends TableImpl<ConceptsRecord> {
     @Override
     public Concepts as(Name alias) {
         return new Concepts(alias, this);
+    }
+
+    @Override
+    public Concepts as(Table<?> alias) {
+        return new Concepts(alias.getQualifiedName(), this);
     }
 
     /**
@@ -176,6 +194,14 @@ public class Concepts extends TableImpl<ConceptsRecord> {
         return new Concepts(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public Concepts rename(Table<?> name) {
+        return new Concepts(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row8 type methods
     // -------------------------------------------------------------------------
@@ -183,5 +209,19 @@ public class Concepts extends TableImpl<ConceptsRecord> {
     @Override
     public Row8<Integer, String, String, String, String, Integer, Integer, LocalDateTime> fieldsRow() {
         return (Row8) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function8<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super LocalDateTime, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function8<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super LocalDateTime, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

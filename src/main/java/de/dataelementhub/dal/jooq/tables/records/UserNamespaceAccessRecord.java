@@ -19,7 +19,7 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserNamespaceAccessRecord extends TableRecordImpl<UserNamespaceAccessRecord> implements Record3<Integer, Integer, AccessLevelType> {
 
-    private static final long serialVersionUID = 1572287408;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Setter for <code>public.user_namespace_access.user_id</code>.
@@ -165,8 +165,21 @@ public class UserNamespaceAccessRecord extends TableRecordImpl<UserNamespaceAcce
     public UserNamespaceAccessRecord(Integer userId, Integer namespaceId, AccessLevelType accessLevel) {
         super(UserNamespaceAccess.USER_NAMESPACE_ACCESS);
 
-        set(0, userId);
-        set(1, namespaceId);
-        set(2, accessLevel);
+        setUserId(userId);
+        setNamespaceId(namespaceId);
+        setAccessLevel(accessLevel);
+    }
+
+    /**
+     * Create a detached, initialised UserNamespaceAccessRecord
+     */
+    public UserNamespaceAccessRecord(de.dataelementhub.dal.jooq.tables.pojos.UserNamespaceAccess value) {
+        super(UserNamespaceAccess.USER_NAMESPACE_ACCESS);
+
+        if (value != null) {
+            setUserId(value.getUserId());
+            setNamespaceId(value.getNamespaceId());
+            setAccessLevel(value.getAccessLevel());
+        }
     }
 }

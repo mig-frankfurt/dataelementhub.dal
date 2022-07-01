@@ -9,6 +9,7 @@ import de.dataelementhub.dal.jooq.tables.records.ConceptsRecord;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -40,7 +41,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.ID, lowerInclusive, upperInclusive);
@@ -61,7 +63,15 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>system BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchOptionalById(Integer value) {
+        return fetchOptional(Concepts.CONCEPTS.ID, value);
+    }
+
+    /**
+     * Fetch records that have <code>system BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfSystem(String lowerInclusive, String upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.SYSTEM, lowerInclusive, upperInclusive);
@@ -75,7 +85,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>version BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>version BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfVersion(String lowerInclusive, String upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.VERSION, lowerInclusive, upperInclusive);
@@ -89,7 +100,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>term BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>term BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfTerm(String lowerInclusive, String upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.TERM, lowerInclusive, upperInclusive);
@@ -103,7 +115,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>text BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>text BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfText(String lowerInclusive, String upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.TEXT, lowerInclusive, upperInclusive);
@@ -117,7 +130,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>source_id BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>source_id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfSourceId(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.SOURCE_ID, lowerInclusive, upperInclusive);
@@ -131,7 +145,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfCreatedBy(Integer lowerInclusive, Integer upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.CREATED_BY, lowerInclusive, upperInclusive);
@@ -145,7 +160,8 @@ public class ConceptsDao extends DAOImpl<ConceptsRecord, de.dataelementhub.dal.j
     }
 
     /**
-     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Concepts> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
         return fetchRange(Concepts.CONCEPTS.CREATED_AT, lowerInclusive, upperInclusive);

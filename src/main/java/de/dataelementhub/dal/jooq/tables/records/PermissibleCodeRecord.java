@@ -18,17 +18,19 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PermissibleCodeRecord extends TableRecordImpl<PermissibleCodeRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -759821378;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>public.permissible_code.code_scoped_identifier_id</code>.
+     * Setter for
+     * <code>public.permissible_code.code_scoped_identifier_id</code>.
      */
     public void setCodeScopedIdentifierId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>public.permissible_code.code_scoped_identifier_id</code>.
+     * Getter for
+     * <code>public.permissible_code.code_scoped_identifier_id</code>.
      */
     public Integer getCodeScopedIdentifierId() {
         return (Integer) get(0);
@@ -128,7 +130,19 @@ public class PermissibleCodeRecord extends TableRecordImpl<PermissibleCodeRecord
     public PermissibleCodeRecord(Integer codeScopedIdentifierId, Integer catalogValueDomainId) {
         super(PermissibleCode.PERMISSIBLE_CODE);
 
-        set(0, codeScopedIdentifierId);
-        set(1, catalogValueDomainId);
+        setCodeScopedIdentifierId(codeScopedIdentifierId);
+        setCatalogValueDomainId(catalogValueDomainId);
+    }
+
+    /**
+     * Create a detached, initialised PermissibleCodeRecord
+     */
+    public PermissibleCodeRecord(de.dataelementhub.dal.jooq.tables.pojos.PermissibleCode value) {
+        super(PermissibleCode.PERMISSIBLE_CODE);
+
+        if (value != null) {
+            setCodeScopedIdentifierId(value.getCodeScopedIdentifierId());
+            setCatalogValueDomainId(value.getCatalogValueDomainId());
+        }
     }
 }
