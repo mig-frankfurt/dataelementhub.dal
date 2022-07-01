@@ -66,6 +66,39 @@ public class ValueDomainPermissibleValue implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final ValueDomainPermissibleValue other = (ValueDomainPermissibleValue) obj;
+        if (this.valueDomainScopedIdentifierId == null) {
+            if (other.valueDomainScopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.valueDomainScopedIdentifierId.equals(other.valueDomainScopedIdentifierId))
+            return false;
+        if (this.permissibleValueScopedIdentifierId == null) {
+            if (other.permissibleValueScopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.permissibleValueScopedIdentifierId.equals(other.permissibleValueScopedIdentifierId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.valueDomainScopedIdentifierId == null) ? 0 : this.valueDomainScopedIdentifierId.hashCode());
+        result = prime * result + ((this.permissibleValueScopedIdentifierId == null) ? 0 : this.permissibleValueScopedIdentifierId.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("ValueDomainPermissibleValue (");
 

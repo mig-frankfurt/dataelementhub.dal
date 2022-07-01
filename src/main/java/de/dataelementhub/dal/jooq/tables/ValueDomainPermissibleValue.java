@@ -10,13 +10,17 @@ import de.dataelementhub.dal.jooq.tables.records.ValueDomainPermissibleValueReco
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Function2;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Records;
 import org.jooq.Row2;
 import org.jooq.Schema;
+import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -144,6 +148,11 @@ public class ValueDomainPermissibleValue extends TableImpl<ValueDomainPermissibl
         return new ValueDomainPermissibleValue(alias, this);
     }
 
+    @Override
+    public ValueDomainPermissibleValue as(Table<?> alias) {
+        return new ValueDomainPermissibleValue(alias.getQualifiedName(), this);
+    }
+
     /**
      * Rename this table
      */
@@ -160,6 +169,14 @@ public class ValueDomainPermissibleValue extends TableImpl<ValueDomainPermissibl
         return new ValueDomainPermissibleValue(name, null);
     }
 
+    /**
+     * Rename this table
+     */
+    @Override
+    public ValueDomainPermissibleValue rename(Table<?> name) {
+        return new ValueDomainPermissibleValue(name.getQualifiedName(), null);
+    }
+
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
@@ -167,5 +184,19 @@ public class ValueDomainPermissibleValue extends TableImpl<ValueDomainPermissibl
     @Override
     public Row2<Integer, Integer> fieldsRow() {
         return (Row2) super.fieldsRow();
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Function)}.
+     */
+    public <U> SelectField<U> mapping(Function2<? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(Records.mapping(from));
+    }
+
+    /**
+     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
+     */
+    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super Integer, ? super Integer, ? extends U> from) {
+        return convertFrom(toType, Records.mapping(from));
     }
 }

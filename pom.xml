@@ -10,7 +10,7 @@
     <parent>
         <groupId>de.dataelementhub</groupId>
         <artifactId>parent</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.0</version>
     </parent>
 
     <profiles>
@@ -50,22 +50,22 @@
             <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.16.6</version>
+                <version>3.17.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.jooq</groupId>
                         <artifactId>jooq-meta</artifactId>
-                        <version>3.16.6</version>
+                        <version>3.17.1</version>
                     </dependency>
                     <dependency>
                         <groupId>org.jooq</groupId>
                         <artifactId>jooq-codegen</artifactId>
-                        <version>3.16.6</version>
+                        <version>3.17.1</version>
                     </dependency>
                     <dependency>
                         <groupId>org.postgresql</groupId>
                         <artifactId>postgresql</artifactId>
-                        <version>42.3.6</version>
+                        <version>42.4.0</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -97,7 +97,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>8.5.12</version>
+                <version>8.5.13</version>
                 <configuration>
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://${db.host}:${db.port}/${db.name}</url>
@@ -111,7 +111,7 @@
                     <dependency>
                         <groupId>org.postgresql</groupId>
                         <artifactId>postgresql</artifactId>
-                        <version>42.3.3</version>
+                        <version>42.4.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -122,12 +122,12 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>8.5.12</version>
+            <version>8.5.13</version>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.16.6</version>
+            <version>3.17.1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

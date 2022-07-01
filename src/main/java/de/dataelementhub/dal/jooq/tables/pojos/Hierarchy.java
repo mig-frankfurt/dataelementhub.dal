@@ -80,6 +80,46 @@ public class Hierarchy implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Hierarchy other = (Hierarchy) obj;
+        if (this.root == null) {
+            if (other.root != null)
+                return false;
+        }
+        else if (!this.root.equals(other.root))
+            return false;
+        if (this.super_ == null) {
+            if (other.super_ != null)
+                return false;
+        }
+        else if (!this.super_.equals(other.super_))
+            return false;
+        if (this.sub == null) {
+            if (other.sub != null)
+                return false;
+        }
+        else if (!this.sub.equals(other.sub))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.root == null) ? 0 : this.root.hashCode());
+        result = prime * result + ((this.super_ == null) ? 0 : this.super_.hashCode());
+        result = prime * result + ((this.sub == null) ? 0 : this.sub.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Hierarchy (");
 

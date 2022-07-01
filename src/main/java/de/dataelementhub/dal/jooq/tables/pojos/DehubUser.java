@@ -16,11 +16,11 @@ public class DehubUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private String  authId;
-    private String  firstName;
-    private String  lastName;
-    private String  userName;
-    private String  email;
+    private String authId;
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String email;
 
     public DehubUser() {}
 
@@ -35,11 +35,11 @@ public class DehubUser implements Serializable {
 
     public DehubUser(
         Integer id,
-        String  authId,
-        String  firstName,
-        String  lastName,
-        String  userName,
-        String  email
+        String authId,
+        String firstName,
+        String lastName,
+        String userName,
+        String email
     ) {
         this.id = id;
         this.authId = authId;
@@ -131,6 +131,67 @@ public class DehubUser implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final DehubUser other = (DehubUser) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.authId == null) {
+            if (other.authId != null)
+                return false;
+        }
+        else if (!this.authId.equals(other.authId))
+            return false;
+        if (this.firstName == null) {
+            if (other.firstName != null)
+                return false;
+        }
+        else if (!this.firstName.equals(other.firstName))
+            return false;
+        if (this.lastName == null) {
+            if (other.lastName != null)
+                return false;
+        }
+        else if (!this.lastName.equals(other.lastName))
+            return false;
+        if (this.userName == null) {
+            if (other.userName != null)
+                return false;
+        }
+        else if (!this.userName.equals(other.userName))
+            return false;
+        if (this.email == null) {
+            if (other.email != null)
+                return false;
+        }
+        else if (!this.email.equals(other.email))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.authId == null) ? 0 : this.authId.hashCode());
+        result = prime * result + ((this.firstName == null) ? 0 : this.firstName.hashCode());
+        result = prime * result + ((this.lastName == null) ? 0 : this.lastName.hashCode());
+        result = prime * result + ((this.userName == null) ? 0 : this.userName.hashCode());
+        result = prime * result + ((this.email == null) ? 0 : this.email.hashCode());
+        return result;
     }
 
     @Override

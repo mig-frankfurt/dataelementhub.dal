@@ -16,7 +16,7 @@ public class UserSourceCredentials implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer userId;
-    private String  credential;
+    private String credential;
     private Integer sourceId;
 
     public UserSourceCredentials() {}
@@ -29,7 +29,7 @@ public class UserSourceCredentials implements Serializable {
 
     public UserSourceCredentials(
         Integer userId,
-        String  credential,
+        String credential,
         Integer sourceId
     ) {
         this.userId = userId;
@@ -77,6 +77,46 @@ public class UserSourceCredentials implements Serializable {
      */
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final UserSourceCredentials other = (UserSourceCredentials) obj;
+        if (this.userId == null) {
+            if (other.userId != null)
+                return false;
+        }
+        else if (!this.userId.equals(other.userId))
+            return false;
+        if (this.credential == null) {
+            if (other.credential != null)
+                return false;
+        }
+        else if (!this.credential.equals(other.credential))
+            return false;
+        if (this.sourceId == null) {
+            if (other.sourceId != null)
+                return false;
+        }
+        else if (!this.sourceId.equals(other.sourceId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
+        result = prime * result + ((this.credential == null) ? 0 : this.credential.hashCode());
+        result = prime * result + ((this.sourceId == null) ? 0 : this.sourceId.hashCode());
+        return result;
     }
 
     @Override

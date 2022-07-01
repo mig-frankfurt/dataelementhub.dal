@@ -17,9 +17,9 @@ public class GetDefinitionByUrn implements Serializable {
 
     private Integer id;
     private Integer scopedIdentifierId;
-    private String  designation;
-    private String  definition;
-    private String  language;
+    private String designation;
+    private String definition;
+    private String language;
     private Integer elementId;
 
     public GetDefinitionByUrn() {}
@@ -36,9 +36,9 @@ public class GetDefinitionByUrn implements Serializable {
     public GetDefinitionByUrn(
         Integer id,
         Integer scopedIdentifierId,
-        String  designation,
-        String  definition,
-        String  language,
+        String designation,
+        String definition,
+        String language,
         Integer elementId
     ) {
         this.id = id;
@@ -133,6 +133,67 @@ public class GetDefinitionByUrn implements Serializable {
      */
     public void setElementId(Integer elementId) {
         this.elementId = elementId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final GetDefinitionByUrn other = (GetDefinitionByUrn) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.scopedIdentifierId == null) {
+            if (other.scopedIdentifierId != null)
+                return false;
+        }
+        else if (!this.scopedIdentifierId.equals(other.scopedIdentifierId))
+            return false;
+        if (this.designation == null) {
+            if (other.designation != null)
+                return false;
+        }
+        else if (!this.designation.equals(other.designation))
+            return false;
+        if (this.definition == null) {
+            if (other.definition != null)
+                return false;
+        }
+        else if (!this.definition.equals(other.definition))
+            return false;
+        if (this.language == null) {
+            if (other.language != null)
+                return false;
+        }
+        else if (!this.language.equals(other.language))
+            return false;
+        if (this.elementId == null) {
+            if (other.elementId != null)
+                return false;
+        }
+        else if (!this.elementId.equals(other.elementId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.scopedIdentifierId == null) ? 0 : this.scopedIdentifierId.hashCode());
+        result = prime * result + ((this.designation == null) ? 0 : this.designation.hashCode());
+        result = prime * result + ((this.definition == null) ? 0 : this.definition.hashCode());
+        result = prime * result + ((this.language == null) ? 0 : this.language.hashCode());
+        result = prime * result + ((this.elementId == null) ? 0 : this.elementId.hashCode());
+        return result;
     }
 
     @Override
