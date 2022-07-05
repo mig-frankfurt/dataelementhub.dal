@@ -21,9 +21,7 @@ public enum Status implements EnumType {
 
     RELEASED("RELEASED"),
 
-    OUTDATED("OUTDATED"),
-
-    STAGED("STAGED");
+    OUTDATED("OUTDATED");
 
     private final String literal;
 
