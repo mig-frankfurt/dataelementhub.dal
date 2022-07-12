@@ -4,11 +4,9 @@
 package de.dataelementhub.dal.jooq.tables.pojos;
 
 
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 
 /**
@@ -20,53 +18,45 @@ public class ScopedIdentifier implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private ElementType elementType;
-    private Integer version;
+    private Integer revision;
     private Integer identifier;
-    private String url;
     private Integer createdBy;
-    private Status status;
+    private Status  status;
     private Integer elementId;
     private Integer namespaceId;
-    private UUID uuid;
+    private Boolean hidden;
 
     public ScopedIdentifier() {}
 
     public ScopedIdentifier(ScopedIdentifier value) {
         this.id = value.id;
-        this.elementType = value.elementType;
-        this.version = value.version;
+        this.revision = value.revision;
         this.identifier = value.identifier;
-        this.url = value.url;
         this.createdBy = value.createdBy;
         this.status = value.status;
         this.elementId = value.elementId;
         this.namespaceId = value.namespaceId;
-        this.uuid = value.uuid;
+        this.hidden = value.hidden;
     }
 
     public ScopedIdentifier(
         Integer id,
-        ElementType elementType,
-        Integer version,
+        Integer revision,
         Integer identifier,
-        String url,
         Integer createdBy,
-        Status status,
+        Status  status,
         Integer elementId,
         Integer namespaceId,
-        UUID uuid
+        Boolean hidden
     ) {
         this.id = id;
-        this.elementType = elementType;
-        this.version = version;
+        this.revision = revision;
         this.identifier = identifier;
-        this.url = url;
         this.createdBy = createdBy;
         this.status = status;
         this.elementId = elementId;
         this.namespaceId = namespaceId;
-        this.uuid = uuid;
+        this.hidden = hidden;
     }
 
     /**
@@ -84,31 +74,17 @@ public class ScopedIdentifier implements Serializable {
     }
 
     /**
-     * Getter for <code>public.scoped_identifier.element_type</code>.
+     * Getter for <code>public.scoped_identifier.revision</code>.
      */
-    public ElementType getElementType() {
-        return this.elementType;
+    public Integer getRevision() {
+        return this.revision;
     }
 
     /**
-     * Setter for <code>public.scoped_identifier.element_type</code>.
+     * Setter for <code>public.scoped_identifier.revision</code>.
      */
-    public void setElementType(ElementType elementType) {
-        this.elementType = elementType;
-    }
-
-    /**
-     * Getter for <code>public.scoped_identifier.version</code>.
-     */
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    /**
-     * Setter for <code>public.scoped_identifier.version</code>.
-     */
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setRevision(Integer revision) {
+        this.revision = revision;
     }
 
     /**
@@ -123,20 +99,6 @@ public class ScopedIdentifier implements Serializable {
      */
     public void setIdentifier(Integer identifier) {
         this.identifier = identifier;
-    }
-
-    /**
-     * Getter for <code>public.scoped_identifier.url</code>.
-     */
-    public String getUrl() {
-        return this.url;
-    }
-
-    /**
-     * Setter for <code>public.scoped_identifier.url</code>.
-     */
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     /**
@@ -196,106 +158,17 @@ public class ScopedIdentifier implements Serializable {
     }
 
     /**
-     * Getter for <code>public.scoped_identifier.uuid</code>.
+     * Getter for <code>public.scoped_identifier.hidden</code>.
      */
-    public UUID getUuid() {
-        return this.uuid;
+    public Boolean getHidden() {
+        return this.hidden;
     }
 
     /**
-     * Setter for <code>public.scoped_identifier.uuid</code>.
+     * Setter for <code>public.scoped_identifier.hidden</code>.
      */
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final ScopedIdentifier other = (ScopedIdentifier) obj;
-        if (this.id == null) {
-            if (other.id != null)
-                return false;
-        }
-        else if (!this.id.equals(other.id))
-            return false;
-        if (this.elementType == null) {
-            if (other.elementType != null)
-                return false;
-        }
-        else if (!this.elementType.equals(other.elementType))
-            return false;
-        if (this.version == null) {
-            if (other.version != null)
-                return false;
-        }
-        else if (!this.version.equals(other.version))
-            return false;
-        if (this.identifier == null) {
-            if (other.identifier != null)
-                return false;
-        }
-        else if (!this.identifier.equals(other.identifier))
-            return false;
-        if (this.url == null) {
-            if (other.url != null)
-                return false;
-        }
-        else if (!this.url.equals(other.url))
-            return false;
-        if (this.createdBy == null) {
-            if (other.createdBy != null)
-                return false;
-        }
-        else if (!this.createdBy.equals(other.createdBy))
-            return false;
-        if (this.status == null) {
-            if (other.status != null)
-                return false;
-        }
-        else if (!this.status.equals(other.status))
-            return false;
-        if (this.elementId == null) {
-            if (other.elementId != null)
-                return false;
-        }
-        else if (!this.elementId.equals(other.elementId))
-            return false;
-        if (this.namespaceId == null) {
-            if (other.namespaceId != null)
-                return false;
-        }
-        else if (!this.namespaceId.equals(other.namespaceId))
-            return false;
-        if (this.uuid == null) {
-            if (other.uuid != null)
-                return false;
-        }
-        else if (!this.uuid.equals(other.uuid))
-            return false;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
-        result = prime * result + ((this.elementType == null) ? 0 : this.elementType.hashCode());
-        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
-        result = prime * result + ((this.identifier == null) ? 0 : this.identifier.hashCode());
-        result = prime * result + ((this.url == null) ? 0 : this.url.hashCode());
-        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
-        result = prime * result + ((this.status == null) ? 0 : this.status.hashCode());
-        result = prime * result + ((this.elementId == null) ? 0 : this.elementId.hashCode());
-        result = prime * result + ((this.namespaceId == null) ? 0 : this.namespaceId.hashCode());
-        result = prime * result + ((this.uuid == null) ? 0 : this.uuid.hashCode());
-        return result;
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
     }
 
     @Override
@@ -303,15 +176,13 @@ public class ScopedIdentifier implements Serializable {
         StringBuilder sb = new StringBuilder("ScopedIdentifier (");
 
         sb.append(id);
-        sb.append(", ").append(elementType);
-        sb.append(", ").append(version);
+        sb.append(", ").append(revision);
         sb.append(", ").append(identifier);
-        sb.append(", ").append(url);
         sb.append(", ").append(createdBy);
         sb.append(", ").append(status);
         sb.append(", ").append(elementId);
         sb.append(", ").append(namespaceId);
-        sb.append(", ").append(uuid);
+        sb.append(", ").append(hidden);
 
         sb.append(")");
         return sb.toString();

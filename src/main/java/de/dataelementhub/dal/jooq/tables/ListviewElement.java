@@ -7,14 +7,15 @@ package de.dataelementhub.dal.jooq.tables;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
-import de.dataelementhub.dal.jooq.enums.ValidationType;
+import de.dataelementhub.dal.jooq.enums.ValidationDatatypeType;
+import de.dataelementhub.dal.jooq.enums.ValidationSubtypeType;
 import de.dataelementhub.dal.jooq.tables.records.ListviewElementRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.JSON;
 import org.jooq.Name;
 import org.jooq.Record;
+import org.jooq.Row18;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -56,9 +57,9 @@ public class ListviewElement extends TableImpl<ListviewElementRecord> {
     public final TableField<ListviewElementRecord, Integer> SI_IDENTIFIER = createField(DSL.name("si_identifier"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.si_version</code>.
+     * The column <code>public.listview_element.si_revision</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> SI_VERSION = createField(DSL.name("si_version"), SQLDataType.INTEGER, this, "");
+    public final TableField<ListviewElementRecord, Integer> SI_REVISION = createField(DSL.name("si_revision"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.listview_element.si_status</code>.
@@ -71,141 +72,76 @@ public class ListviewElement extends TableImpl<ListviewElementRecord> {
     public final TableField<ListviewElementRecord, Integer> SI_NAMESPACE_ID = createField(DSL.name("si_namespace_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.vd_datatype</code>.
+     * The column <code>public.listview_element.si_hidden</code>.
      */
-    public final TableField<ListviewElementRecord, String> VD_DATATYPE = createField(DSL.name("vd_datatype"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, Boolean> SI_HIDDEN = createField(DSL.name("si_hidden"), SQLDataType.BOOLEAN, this, "");
 
     /**
-     * The column <code>public.listview_element.id</code>.
+     * The column <code>public.listview_element.e_id</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER, this, "");
+    public final TableField<ListviewElementRecord, Integer> E_ID = createField(DSL.name("e_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.element_type</code>.
+     * The column <code>public.listview_element.e_element_type</code>.
      */
-    public final TableField<ListviewElementRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
+    public final TableField<ListviewElementRecord, ElementType> E_ELEMENT_TYPE = createField(DSL.name("e_element_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
-     * The column <code>public.listview_element.hidden</code>.
+     * The column <code>public.listview_element.e_created_by</code>.
      */
-    public final TableField<ListviewElementRecord, Boolean> HIDDEN = createField(DSL.name("hidden"), SQLDataType.BOOLEAN, this, "");
+    public final TableField<ListviewElementRecord, Integer> E_CREATED_BY = createField(DSL.name("e_created_by"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.created_by</code>.
+     * The column <code>public.listview_element.e_element_id</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER, this, "");
+    public final TableField<ListviewElementRecord, Integer> E_ELEMENT_ID = createField(DSL.name("e_element_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.element_id</code>.
+     * The column <code>public.listview_element.e_permitted_value</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<ListviewElementRecord, String> E_PERMITTED_VALUE = createField(DSL.name("e_permitted_value"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.listview_element.scoped_identifier_id</code>.
+     * The column <code>public.listview_element.v_id</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<ListviewElementRecord, Integer> V_ID = createField(DSL.name("v_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.code</code>.
+     * The column <code>public.listview_element.v_element_id</code>.
      */
-    public final TableField<ListviewElementRecord, String> CODE = createField(DSL.name("code"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, Integer> V_ELEMENT_ID = createField(DSL.name("v_element_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.listview_element.is_valid</code>.
+     * The column <code>public.listview_element.v_datatype</code>.
      */
-    public final TableField<ListviewElementRecord, Boolean> IS_VALID = createField(DSL.name("is_valid"), SQLDataType.BOOLEAN, this, "");
+    public final TableField<ListviewElementRecord, ValidationDatatypeType> V_DATATYPE = createField(DSL.name("v_datatype"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationDatatypeType.class), this, "");
 
     /**
-     * The column <code>public.listview_element.format</code>.
+     * The column <code>public.listview_element.v_subtype</code>.
      */
-    public final TableField<ListviewElementRecord, String> FORMAT = createField(DSL.name("format"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, ValidationSubtypeType> V_SUBTYPE = createField(DSL.name("v_subtype"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationSubtypeType.class), this, "");
 
     /**
-     * The column <code>public.listview_element.datatype</code>.
+     * The column <code>public.listview_element.v_format</code>.
      */
-    public final TableField<ListviewElementRecord, String> DATATYPE = createField(DSL.name("datatype"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, String> V_FORMAT = createField(DSL.name("v_format"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.listview_element.unit_of_measure</code>.
+     * The column <code>public.listview_element.v_unit_of_measure</code>.
      */
-    public final TableField<ListviewElementRecord, String> UNIT_OF_MEASURE = createField(DSL.name("unit_of_measure"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, String> V_UNIT_OF_MEASURE = createField(DSL.name("v_unit_of_measure"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.listview_element.maximum_characters</code>.
+     * The column <code>public.listview_element.v_maximum_characters</code>.
      */
-    public final TableField<ListviewElementRecord, Integer> MAXIMUM_CHARACTERS = createField(DSL.name("maximum_characters"), SQLDataType.INTEGER, this, "");
-
-    /**
-     * The column <code>public.listview_element.description</code>.
-     */
-    public final TableField<ListviewElementRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.listview_element.validation_type</code>.
-     */
-    public final TableField<ListviewElementRecord, ValidationType> VALIDATION_TYPE = createField(DSL.name("validation_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationType.class), this, "");
-
-    /**
-     * The column <code>public.listview_element.validation_data</code>.
-     */
-    public final TableField<ListviewElementRecord, String> VALIDATION_DATA = createField(DSL.name("validation_data"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.listview_element.permitted_value</code>.
-     */
-    public final TableField<ListviewElementRecord, String> PERMITTED_VALUE = createField(DSL.name("permitted_value"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.listview_element.data</code>.
-     */
-    public final TableField<ListviewElementRecord, JSON> DATA = createField(DSL.name("data"), SQLDataType.JSON, this, "");
-
-    /**
-     * The column <code>public.listview_element.uuid</code>.
-     */
-    public final TableField<ListviewElementRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID, this, "");
-
-    /**
-     * The column <code>public.listview_element.external_id</code>.
-     */
-    public final TableField<ListviewElementRecord, String> EXTERNAL_ID = createField(DSL.name("external_id"), SQLDataType.CLOB, this, "");
+    public final TableField<ListviewElementRecord, Integer> V_MAXIMUM_CHARACTERS = createField(DSL.name("v_maximum_characters"), SQLDataType.INTEGER, this, "");
 
     private ListviewElement(Name alias, Table<ListviewElementRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private ListviewElement(Name alias, Table<ListviewElementRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("""
-        create view "listview_element" as  SELECT si.id AS si_id,
-         si.identifier AS si_identifier,
-         si.version AS si_version,
-         si.status AS si_status,
-         si.namespace_id AS si_namespace_id,
-         vd.datatype AS vd_datatype,
-         e.id,
-         e.element_type,
-         e.hidden,
-         e.created_by,
-         e.element_id,
-         e.scoped_identifier_id,
-         e.code,
-         e.is_valid,
-         e.format,
-         e.datatype,
-         e.unit_of_measure,
-         e.maximum_characters,
-         e.description,
-         e.validation_type,
-         e.validation_data,
-         e.permitted_value,
-         e.data,
-         e.uuid,
-         e.external_id
-        FROM (((scoped_identifier si
-          LEFT JOIN element ns ON ((si.namespace_id = ns.id)))
-          LEFT JOIN element e ON ((e.id = si.element_id)))
-          LEFT JOIN element vd ON ((e.element_id = vd.id)));
-        """));
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.view("create view \"listview_element\" as  SELECT si.id AS si_id,\n    si.identifier AS si_identifier,\n    si.revision AS si_revision,\n    si.status AS si_status,\n    si.namespace_id AS si_namespace_id,\n    si.hidden AS si_hidden,\n    e.id AS e_id,\n    e.element_type AS e_element_type,\n    e.created_by AS e_created_by,\n    e.element_id AS e_element_id,\n    e.permitted_value AS e_permitted_value,\n    v.id AS v_id,\n    v.element_id AS v_element_id,\n    v.datatype AS v_datatype,\n    v.subtype AS v_subtype,\n    v.format AS v_format,\n    v.unit_of_measure AS v_unit_of_measure,\n    v.maximum_characters AS v_maximum_characters\n   FROM ((((scoped_identifier si\n     LEFT JOIN element ns ON ((si.namespace_id = ns.id)))\n     LEFT JOIN element e ON ((e.id = si.element_id)))\n     LEFT JOIN element vd ON ((e.element_id = vd.id)))\n     LEFT JOIN validation v ON ((e.id = v.element_id)));"));
     }
 
     /**
@@ -248,11 +184,6 @@ public class ListviewElement extends TableImpl<ListviewElementRecord> {
         return new ListviewElement(alias, this);
     }
 
-    @Override
-    public ListviewElement as(Table<?> alias) {
-        return new ListviewElement(alias.getQualifiedName(), this);
-    }
-
     /**
      * Rename this table
      */
@@ -269,11 +200,12 @@ public class ListviewElement extends TableImpl<ListviewElementRecord> {
         return new ListviewElement(name, null);
     }
 
-    /**
-     * Rename this table
-     */
+    // -------------------------------------------------------------------------
+    // Row18 type methods
+    // -------------------------------------------------------------------------
+
     @Override
-    public ListviewElement rename(Table<?> name) {
-        return new ListviewElement(name.getQualifiedName(), null);
+    public Row18<Integer, Integer, Integer, Status, Integer, Boolean, Integer, ElementType, Integer, Integer, String, Integer, Integer, ValidationDatatypeType, ValidationSubtypeType, String, String, Integer> fieldsRow() {
+        return (Row18) super.fieldsRow();
     }
 }

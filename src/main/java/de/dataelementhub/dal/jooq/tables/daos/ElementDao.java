@@ -5,16 +5,13 @@ package de.dataelementhub.dal.jooq.tables.daos;
 
 
 import de.dataelementhub.dal.jooq.enums.ElementType;
-import de.dataelementhub.dal.jooq.enums.ValidationType;
 import de.dataelementhub.dal.jooq.tables.Element;
 import de.dataelementhub.dal.jooq.tables.records.ElementRecord;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.jooq.Configuration;
-import org.jooq.JSON;
 import org.jooq.impl.DAOImpl;
 
 
@@ -88,21 +85,6 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>hidden BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfHidden(Boolean lowerInclusive, Boolean upperInclusive) {
-        return fetchRange(Element.ELEMENT.HIDDEN, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>hidden IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByHidden(Boolean... values) {
-        return fetch(Element.ELEMENT.HIDDEN, values);
-    }
-
-    /**
      * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
@@ -133,156 +115,6 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
     }
 
     /**
-     * Fetch records that have <code>scoped_identifier_id BETWEEN lowerInclusive
-     * AND upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfScopedIdentifierId(Integer lowerInclusive, Integer upperInclusive) {
-        return fetchRange(Element.ELEMENT.SCOPED_IDENTIFIER_ID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>scoped_identifier_id IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByScopedIdentifierId(Integer... values) {
-        return fetch(Element.ELEMENT.SCOPED_IDENTIFIER_ID, values);
-    }
-
-    /**
-     * Fetch records that have <code>code BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfCode(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.CODE, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>code IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByCode(String... values) {
-        return fetch(Element.ELEMENT.CODE, values);
-    }
-
-    /**
-     * Fetch records that have <code>is_valid BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfIsValid(Boolean lowerInclusive, Boolean upperInclusive) {
-        return fetchRange(Element.ELEMENT.IS_VALID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>is_valid IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByIsValid(Boolean... values) {
-        return fetch(Element.ELEMENT.IS_VALID, values);
-    }
-
-    /**
-     * Fetch records that have <code>format BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfFormat(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.FORMAT, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>format IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByFormat(String... values) {
-        return fetch(Element.ELEMENT.FORMAT, values);
-    }
-
-    /**
-     * Fetch records that have <code>datatype BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfDatatype(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.DATATYPE, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>datatype IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByDatatype(String... values) {
-        return fetch(Element.ELEMENT.DATATYPE, values);
-    }
-
-    /**
-     * Fetch records that have <code>unit_of_measure BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfUnitOfMeasure(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.UNIT_OF_MEASURE, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>unit_of_measure IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByUnitOfMeasure(String... values) {
-        return fetch(Element.ELEMENT.UNIT_OF_MEASURE, values);
-    }
-
-    /**
-     * Fetch records that have <code>maximum_characters BETWEEN lowerInclusive
-     * AND upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfMaximumCharacters(Integer lowerInclusive, Integer upperInclusive) {
-        return fetchRange(Element.ELEMENT.MAXIMUM_CHARACTERS, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>maximum_characters IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByMaximumCharacters(Integer... values) {
-        return fetch(Element.ELEMENT.MAXIMUM_CHARACTERS, values);
-    }
-
-    /**
-     * Fetch records that have <code>description BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfDescription(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.DESCRIPTION, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>description IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByDescription(String... values) {
-        return fetch(Element.ELEMENT.DESCRIPTION, values);
-    }
-
-    /**
-     * Fetch records that have <code>validation_type BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfValidationType(ValidationType lowerInclusive, ValidationType upperInclusive) {
-        return fetchRange(Element.ELEMENT.VALIDATION_TYPE, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>validation_type IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByValidationType(ValidationType... values) {
-        return fetch(Element.ELEMENT.VALIDATION_TYPE, values);
-    }
-
-    /**
-     * Fetch records that have <code>validation_data BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfValidationData(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.VALIDATION_DATA, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>validation_data IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByValidationData(String... values) {
-        return fetch(Element.ELEMENT.VALIDATION_DATA, values);
-    }
-
-    /**
      * Fetch records that have <code>permitted_value BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
@@ -295,50 +127,5 @@ public class ElementDao extends DAOImpl<ElementRecord, de.dataelementhub.dal.joo
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByPermittedValue(String... values) {
         return fetch(Element.ELEMENT.PERMITTED_VALUE, values);
-    }
-
-    /**
-     * Fetch records that have <code>data BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfData(JSON lowerInclusive, JSON upperInclusive) {
-        return fetchRange(Element.ELEMENT.DATA, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>data IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByData(JSON... values) {
-        return fetch(Element.ELEMENT.DATA, values);
-    }
-
-    /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
-        return fetchRange(Element.ELEMENT.UUID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>uuid IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByUuid(UUID... values) {
-        return fetch(Element.ELEMENT.UUID, values);
-    }
-
-    /**
-     * Fetch records that have <code>external_id BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchRangeOfExternalId(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Element.ELEMENT.EXTERNAL_ID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>external_id IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Element> fetchByExternalId(String... values) {
-        return fetch(Element.ELEMENT.EXTERNAL_ID, values);
     }
 }

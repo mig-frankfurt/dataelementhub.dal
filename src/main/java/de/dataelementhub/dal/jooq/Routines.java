@@ -4,10 +4,7 @@
 package de.dataelementhub.dal.jooq;
 
 
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.routines.GetElementByUrn;
-import de.dataelementhub.dal.jooq.routines.GetNamespaceScopedIdentifierByUrn;
-import de.dataelementhub.dal.jooq.routines.Getelementtype;
 import de.dataelementhub.dal.jooq.routines.ToTsvectorMultilang;
 import de.dataelementhub.dal.jooq.routines.Urn;
 import de.dataelementhub.dal.jooq.tables.GetDefinitionByUrn;
@@ -68,84 +65,6 @@ public class Routines {
     ) {
         GetElementByUrn f = new GetElementByUrn();
         f.setUrn(urn);
-
-        return f.asField();
-    }
-
-    /**
-     * Call <code>public.get_namespace_scoped_identifier_by_urn</code>
-     */
-    public static ScopedIdentifierRecord getNamespaceScopedIdentifierByUrn(
-          Configuration configuration
-        , String urn
-    ) {
-        GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
-        f.setUrn(urn);
-
-        f.execute(configuration);
-        return f.getReturnValue();
-    }
-
-    /**
-     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a
-     * field.
-     */
-    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(
-          String urn
-    ) {
-        GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
-        f.setUrn(urn);
-
-        return f.asField();
-    }
-
-    /**
-     * Get <code>public.get_namespace_scoped_identifier_by_urn</code> as a
-     * field.
-     */
-    public static Field<ScopedIdentifierRecord> getNamespaceScopedIdentifierByUrn(
-          Field<String> urn
-    ) {
-        GetNamespaceScopedIdentifierByUrn f = new GetNamespaceScopedIdentifierByUrn();
-        f.setUrn(urn);
-
-        return f.asField();
-    }
-
-    /**
-     * Call <code>public.getelementtype</code>
-     */
-    public static ElementType getelementtype(
-          Configuration configuration
-        , Integer id
-    ) {
-        Getelementtype f = new Getelementtype();
-        f.setId(id);
-
-        f.execute(configuration);
-        return f.getReturnValue();
-    }
-
-    /**
-     * Get <code>public.getelementtype</code> as a field.
-     */
-    public static Field<ElementType> getelementtype(
-          Integer id
-    ) {
-        Getelementtype f = new Getelementtype();
-        f.setId(id);
-
-        return f.asField();
-    }
-
-    /**
-     * Get <code>public.getelementtype</code> as a field.
-     */
-    public static Field<ElementType> getelementtype(
-          Field<Integer> id
-    ) {
-        Getelementtype f = new Getelementtype();
-        f.setId(id);
 
         return f.asField();
     }

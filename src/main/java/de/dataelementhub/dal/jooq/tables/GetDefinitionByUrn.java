@@ -7,16 +7,11 @@ package de.dataelementhub.dal.jooq.tables;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
 
-import java.util.function.Function;
-
 import org.jooq.Field;
-import org.jooq.Function6;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Records;
 import org.jooq.Row6;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -130,11 +125,6 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
         return new GetDefinitionByUrn(alias, this, parameters);
     }
 
-    @Override
-    public GetDefinitionByUrn as(Table<?> alias) {
-        return new GetDefinitionByUrn(alias.getQualifiedName(), this, parameters);
-    }
-
     /**
      * Rename this table
      */
@@ -149,14 +139,6 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
     @Override
     public GetDefinitionByUrn rename(Name name) {
         return new GetDefinitionByUrn(name, null, parameters);
-    }
-
-    /**
-     * Rename this table
-     */
-    @Override
-    public GetDefinitionByUrn rename(Table<?> name) {
-        return new GetDefinitionByUrn(name.getQualifiedName(), null, parameters);
     }
 
     // -------------------------------------------------------------------------
@@ -192,19 +174,5 @@ public class GetDefinitionByUrn extends TableImpl<GetDefinitionByUrnRecord> {
         });
 
         return aliased() ? result.as(getUnqualifiedName()) : result;
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
     }
 }

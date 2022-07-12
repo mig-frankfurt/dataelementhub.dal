@@ -4,9 +4,8 @@
 package de.dataelementhub.dal.jooq;
 
 
-import de.dataelementhub.dal.jooq.tables.ConceptElementAssociations;
-import de.dataelementhub.dal.jooq.tables.Concepts;
-import de.dataelementhub.dal.jooq.tables.Config;
+import de.dataelementhub.dal.jooq.tables.Concept;
+import de.dataelementhub.dal.jooq.tables.ConceptElementAssociation;
 import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.Element;
@@ -20,14 +19,15 @@ import de.dataelementhub.dal.jooq.tables.Hierarchy;
 import de.dataelementhub.dal.jooq.tables.IdentifiedElement;
 import de.dataelementhub.dal.jooq.tables.Import;
 import de.dataelementhub.dal.jooq.tables.ListviewElement;
-import de.dataelementhub.dal.jooq.tables.PermissibleCode;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
+import de.dataelementhub.dal.jooq.tables.ScopedIdentifierSimplified;
 import de.dataelementhub.dal.jooq.tables.Slot;
 import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
 import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
+import de.dataelementhub.dal.jooq.tables.Validation;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
 import de.dataelementhub.dal.jooq.tables.records.GetDefinitionByUrnRecord;
 import de.dataelementhub.dal.jooq.tables.records.GetScopedIdentifierByUrnRecord;
@@ -47,19 +47,14 @@ import org.jooq.Result;
 public class Tables {
 
     /**
-     * The table <code>public.concept_element_associations</code>.
+     * The table <code>public.concept</code>.
      */
-    public static final ConceptElementAssociations CONCEPT_ELEMENT_ASSOCIATIONS = ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS;
+    public static final Concept CONCEPT = Concept.CONCEPT;
 
     /**
-     * The table <code>public.concepts</code>.
+     * The table <code>public.concept_element_association</code>.
      */
-    public static final Concepts CONCEPTS = Concepts.CONCEPTS;
-
-    /**
-     * The table <code>public.config</code>.
-     */
-    public static final Config CONFIG = Config.CONFIG;
+    public static final ConceptElementAssociation CONCEPT_ELEMENT_ASSOCIATION = ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION;
 
     /**
      * The table <code>public.definition</code>.
@@ -303,11 +298,6 @@ public class Tables {
     public static final ListviewElement LISTVIEW_ELEMENT = ListviewElement.LISTVIEW_ELEMENT;
 
     /**
-     * The table <code>public.permissible_code</code>.
-     */
-    public static final PermissibleCode PERMISSIBLE_CODE = PermissibleCode.PERMISSIBLE_CODE;
-
-    /**
      * The table <code>public.scoped_identifier</code>.
      */
     public static final ScopedIdentifier SCOPED_IDENTIFIER = ScopedIdentifier.SCOPED_IDENTIFIER;
@@ -316,6 +306,11 @@ public class Tables {
      * The table <code>public.scoped_identifier_hierarchy</code>.
      */
     public static final ScopedIdentifierHierarchy SCOPED_IDENTIFIER_HIERARCHY = ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY;
+
+    /**
+     * The table <code>public.scoped_identifier_simplified</code>.
+     */
+    public static final ScopedIdentifierSimplified SCOPED_IDENTIFIER_SIMPLIFIED = ScopedIdentifierSimplified.SCOPED_IDENTIFIER_SIMPLIFIED;
 
     /**
      * The table <code>public.slot</code>.
@@ -341,6 +336,11 @@ public class Tables {
      * The table <code>public.user_source_credentials</code>.
      */
     public static final UserSourceCredentials USER_SOURCE_CREDENTIALS = UserSourceCredentials.USER_SOURCE_CREDENTIALS;
+
+    /**
+     * The table <code>public.validation</code>.
+     */
+    public static final Validation VALIDATION = Validation.VALIDATION;
 
     /**
      * The table <code>public.value_domain_permissible_value</code>.

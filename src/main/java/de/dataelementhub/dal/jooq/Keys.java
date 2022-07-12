@@ -4,15 +4,13 @@
 package de.dataelementhub.dal.jooq;
 
 
-import de.dataelementhub.dal.jooq.tables.ConceptElementAssociations;
-import de.dataelementhub.dal.jooq.tables.Concepts;
-import de.dataelementhub.dal.jooq.tables.Config;
+import de.dataelementhub.dal.jooq.tables.Concept;
+import de.dataelementhub.dal.jooq.tables.ConceptElementAssociation;
 import de.dataelementhub.dal.jooq.tables.Definition;
 import de.dataelementhub.dal.jooq.tables.DehubUser;
 import de.dataelementhub.dal.jooq.tables.Element;
 import de.dataelementhub.dal.jooq.tables.ElementRelation;
 import de.dataelementhub.dal.jooq.tables.Import;
-import de.dataelementhub.dal.jooq.tables.PermissibleCode;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifierHierarchy;
 import de.dataelementhub.dal.jooq.tables.Slot;
@@ -20,16 +18,15 @@ import de.dataelementhub.dal.jooq.tables.Source;
 import de.dataelementhub.dal.jooq.tables.Staging;
 import de.dataelementhub.dal.jooq.tables.UserNamespaceAccess;
 import de.dataelementhub.dal.jooq.tables.UserSourceCredentials;
+import de.dataelementhub.dal.jooq.tables.Validation;
 import de.dataelementhub.dal.jooq.tables.ValueDomainPermissibleValue;
-import de.dataelementhub.dal.jooq.tables.records.ConceptElementAssociationsRecord;
-import de.dataelementhub.dal.jooq.tables.records.ConceptsRecord;
-import de.dataelementhub.dal.jooq.tables.records.ConfigRecord;
+import de.dataelementhub.dal.jooq.tables.records.ConceptElementAssociationRecord;
+import de.dataelementhub.dal.jooq.tables.records.ConceptRecord;
 import de.dataelementhub.dal.jooq.tables.records.DefinitionRecord;
 import de.dataelementhub.dal.jooq.tables.records.DehubUserRecord;
 import de.dataelementhub.dal.jooq.tables.records.ElementRecord;
 import de.dataelementhub.dal.jooq.tables.records.ElementRelationRecord;
 import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
-import de.dataelementhub.dal.jooq.tables.records.PermissibleCodeRecord;
 import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierHierarchyRecord;
 import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 import de.dataelementhub.dal.jooq.tables.records.SlotRecord;
@@ -37,6 +34,7 @@ import de.dataelementhub.dal.jooq.tables.records.SourceRecord;
 import de.dataelementhub.dal.jooq.tables.records.StagingRecord;
 import de.dataelementhub.dal.jooq.tables.records.UserNamespaceAccessRecord;
 import de.dataelementhub.dal.jooq.tables.records.UserSourceCredentialsRecord;
+import de.dataelementhub.dal.jooq.tables.records.ValidationRecord;
 import de.dataelementhub.dal.jooq.tables.records.ValueDomainPermissibleValueRecord;
 
 import org.jooq.ForeignKey;
@@ -57,11 +55,9 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<ConceptElementAssociationsRecord> CONCEPT_ELEMENT_ASSOCIATIONS_PKEY = Internal.createUniqueKey(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS, DSL.name("concept_element_associations_pkey"), new TableField[] { ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.CONCEPT_ID, ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.SCOPEDIDENTIFIER_ID }, true);
-    public static final UniqueKey<ConceptsRecord> CONCEPTS_PKEY = Internal.createUniqueKey(Concepts.CONCEPTS, DSL.name("concepts_pkey"), new TableField[] { Concepts.CONCEPTS.ID }, true);
-    public static final UniqueKey<ConceptsRecord> CONCEPTS_SOURCE_ID_SYSTEM_VERSION_TERM_TEXT_KEY = Internal.createUniqueKey(Concepts.CONCEPTS, DSL.name("concepts_source_id_system_version_term_text_key"), new TableField[] { Concepts.CONCEPTS.SOURCE_ID, Concepts.CONCEPTS.SYSTEM, Concepts.CONCEPTS.VERSION, Concepts.CONCEPTS.TERM, Concepts.CONCEPTS.TEXT }, true);
-    public static final UniqueKey<ConfigRecord> CONFIG_NAME_KEY = Internal.createUniqueKey(Config.CONFIG, DSL.name("config_name_key"), new TableField[] { Config.CONFIG.NAME }, true);
-    public static final UniqueKey<ConfigRecord> CONFIG_PKEY = Internal.createUniqueKey(Config.CONFIG, DSL.name("config_pkey"), new TableField[] { Config.CONFIG.ID }, true);
+    public static final UniqueKey<ConceptRecord> CONCEPTS_PKEY = Internal.createUniqueKey(Concept.CONCEPT, DSL.name("concepts_pkey"), new TableField[] { Concept.CONCEPT.ID }, true);
+    public static final UniqueKey<ConceptRecord> CONCEPTS_SOURCE_ID_SYSTEM_VERSION_TERM_TEXT_KEY = Internal.createUniqueKey(Concept.CONCEPT, DSL.name("concepts_source_id_system_version_term_text_key"), new TableField[] { Concept.CONCEPT.SOURCE_ID, Concept.CONCEPT.SYSTEM, Concept.CONCEPT.VERSION, Concept.CONCEPT.TERM, Concept.CONCEPT.TEXT }, true);
+    public static final UniqueKey<ConceptElementAssociationRecord> CONCEPT_ELEMENT_ASSOCIATIONS_PKEY = Internal.createUniqueKey(ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION, DSL.name("concept_element_associations_pkey"), new TableField[] { ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION.CONCEPT_ID, ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION.SCOPEDIDENTIFIER_ID }, true);
     public static final UniqueKey<DefinitionRecord> DEFINITION_PKEY = Internal.createUniqueKey(Definition.DEFINITION, DSL.name("definition_pkey"), new TableField[] { Definition.DEFINITION.ID }, true);
     public static final UniqueKey<DehubUserRecord> DEHUB_USER_AUTH_ID_KEY = Internal.createUniqueKey(DehubUser.DEHUB_USER, DSL.name("dehub_user_auth_id_key"), new TableField[] { DehubUser.DEHUB_USER.AUTH_ID }, true);
     public static final UniqueKey<DehubUserRecord> DEHUB_USER_PKEY = Internal.createUniqueKey(DehubUser.DEHUB_USER, DSL.name("dehub_user_pkey"), new TableField[] { DehubUser.DEHUB_USER.ID }, true);
@@ -69,7 +65,6 @@ public class Keys {
     public static final UniqueKey<ElementRelationRecord> ELEMENT_RELATION_PKEY = Internal.createUniqueKey(ElementRelation.ELEMENT_RELATION, DSL.name("element_relation_pkey"), new TableField[] { ElementRelation.ELEMENT_RELATION.LEFT_URN, ElementRelation.ELEMENT_RELATION.LEFT_SOURCE, ElementRelation.ELEMENT_RELATION.RIGHT_URN, ElementRelation.ELEMENT_RELATION.RIGHT_SOURCE }, true);
     public static final UniqueKey<ImportRecord> IMPORT_PKEY = Internal.createUniqueKey(Import.IMPORT, DSL.name("import_pkey"), new TableField[] { Import.IMPORT.ID }, true);
     public static final UniqueKey<ScopedIdentifierRecord> SCOPED_IDENTIFIER_PKEY = Internal.createUniqueKey(ScopedIdentifier.SCOPED_IDENTIFIER, DSL.name("scoped_identifier_pkey"), new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
-    public static final UniqueKey<ScopedIdentifierRecord> UNIQUE_ELEMENT_TYPE_IDENTIFIER = Internal.createUniqueKey(ScopedIdentifier.SCOPED_IDENTIFIER, DSL.name("unique_element_type_identifier"), new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_TYPE, ScopedIdentifier.SCOPED_IDENTIFIER.IDENTIFIER, ScopedIdentifier.SCOPED_IDENTIFIER.VERSION, ScopedIdentifier.SCOPED_IDENTIFIER.NAMESPACE_ID }, true);
     public static final UniqueKey<ScopedIdentifierHierarchyRecord> SCOPED_IDENTIFIER_HIERARCHY_PKEY = Internal.createUniqueKey(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY, DSL.name("scoped_identifier_hierarchy_pkey"), new TableField[] { ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUPER_ID, ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUB_ID }, true);
     public static final UniqueKey<SlotRecord> SLOT_PKEY = Internal.createUniqueKey(Slot.SLOT, DSL.name("slot_pkey"), new TableField[] { Slot.SLOT.ID }, true);
     public static final UniqueKey<SourceRecord> SOURCE_BASE_URL_KEY = Internal.createUniqueKey(Source.SOURCE, DSL.name("source_base_url_key"), new TableField[] { Source.SOURCE.BASE_URL }, true);
@@ -80,34 +75,39 @@ public class Keys {
     public static final UniqueKey<UserNamespaceAccessRecord> USER_NAMESPACE_ACCESS_UNIQUE = Internal.createUniqueKey(UserNamespaceAccess.USER_NAMESPACE_ACCESS, DSL.name("user_namespace_access_unique"), new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.USER_ID, UserNamespaceAccess.USER_NAMESPACE_ACCESS.NAMESPACE_ID }, true);
     public static final UniqueKey<UserSourceCredentialsRecord> CREDENTIALS_UNIQUE = Internal.createUniqueKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, DSL.name("credentials_unique"), new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID, UserSourceCredentials.USER_SOURCE_CREDENTIALS.CREDENTIAL, UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, true);
     public static final UniqueKey<UserSourceCredentialsRecord> USER_SOURCE_CREDENTIALS_PKEY = Internal.createUniqueKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, DSL.name("user_source_credentials_pkey"), new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID, UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, true);
+    public static final UniqueKey<ValidationRecord> VALIDATION_PKEY = Internal.createUniqueKey(Validation.VALIDATION, DSL.name("validation_pkey"), new TableField[] { Validation.VALIDATION.ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<ConceptElementAssociationsRecord, ConceptsRecord> CONCEPT_ELEMENT_ASSOCIATIONS__CONCEPT_ID_FKEY = Internal.createForeignKey(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS, DSL.name("concept_id_fkey"), new TableField[] { ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.CONCEPT_ID }, Keys.CONCEPTS_PKEY, new TableField[] { Concepts.CONCEPTS.ID }, true);
-    public static final ForeignKey<ConceptElementAssociationsRecord, ScopedIdentifierRecord> CONCEPT_ELEMENT_ASSOCIATIONS__SCOPEDIDENTIFIER_ID_FKEY = Internal.createForeignKey(ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS, DSL.name("scopedidentifier_id_fkey"), new TableField[] { ConceptElementAssociations.CONCEPT_ELEMENT_ASSOCIATIONS.SCOPEDIDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
-    public static final ForeignKey<ConceptsRecord, SourceRecord> CONCEPTS__SOURCE_ID_FKEY = Internal.createForeignKey(Concepts.CONCEPTS, DSL.name("source_id_fkey"), new TableField[] { Concepts.CONCEPTS.SOURCE_ID }, Keys.SOURCE_PKEY, new TableField[] { Source.SOURCE.ID }, true);
+    public static final ForeignKey<ConceptRecord, DehubUserRecord> CONCEPT__CONCEPT_CREATED_BY_FKEY = Internal.createForeignKey(Concept.CONCEPT, DSL.name("concept_created_by_fkey"), new TableField[] { Concept.CONCEPT.CREATED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
+    public static final ForeignKey<ConceptRecord, SourceRecord> CONCEPT__SOURCE_ID_FKEY = Internal.createForeignKey(Concept.CONCEPT, DSL.name("source_id_fkey"), new TableField[] { Concept.CONCEPT.SOURCE_ID }, Keys.SOURCE_PKEY, new TableField[] { Source.SOURCE.ID }, true);
+    public static final ForeignKey<ConceptElementAssociationRecord, DehubUserRecord> CONCEPT_ELEMENT_ASSOCIATION__CONCEPT_ELEMENT_ASSOCIATION_CREATED_BY_FKEY = Internal.createForeignKey(ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION, DSL.name("concept_element_association_created_by_fkey"), new TableField[] { ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION.CREATED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
+    public static final ForeignKey<ConceptElementAssociationRecord, ConceptRecord> CONCEPT_ELEMENT_ASSOCIATION__CONCEPT_ID_FKEY = Internal.createForeignKey(ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION, DSL.name("concept_id_fkey"), new TableField[] { ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION.CONCEPT_ID }, Keys.CONCEPTS_PKEY, new TableField[] { Concept.CONCEPT.ID }, true);
+    public static final ForeignKey<ConceptElementAssociationRecord, ScopedIdentifierRecord> CONCEPT_ELEMENT_ASSOCIATION__SCOPEDIDENTIFIER_ID_FKEY = Internal.createForeignKey(ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION, DSL.name("scopedidentifier_id_fkey"), new TableField[] { ConceptElementAssociation.CONCEPT_ELEMENT_ASSOCIATION.SCOPEDIDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<DefinitionRecord, ElementRecord> DEFINITION__DEFINITION_ELEMENT_ID_FKEY = Internal.createForeignKey(Definition.DEFINITION, DSL.name("definition_element_id_fkey"), new TableField[] { Definition.DEFINITION.ELEMENT_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<DefinitionRecord, ScopedIdentifierRecord> DEFINITION__DEFINITION_SCOPEDIDENTIFIER_ID_FKEY = Internal.createForeignKey(Definition.DEFINITION, DSL.name("definition_scopedidentifier_id_fkey"), new TableField[] { Definition.DEFINITION.SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<ElementRecord, DehubUserRecord> ELEMENT__ELEMENT_CREATED_BY_FKEY = Internal.createForeignKey(Element.ELEMENT, DSL.name("element_created_by_fkey"), new TableField[] { Element.ELEMENT.CREATED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
     public static final ForeignKey<ElementRecord, ElementRecord> ELEMENT__ELEMENT_ELEMENT_ID_FKEY = Internal.createForeignKey(Element.ELEMENT, DSL.name("element_element_id_fkey"), new TableField[] { Element.ELEMENT.ELEMENT_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
-    public static final ForeignKey<ElementRecord, ScopedIdentifierRecord> ELEMENT__ELEMENT_SCOPED_IDENTIFIER_ID_FKEY = Internal.createForeignKey(Element.ELEMENT, DSL.name("element_scoped_identifier_id_fkey"), new TableField[] { Element.ELEMENT.SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<ElementRelationRecord, SourceRecord> ELEMENT_RELATION__LEFT_SOURCE_ID_FKEY = Internal.createForeignKey(ElementRelation.ELEMENT_RELATION, DSL.name("left_source_id_fkey"), new TableField[] { ElementRelation.ELEMENT_RELATION.LEFT_SOURCE }, Keys.SOURCE_PKEY, new TableField[] { Source.SOURCE.ID }, true);
     public static final ForeignKey<ElementRelationRecord, SourceRecord> ELEMENT_RELATION__RIGHT_SOURCE_ID_FKEY = Internal.createForeignKey(ElementRelation.ELEMENT_RELATION, DSL.name("right_source_id_fkey"), new TableField[] { ElementRelation.ELEMENT_RELATION.RIGHT_SOURCE }, Keys.SOURCE_PKEY, new TableField[] { Source.SOURCE.ID }, true);
-    public static final ForeignKey<PermissibleCodeRecord, ElementRecord> PERMISSIBLE_CODE__PERMISSIBLE_CODE_CATALOG_ID_FKEY = Internal.createForeignKey(PermissibleCode.PERMISSIBLE_CODE, DSL.name("permissible_code_catalog_id_fkey"), new TableField[] { PermissibleCode.PERMISSIBLE_CODE.CATALOG_VALUE_DOMAIN_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
-    public static final ForeignKey<PermissibleCodeRecord, ScopedIdentifierRecord> PERMISSIBLE_CODE__PERMISSIBLE_CODE_CODE_SCOPED_IDENTIFIER_ID_FKEY = Internal.createForeignKey(PermissibleCode.PERMISSIBLE_CODE, DSL.name("permissible_code_code_scoped_identifier_id_fkey"), new TableField[] { PermissibleCode.PERMISSIBLE_CODE.CODE_SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
+    public static final ForeignKey<ImportRecord, DehubUserRecord> IMPORT__IMPORT_CREATED_BY_FKEY = Internal.createForeignKey(Import.IMPORT, DSL.name("import_created_by_fkey"), new TableField[] { Import.IMPORT.CREATED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
+    public static final ForeignKey<ImportRecord, ElementRecord> IMPORT__IMPORT_NAMESPACE_ID_FKEY = Internal.createForeignKey(Import.IMPORT, DSL.name("import_namespace_id_fkey"), new TableField[] { Import.IMPORT.NAMESPACE_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<ScopedIdentifierRecord, DehubUserRecord> SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_CREATED_BY_FKEY = Internal.createForeignKey(ScopedIdentifier.SCOPED_IDENTIFIER, DSL.name("scoped_identifier_created_by_fkey"), new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.CREATED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
     public static final ForeignKey<ScopedIdentifierRecord, ElementRecord> SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_ELEMENT_ID_FKEY = Internal.createForeignKey(ScopedIdentifier.SCOPED_IDENTIFIER, DSL.name("scoped_identifier_element_id_fkey"), new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<ScopedIdentifierRecord, ElementRecord> SCOPED_IDENTIFIER__SCOPED_IDENTIFIER_NAMESPACE_ID2_FKEY = Internal.createForeignKey(ScopedIdentifier.SCOPED_IDENTIFIER, DSL.name("scoped_identifier_namespace_id2_fkey"), new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.NAMESPACE_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<ScopedIdentifierHierarchyRecord, ScopedIdentifierRecord> SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUB_ID_FKEY = Internal.createForeignKey(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY, DSL.name("scoped_identifier_hierarchy_sub_id_fkey"), new TableField[] { ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUB_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<ScopedIdentifierHierarchyRecord, ScopedIdentifierRecord> SCOPED_IDENTIFIER_HIERARCHY__SCOPED_IDENTIFIER_HIERARCHY_SUPER_ID_FKEY = Internal.createForeignKey(ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY, DSL.name("scoped_identifier_hierarchy_super_id_fkey"), new TableField[] { ScopedIdentifierHierarchy.SCOPED_IDENTIFIER_HIERARCHY.SUPER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<SlotRecord, ScopedIdentifierRecord> SLOT__SLOT_SCOPED_IDENTIFIER_ID_FKEY = Internal.createForeignKey(Slot.SLOT, DSL.name("slot_scoped_identifier_id_fkey"), new TableField[] { Slot.SLOT.SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
+    public static final ForeignKey<StagingRecord, DehubUserRecord> STAGING__STAGING_CONVERTED_BY_FKEY = Internal.createForeignKey(Staging.STAGING, DSL.name("staging_converted_by_fkey"), new TableField[] { Staging.STAGING.CONVERTED_BY }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
     public static final ForeignKey<StagingRecord, ImportRecord> STAGING__STAGING_IMPORT_FKEY = Internal.createForeignKey(Staging.STAGING, DSL.name("staging_import_fkey"), new TableField[] { Staging.STAGING.IMPORT_ID }, Keys.IMPORT_PKEY, new TableField[] { Import.IMPORT.ID }, true);
+    public static final ForeignKey<StagingRecord, ScopedIdentifierRecord> STAGING__STAGING_SCOPED_IDENTIFIER_ID_FKEY = Internal.createForeignKey(Staging.STAGING, DSL.name("staging_scoped_identifier_id_fkey"), new TableField[] { Staging.STAGING.SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<UserNamespaceAccessRecord, ElementRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_NAMESPACE_FKEY = Internal.createForeignKey(UserNamespaceAccess.USER_NAMESPACE_ACCESS, DSL.name("user_namespace_access_namespace_fkey"), new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.NAMESPACE_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<UserNamespaceAccessRecord, DehubUserRecord> USER_NAMESPACE_ACCESS__USER_NAMESPACE_ACCESS_USER_FKEY = Internal.createForeignKey(UserNamespaceAccess.USER_NAMESPACE_ACCESS, DSL.name("user_namespace_access_user_fkey"), new TableField[] { UserNamespaceAccess.USER_NAMESPACE_ACCESS.USER_ID }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
     public static final ForeignKey<UserSourceCredentialsRecord, SourceRecord> USER_SOURCE_CREDENTIALS__SOURCE_ID_FKEY = Internal.createForeignKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, DSL.name("source_id_fkey"), new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.SOURCE_ID }, Keys.SOURCE_PKEY, new TableField[] { Source.SOURCE.ID }, true);
     public static final ForeignKey<UserSourceCredentialsRecord, DehubUserRecord> USER_SOURCE_CREDENTIALS__USER_ID_FKEY = Internal.createForeignKey(UserSourceCredentials.USER_SOURCE_CREDENTIALS, DSL.name("user_id_fkey"), new TableField[] { UserSourceCredentials.USER_SOURCE_CREDENTIALS.USER_ID }, Keys.DEHUB_USER_PKEY, new TableField[] { DehubUser.DEHUB_USER.ID }, true);
+    public static final ForeignKey<ValidationRecord, ElementRecord> VALIDATION__ELEMENT_ID_FKEY = Internal.createForeignKey(Validation.VALIDATION, DSL.name("element_id_fkey"), new TableField[] { Validation.VALIDATION.ELEMENT_ID }, Keys.ELEMENT_PKEY, new TableField[] { Element.ELEMENT.ID }, true);
     public static final ForeignKey<ValueDomainPermissibleValueRecord, ScopedIdentifierRecord> VALUE_DOMAIN_PERMISSIBLE_VALUE__VALUE_DOMAIN_PERMISSIBLE_VALU_PERMISSIBLE_VALUE_SCOPED_IDE_FKEY = Internal.createForeignKey(ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE, DSL.name("value_domain_permissible_valu_permissible_value_scoped_ide_fkey"), new TableField[] { ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE.PERMISSIBLE_VALUE_SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
     public static final ForeignKey<ValueDomainPermissibleValueRecord, ScopedIdentifierRecord> VALUE_DOMAIN_PERMISSIBLE_VALUE__VALUE_DOMAIN_PERMISSIBLE_VALU_VALUE_DOMAIN_SCOPED_IDENTIFI_FKEY = Internal.createForeignKey(ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE, DSL.name("value_domain_permissible_valu_value_domain_scoped_identifi_fkey"), new TableField[] { ValueDomainPermissibleValue.VALUE_DOMAIN_PERMISSIBLE_VALUE.VALUE_DOMAIN_SCOPED_IDENTIFIER_ID }, Keys.SCOPED_IDENTIFIER_PKEY, new TableField[] { ScopedIdentifier.SCOPED_IDENTIFIER.ID }, true);
 }

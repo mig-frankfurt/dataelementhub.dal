@@ -11,7 +11,6 @@ import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -144,21 +143,6 @@ public class ImportDao extends DAOImpl<ImportRecord, de.dataelementhub.dal.jooq.
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchByLabel(String... values) {
         return fetch(Import.IMPORT.LABEL, values);
-    }
-
-    /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
-        return fetchRange(Import.IMPORT.UUID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>uuid IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.Import> fetchByUuid(UUID... values) {
-        return fetch(Import.IMPORT.UUID, values);
     }
 
     /**

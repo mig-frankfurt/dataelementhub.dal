@@ -8,7 +8,6 @@ import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 /**
@@ -19,14 +18,13 @@ public class Import implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private Integer       id;
     private LocalDateTime createdAt;
-    private Integer createdBy;
-    private Integer namespaceId;
-    private String source;
-    private String label;
-    private UUID uuid;
-    private Integer numberOfElements;
+    private Integer       createdBy;
+    private Integer       namespaceId;
+    private String        source;
+    private String        label;
+    private Integer       numberOfElements;
     private ProcessStatus status;
 
     public Import() {}
@@ -38,20 +36,18 @@ public class Import implements Serializable {
         this.namespaceId = value.namespaceId;
         this.source = value.source;
         this.label = value.label;
-        this.uuid = value.uuid;
         this.numberOfElements = value.numberOfElements;
         this.status = value.status;
     }
 
     public Import(
-        Integer id,
+        Integer       id,
         LocalDateTime createdAt,
-        Integer createdBy,
-        Integer namespaceId,
-        String source,
-        String label,
-        UUID uuid,
-        Integer numberOfElements,
+        Integer       createdBy,
+        Integer       namespaceId,
+        String        source,
+        String        label,
+        Integer       numberOfElements,
         ProcessStatus status
     ) {
         this.id = id;
@@ -60,7 +56,6 @@ public class Import implements Serializable {
         this.namespaceId = namespaceId;
         this.source = source;
         this.label = label;
-        this.uuid = uuid;
         this.numberOfElements = numberOfElements;
         this.status = status;
     }
@@ -150,20 +145,6 @@ public class Import implements Serializable {
     }
 
     /**
-     * Getter for <code>public.import.uuid</code>.
-     */
-    public UUID getUuid() {
-        return this.uuid;
-    }
-
-    /**
-     * Setter for <code>public.import.uuid</code>.
-     */
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    /**
      * Getter for <code>public.import.number_of_elements</code>.
      */
     public Integer getNumberOfElements() {
@@ -192,88 +173,6 @@ public class Import implements Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final Import other = (Import) obj;
-        if (this.id == null) {
-            if (other.id != null)
-                return false;
-        }
-        else if (!this.id.equals(other.id))
-            return false;
-        if (this.createdAt == null) {
-            if (other.createdAt != null)
-                return false;
-        }
-        else if (!this.createdAt.equals(other.createdAt))
-            return false;
-        if (this.createdBy == null) {
-            if (other.createdBy != null)
-                return false;
-        }
-        else if (!this.createdBy.equals(other.createdBy))
-            return false;
-        if (this.namespaceId == null) {
-            if (other.namespaceId != null)
-                return false;
-        }
-        else if (!this.namespaceId.equals(other.namespaceId))
-            return false;
-        if (this.source == null) {
-            if (other.source != null)
-                return false;
-        }
-        else if (!this.source.equals(other.source))
-            return false;
-        if (this.label == null) {
-            if (other.label != null)
-                return false;
-        }
-        else if (!this.label.equals(other.label))
-            return false;
-        if (this.uuid == null) {
-            if (other.uuid != null)
-                return false;
-        }
-        else if (!this.uuid.equals(other.uuid))
-            return false;
-        if (this.numberOfElements == null) {
-            if (other.numberOfElements != null)
-                return false;
-        }
-        else if (!this.numberOfElements.equals(other.numberOfElements))
-            return false;
-        if (this.status == null) {
-            if (other.status != null)
-                return false;
-        }
-        else if (!this.status.equals(other.status))
-            return false;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
-        result = prime * result + ((this.createdAt == null) ? 0 : this.createdAt.hashCode());
-        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
-        result = prime * result + ((this.namespaceId == null) ? 0 : this.namespaceId.hashCode());
-        result = prime * result + ((this.source == null) ? 0 : this.source.hashCode());
-        result = prime * result + ((this.label == null) ? 0 : this.label.hashCode());
-        result = prime * result + ((this.uuid == null) ? 0 : this.uuid.hashCode());
-        result = prime * result + ((this.numberOfElements == null) ? 0 : this.numberOfElements.hashCode());
-        result = prime * result + ((this.status == null) ? 0 : this.status.hashCode());
-        return result;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Import (");
 
@@ -283,7 +182,6 @@ public class Import implements Serializable {
         sb.append(", ").append(namespaceId);
         sb.append(", ").append(source);
         sb.append(", ").append(label);
-        sb.append(", ").append(uuid);
         sb.append(", ").append(numberOfElements);
         sb.append(", ").append(status);
 

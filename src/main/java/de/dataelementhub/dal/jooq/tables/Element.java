@@ -8,26 +8,20 @@ import de.dataelementhub.dal.jooq.Indexes;
 import de.dataelementhub.dal.jooq.Keys;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.enums.ElementType;
-import de.dataelementhub.dal.jooq.enums.ValidationType;
 import de.dataelementhub.dal.jooq.tables.records.ElementRecord;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.jooq.Check;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function19;
 import org.jooq.Identity;
 import org.jooq.Index;
-import org.jooq.JSON;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Records;
-import org.jooq.Row19;
+import org.jooq.Row5;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -70,11 +64,6 @@ public class Element extends TableImpl<ElementRecord> {
     public final TableField<ElementRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
 
     /**
-     * The column <code>public.element.hidden</code>.
-     */
-    public final TableField<ElementRecord, Boolean> HIDDEN = createField(DSL.name("hidden"), SQLDataType.BOOLEAN, this, "");
-
-    /**
      * The column <code>public.element.created_by</code>.
      */
     public final TableField<ElementRecord, Integer> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.INTEGER, this, "");
@@ -85,74 +74,9 @@ public class Element extends TableImpl<ElementRecord> {
     public final TableField<ElementRecord, Integer> ELEMENT_ID = createField(DSL.name("element_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.element.scoped_identifier_id</code>.
-     */
-    public final TableField<ElementRecord, Integer> SCOPED_IDENTIFIER_ID = createField(DSL.name("scoped_identifier_id"), SQLDataType.INTEGER, this, "");
-
-    /**
-     * The column <code>public.element.code</code>.
-     */
-    public final TableField<ElementRecord, String> CODE = createField(DSL.name("code"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.is_valid</code>.
-     */
-    public final TableField<ElementRecord, Boolean> IS_VALID = createField(DSL.name("is_valid"), SQLDataType.BOOLEAN, this, "");
-
-    /**
-     * The column <code>public.element.format</code>.
-     */
-    public final TableField<ElementRecord, String> FORMAT = createField(DSL.name("format"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.datatype</code>.
-     */
-    public final TableField<ElementRecord, String> DATATYPE = createField(DSL.name("datatype"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.unit_of_measure</code>.
-     */
-    public final TableField<ElementRecord, String> UNIT_OF_MEASURE = createField(DSL.name("unit_of_measure"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.maximum_characters</code>.
-     */
-    public final TableField<ElementRecord, Integer> MAXIMUM_CHARACTERS = createField(DSL.name("maximum_characters"), SQLDataType.INTEGER, this, "");
-
-    /**
-     * The column <code>public.element.description</code>.
-     */
-    public final TableField<ElementRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.validation_type</code>.
-     */
-    public final TableField<ElementRecord, ValidationType> VALIDATION_TYPE = createField(DSL.name("validation_type"), SQLDataType.VARCHAR.asEnumDataType(de.dataelementhub.dal.jooq.enums.ValidationType.class), this, "");
-
-    /**
-     * The column <code>public.element.validation_data</code>.
-     */
-    public final TableField<ElementRecord, String> VALIDATION_DATA = createField(DSL.name("validation_data"), SQLDataType.CLOB, this, "");
-
-    /**
      * The column <code>public.element.permitted_value</code>.
      */
     public final TableField<ElementRecord, String> PERMITTED_VALUE = createField(DSL.name("permitted_value"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>public.element.data</code>.
-     */
-    public final TableField<ElementRecord, JSON> DATA = createField(DSL.name("data"), SQLDataType.JSON.defaultValue(DSL.field("'{}'::json", SQLDataType.JSON)), this, "");
-
-    /**
-     * The column <code>public.element.uuid</code>.
-     */
-    public final TableField<ElementRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * The column <code>public.element.external_id</code>.
-     */
-    public final TableField<ElementRecord, String> EXTERNAL_ID = createField(DSL.name("external_id"), SQLDataType.CLOB, this, "");
 
     private Element(Name alias, Table<ElementRecord> aliased) {
         this(alias, aliased, null);
@@ -209,12 +133,11 @@ public class Element extends TableImpl<ElementRecord> {
 
     @Override
     public List<ForeignKey<ElementRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.ELEMENT__ELEMENT_CREATED_BY_FKEY, Keys.ELEMENT__ELEMENT_ELEMENT_ID_FKEY, Keys.ELEMENT__ELEMENT_SCOPED_IDENTIFIER_ID_FKEY);
+        return Arrays.asList(Keys.ELEMENT__ELEMENT_CREATED_BY_FKEY, Keys.ELEMENT__ELEMENT_ELEMENT_ID_FKEY);
     }
 
     private transient DehubUser _dehubUser;
     private transient Element _element;
-    private transient ScopedIdentifier _scopedIdentifier;
 
     /**
      * Get the implicit join path to the <code>public.dehub_user</code> table.
@@ -236,25 +159,10 @@ public class Element extends TableImpl<ElementRecord> {
         return _element;
     }
 
-    /**
-     * Get the implicit join path to the <code>public.scoped_identifier</code>
-     * table.
-     */
-    public ScopedIdentifier scopedIdentifier() {
-        if (_scopedIdentifier == null)
-            _scopedIdentifier = new ScopedIdentifier(this, Keys.ELEMENT__ELEMENT_SCOPED_IDENTIFIER_ID_FKEY);
-
-        return _scopedIdentifier;
-    }
-
     @Override
     public List<Check<ElementRecord>> getChecks() {
         return Arrays.asList(
-            Internal.createCheck(this, DSL.name("catalog_check"), "(((element_type <> 'CATALOG_VALUE_DOMAIN'::element_type) OR ((format IS NOT NULL) AND (datatype IS NOT NULL) AND (maximum_characters IS NOT NULL) AND (scoped_identifier_id IS NOT NULL))))", true),
-            Internal.createCheck(this, DSL.name("code_check"), "(((element_type <> 'CODE'::element_type) OR ((code IS NOT NULL) AND (is_valid IS NOT NULL) AND (element_id IS NOT NULL))))", true),
-            Internal.createCheck(this, DSL.name("de_check"), "(((element_type <> 'DATAELEMENT'::element_type) OR (element_id IS NOT NULL)))", true),
-            Internal.createCheck(this, DSL.name("desc_check"), "(((element_type <> 'DESCRIBED_VALUE_DOMAIN'::element_type) OR ((format IS NOT NULL) AND (datatype IS NOT NULL) AND (maximum_characters IS NOT NULL) AND (validation_type IS NOT NULL))))", true),
-            Internal.createCheck(this, DSL.name("enu_check"), "(((element_type <> 'ENUMERATED_VALUE_DOMAIN'::element_type) OR ((format IS NOT NULL) AND (datatype IS NOT NULL) AND (maximum_characters IS NOT NULL))))", true)
+            Internal.createCheck(this, DSL.name("de_check"), "(((element_type <> 'DATAELEMENT'::element_type) OR (element_id IS NOT NULL)))", true)
         );
     }
 
@@ -266,11 +174,6 @@ public class Element extends TableImpl<ElementRecord> {
     @Override
     public Element as(Name alias) {
         return new Element(alias, this);
-    }
-
-    @Override
-    public Element as(Table<?> alias) {
-        return new Element(alias.getQualifiedName(), this);
     }
 
     /**
@@ -289,34 +192,12 @@ public class Element extends TableImpl<ElementRecord> {
         return new Element(name, null);
     }
 
-    /**
-     * Rename this table
-     */
-    @Override
-    public Element rename(Table<?> name) {
-        return new Element(name.getQualifiedName(), null);
-    }
-
     // -------------------------------------------------------------------------
-    // Row19 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row19<Integer, ElementType, Boolean, Integer, Integer, Integer, String, Boolean, String, String, String, Integer, String, ValidationType, String, String, JSON, java.util.UUID, String> fieldsRow() {
-        return (Row19) super.fieldsRow();
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function19<? super Integer, ? super ElementType, ? super Boolean, ? super Integer, ? super Integer, ? super Integer, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super Integer, ? super String, ? super ValidationType, ? super String, ? super String, ? super JSON, ? super java.util.UUID, ? super String, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function19<? super Integer, ? super ElementType, ? super Boolean, ? super Integer, ? super Integer, ? super Integer, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super Integer, ? super String, ? super ValidationType, ? super String, ? super String, ? super JSON, ? super java.util.UUID, ? super String, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
+    public Row5<Integer, ElementType, Integer, Integer, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

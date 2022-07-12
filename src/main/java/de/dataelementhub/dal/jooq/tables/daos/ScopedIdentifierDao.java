@@ -4,14 +4,12 @@
 package de.dataelementhub.dal.jooq.tables.daos;
 
 
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.ScopedIdentifier;
 import de.dataelementhub.dal.jooq.tables.records.ScopedIdentifierRecord;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.jooq.Configuration;
 import org.jooq.impl.DAOImpl;
@@ -72,33 +70,18 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>element_type BETWEEN lowerInclusive AND
+     * Fetch records that have <code>revision BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfElementType(ElementType lowerInclusive, ElementType upperInclusive) {
-        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_TYPE, lowerInclusive, upperInclusive);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfRevision(Integer lowerInclusive, Integer upperInclusive) {
+        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.REVISION, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>element_type IN (values)</code>
+     * Fetch records that have <code>revision IN (values)</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByElementType(ElementType... values) {
-        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.ELEMENT_TYPE, values);
-    }
-
-    /**
-     * Fetch records that have <code>version BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfVersion(Integer lowerInclusive, Integer upperInclusive) {
-        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.VERSION, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>version IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByVersion(Integer... values) {
-        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.VERSION, values);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByRevision(Integer... values) {
+        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.REVISION, values);
     }
 
     /**
@@ -114,21 +97,6 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
      */
     public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByIdentifier(Integer... values) {
         return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.IDENTIFIER, values);
-    }
-
-    /**
-     * Fetch records that have <code>url BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfUrl(String lowerInclusive, String upperInclusive) {
-        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.URL, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>url IN (values)</code>
-     */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByUrl(String... values) {
-        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.URL, values);
     }
 
     /**
@@ -192,17 +160,17 @@ public class ScopedIdentifierDao extends DAOImpl<ScopedIdentifierRecord, de.data
     }
 
     /**
-     * Fetch records that have <code>uuid BETWEEN lowerInclusive AND
+     * Fetch records that have <code>hidden BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfUuid(UUID lowerInclusive, UUID upperInclusive) {
-        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.UUID, lowerInclusive, upperInclusive);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchRangeOfHidden(Boolean lowerInclusive, Boolean upperInclusive) {
+        return fetchRange(ScopedIdentifier.SCOPED_IDENTIFIER.HIDDEN, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>uuid IN (values)</code>
+     * Fetch records that have <code>hidden IN (values)</code>
      */
-    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByUuid(UUID... values) {
-        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.UUID, values);
+    public List<de.dataelementhub.dal.jooq.tables.pojos.ScopedIdentifier> fetchByHidden(Boolean... values) {
+        return fetch(ScopedIdentifier.SCOPED_IDENTIFIER.HIDDEN, values);
     }
 }

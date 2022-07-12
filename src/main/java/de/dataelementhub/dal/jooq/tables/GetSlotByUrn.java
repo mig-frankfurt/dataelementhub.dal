@@ -7,16 +7,11 @@ package de.dataelementhub.dal.jooq.tables;
 import de.dataelementhub.dal.jooq.Public;
 import de.dataelementhub.dal.jooq.tables.records.GetSlotByUrnRecord;
 
-import java.util.function.Function;
-
 import org.jooq.Field;
-import org.jooq.Function4;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Records;
 import org.jooq.Row4;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -117,11 +112,6 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
         return new GetSlotByUrn(alias, this, parameters);
     }
 
-    @Override
-    public GetSlotByUrn as(Table<?> alias) {
-        return new GetSlotByUrn(alias.getQualifiedName(), this, parameters);
-    }
-
     /**
      * Rename this table
      */
@@ -136,14 +126,6 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
     @Override
     public GetSlotByUrn rename(Name name) {
         return new GetSlotByUrn(name, null, parameters);
-    }
-
-    /**
-     * Rename this table
-     */
-    @Override
-    public GetSlotByUrn rename(Table<?> name) {
-        return new GetSlotByUrn(name.getQualifiedName(), null, parameters);
     }
 
     // -------------------------------------------------------------------------
@@ -179,19 +161,5 @@ public class GetSlotByUrn extends TableImpl<GetSlotByUrnRecord> {
         });
 
         return aliased() ? result.as(getUnqualifiedName()) : result;
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Integer, ? super Integer, ? super String, ? super String, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
     }
 }

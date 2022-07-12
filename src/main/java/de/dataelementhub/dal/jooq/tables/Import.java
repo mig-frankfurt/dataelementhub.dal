@@ -10,18 +10,16 @@ import de.dataelementhub.dal.jooq.enums.ProcessStatus;
 import de.dataelementhub.dal.jooq.tables.records.ImportRecord;
 
 import java.time.LocalDateTime;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function9;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Records;
-import org.jooq.Row9;
+import org.jooq.Row8;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -83,11 +81,6 @@ public class Import extends TableImpl<ImportRecord> {
     public final TableField<ImportRecord, String> LABEL = createField(DSL.name("label"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>public.import.uuid</code>.
-     */
-    public final TableField<ImportRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID, this, "");
-
-    /**
      * The column <code>public.import.number_of_elements</code>.
      */
     public final TableField<ImportRecord, Integer> NUMBER_OF_ELEMENTS = createField(DSL.name("number_of_elements"), SQLDataType.INTEGER, this, "");
@@ -146,6 +139,34 @@ public class Import extends TableImpl<ImportRecord> {
     }
 
     @Override
+    public List<ForeignKey<ImportRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.IMPORT__IMPORT_CREATED_BY_FKEY, Keys.IMPORT__IMPORT_NAMESPACE_ID_FKEY);
+    }
+
+    private transient DehubUser _dehubUser;
+    private transient Element _element;
+
+    /**
+     * Get the implicit join path to the <code>public.dehub_user</code> table.
+     */
+    public DehubUser dehubUser() {
+        if (_dehubUser == null)
+            _dehubUser = new DehubUser(this, Keys.IMPORT__IMPORT_CREATED_BY_FKEY);
+
+        return _dehubUser;
+    }
+
+    /**
+     * Get the implicit join path to the <code>public.element</code> table.
+     */
+    public Element element() {
+        if (_element == null)
+            _element = new Element(this, Keys.IMPORT__IMPORT_NAMESPACE_ID_FKEY);
+
+        return _element;
+    }
+
+    @Override
     public Import as(String alias) {
         return new Import(DSL.name(alias), this);
     }
@@ -153,11 +174,6 @@ public class Import extends TableImpl<ImportRecord> {
     @Override
     public Import as(Name alias) {
         return new Import(alias, this);
-    }
-
-    @Override
-    public Import as(Table<?> alias) {
-        return new Import(alias.getQualifiedName(), this);
     }
 
     /**
@@ -176,34 +192,12 @@ public class Import extends TableImpl<ImportRecord> {
         return new Import(name, null);
     }
 
-    /**
-     * Rename this table
-     */
-    @Override
-    public Import rename(Table<?> name) {
-        return new Import(name.getQualifiedName(), null);
-    }
-
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Integer, LocalDateTime, Integer, Integer, String, String, java.util.UUID, Integer, ProcessStatus> fieldsRow() {
-        return (Row9) super.fieldsRow();
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function9<? super Integer, ? super LocalDateTime, ? super Integer, ? super Integer, ? super String, ? super String, ? super java.util.UUID, ? super Integer, ? super ProcessStatus, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function9<? super Integer, ? super LocalDateTime, ? super Integer, ? super Integer, ? super String, ? super String, ? super java.util.UUID, ? super Integer, ? super ProcessStatus, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
+    public Row8<Integer, LocalDateTime, Integer, Integer, String, String, Integer, ProcessStatus> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

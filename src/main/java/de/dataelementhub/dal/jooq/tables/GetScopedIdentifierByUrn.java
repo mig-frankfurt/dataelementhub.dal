@@ -5,20 +5,14 @@ package de.dataelementhub.dal.jooq.tables;
 
 
 import de.dataelementhub.dal.jooq.Public;
-import de.dataelementhub.dal.jooq.enums.ElementType;
 import de.dataelementhub.dal.jooq.enums.Status;
 import de.dataelementhub.dal.jooq.tables.records.GetScopedIdentifierByUrnRecord;
 
-import java.util.function.Function;
-
 import org.jooq.Field;
-import org.jooq.Function10;
 import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Records;
-import org.jooq.Row10;
+import org.jooq.Row8;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -55,24 +49,14 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
     public final TableField<GetScopedIdentifierByUrnRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true).defaultValue(DSL.field("nextval('scoped_identifier_id_seq'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
-     * The column <code>public.get_scoped_identifier_by_urn.element_type</code>.
+     * The column <code>public.get_scoped_identifier_by_urn.revision</code>.
      */
-    public final TableField<GetScopedIdentifierByUrnRecord, ElementType> ELEMENT_TYPE = createField(DSL.name("element_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(de.dataelementhub.dal.jooq.enums.ElementType.class), this, "");
-
-    /**
-     * The column <code>public.get_scoped_identifier_by_urn.version</code>.
-     */
-    public final TableField<GetScopedIdentifierByUrnRecord, Integer> VERSION = createField(DSL.name("version"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<GetScopedIdentifierByUrnRecord, Integer> REVISION = createField(DSL.name("revision"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.get_scoped_identifier_by_urn.identifier</code>.
      */
     public final TableField<GetScopedIdentifierByUrnRecord, Integer> IDENTIFIER = createField(DSL.name("identifier"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>public.get_scoped_identifier_by_urn.url</code>.
-     */
-    public final TableField<GetScopedIdentifierByUrnRecord, String> URL = createField(DSL.name("url"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.get_scoped_identifier_by_urn.created_by</code>.
@@ -95,9 +79,9 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
     public final TableField<GetScopedIdentifierByUrnRecord, Integer> NAMESPACE_ID = createField(DSL.name("namespace_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>public.get_scoped_identifier_by_urn.uuid</code>.
+     * The column <code>public.get_scoped_identifier_by_urn.hidden</code>.
      */
-    public final TableField<GetScopedIdentifierByUrnRecord, java.util.UUID> UUID = createField(DSL.name("uuid"), SQLDataType.UUID.nullable(false), this, "");
+    public final TableField<GetScopedIdentifierByUrnRecord, Boolean> HIDDEN = createField(DSL.name("hidden"), SQLDataType.BOOLEAN, this, "");
 
     private GetScopedIdentifierByUrn(Name alias, Table<GetScopedIdentifierByUrnRecord> aliased) {
         this(alias, aliased, new Field[] {
@@ -152,11 +136,6 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
         return new GetScopedIdentifierByUrn(alias, this, parameters);
     }
 
-    @Override
-    public GetScopedIdentifierByUrn as(Table<?> alias) {
-        return new GetScopedIdentifierByUrn(alias.getQualifiedName(), this, parameters);
-    }
-
     /**
      * Rename this table
      */
@@ -173,21 +152,13 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
         return new GetScopedIdentifierByUrn(name, null, parameters);
     }
 
-    /**
-     * Rename this table
-     */
-    @Override
-    public GetScopedIdentifierByUrn rename(Table<?> name) {
-        return new GetScopedIdentifierByUrn(name.getQualifiedName(), null, parameters);
-    }
-
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, ElementType, Integer, Integer, String, Integer, Status, Integer, Integer, java.util.UUID> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row8<Integer, Integer, Integer, Integer, Status, Integer, Integer, Boolean> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**
@@ -214,19 +185,5 @@ public class GetScopedIdentifierByUrn extends TableImpl<GetScopedIdentifierByUrn
         });
 
         return aliased() ? result.as(getUnqualifiedName()) : result;
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Integer, ? super ElementType, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Status, ? super Integer, ? super Integer, ? super java.util.UUID, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
     }
 }

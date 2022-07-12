@@ -12,18 +12,14 @@ import de.dataelementhub.dal.jooq.tables.records.StagingRecord;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function10;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Records;
 import org.jooq.Row10;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -154,10 +150,12 @@ public class Staging extends TableImpl<StagingRecord> {
 
     @Override
     public List<ForeignKey<StagingRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.STAGING__STAGING_IMPORT_FKEY);
+        return Arrays.asList(Keys.STAGING__STAGING_IMPORT_FKEY, Keys.STAGING__STAGING_SCOPED_IDENTIFIER_ID_FKEY, Keys.STAGING__STAGING_CONVERTED_BY_FKEY);
     }
 
     private transient Import _import_;
+    private transient ScopedIdentifier _scopedIdentifier;
+    private transient DehubUser _dehubUser;
 
     /**
      * Get the implicit join path to the <code>public.import</code> table.
@@ -169,6 +167,27 @@ public class Staging extends TableImpl<StagingRecord> {
         return _import_;
     }
 
+    /**
+     * Get the implicit join path to the <code>public.scoped_identifier</code>
+     * table.
+     */
+    public ScopedIdentifier scopedIdentifier() {
+        if (_scopedIdentifier == null)
+            _scopedIdentifier = new ScopedIdentifier(this, Keys.STAGING__STAGING_SCOPED_IDENTIFIER_ID_FKEY);
+
+        return _scopedIdentifier;
+    }
+
+    /**
+     * Get the implicit join path to the <code>public.dehub_user</code> table.
+     */
+    public DehubUser dehubUser() {
+        if (_dehubUser == null)
+            _dehubUser = new DehubUser(this, Keys.STAGING__STAGING_CONVERTED_BY_FKEY);
+
+        return _dehubUser;
+    }
+
     @Override
     public Staging as(String alias) {
         return new Staging(DSL.name(alias), this);
@@ -177,11 +196,6 @@ public class Staging extends TableImpl<StagingRecord> {
     @Override
     public Staging as(Name alias) {
         return new Staging(alias, this);
-    }
-
-    @Override
-    public Staging as(Table<?> alias) {
-        return new Staging(alias.getQualifiedName(), this);
     }
 
     /**
@@ -200,14 +214,6 @@ public class Staging extends TableImpl<StagingRecord> {
         return new Staging(name, null);
     }
 
-    /**
-     * Rename this table
-     */
-    @Override
-    public Staging rename(Table<?> name) {
-        return new Staging(name.getQualifiedName(), null);
-    }
-
     // -------------------------------------------------------------------------
     // Row10 type methods
     // -------------------------------------------------------------------------
@@ -215,19 +221,5 @@ public class Staging extends TableImpl<StagingRecord> {
     @Override
     public Row10<Integer, String, ElementType, String, Integer, Integer, LocalDateTime, Integer, String, String> fieldsRow() {
         return (Row10) super.fieldsRow();
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function10<? super Integer, ? super String, ? super ElementType, ? super String, ? super Integer, ? super Integer, ? super LocalDateTime, ? super Integer, ? super String, ? super String, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link #convertFrom(Class, Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Integer, ? super String, ? super ElementType, ? super String, ? super Integer, ? super Integer, ? super LocalDateTime, ? super Integer, ? super String, ? super String, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
     }
 }

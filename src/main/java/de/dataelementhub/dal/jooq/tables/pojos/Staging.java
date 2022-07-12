@@ -18,16 +18,16 @@ public class Staging implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
-    private String data;
-    private ElementType elementType;
-    private String designation;
-    private Integer importId;
-    private Integer scopedIdentifierId;
+    private Integer       id;
+    private String        data;
+    private ElementType   elementType;
+    private String        designation;
+    private Integer       importId;
+    private Integer       scopedIdentifierId;
     private LocalDateTime convertedAt;
-    private Integer convertedBy;
-    private String stagedElementId;
-    private String members;
+    private Integer       convertedBy;
+    private String        stagedElementId;
+    private String        members;
 
     public Staging() {}
 
@@ -45,16 +45,16 @@ public class Staging implements Serializable {
     }
 
     public Staging(
-        Integer id,
-        String data,
-        ElementType elementType,
-        String designation,
-        Integer importId,
-        Integer scopedIdentifierId,
+        Integer       id,
+        String        data,
+        ElementType   elementType,
+        String        designation,
+        Integer       importId,
+        Integer       scopedIdentifierId,
         LocalDateTime convertedAt,
-        Integer convertedBy,
-        String stagedElementId,
-        String members
+        Integer       convertedBy,
+        String        stagedElementId,
+        String        members
     ) {
         this.id = id;
         this.data = data;
@@ -206,95 +206,6 @@ public class Staging implements Serializable {
      */
     public void setMembers(String members) {
         this.members = members;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final Staging other = (Staging) obj;
-        if (this.id == null) {
-            if (other.id != null)
-                return false;
-        }
-        else if (!this.id.equals(other.id))
-            return false;
-        if (this.data == null) {
-            if (other.data != null)
-                return false;
-        }
-        else if (!this.data.equals(other.data))
-            return false;
-        if (this.elementType == null) {
-            if (other.elementType != null)
-                return false;
-        }
-        else if (!this.elementType.equals(other.elementType))
-            return false;
-        if (this.designation == null) {
-            if (other.designation != null)
-                return false;
-        }
-        else if (!this.designation.equals(other.designation))
-            return false;
-        if (this.importId == null) {
-            if (other.importId != null)
-                return false;
-        }
-        else if (!this.importId.equals(other.importId))
-            return false;
-        if (this.scopedIdentifierId == null) {
-            if (other.scopedIdentifierId != null)
-                return false;
-        }
-        else if (!this.scopedIdentifierId.equals(other.scopedIdentifierId))
-            return false;
-        if (this.convertedAt == null) {
-            if (other.convertedAt != null)
-                return false;
-        }
-        else if (!this.convertedAt.equals(other.convertedAt))
-            return false;
-        if (this.convertedBy == null) {
-            if (other.convertedBy != null)
-                return false;
-        }
-        else if (!this.convertedBy.equals(other.convertedBy))
-            return false;
-        if (this.stagedElementId == null) {
-            if (other.stagedElementId != null)
-                return false;
-        }
-        else if (!this.stagedElementId.equals(other.stagedElementId))
-            return false;
-        if (this.members == null) {
-            if (other.members != null)
-                return false;
-        }
-        else if (!this.members.equals(other.members))
-            return false;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
-        result = prime * result + ((this.data == null) ? 0 : this.data.hashCode());
-        result = prime * result + ((this.elementType == null) ? 0 : this.elementType.hashCode());
-        result = prime * result + ((this.designation == null) ? 0 : this.designation.hashCode());
-        result = prime * result + ((this.importId == null) ? 0 : this.importId.hashCode());
-        result = prime * result + ((this.scopedIdentifierId == null) ? 0 : this.scopedIdentifierId.hashCode());
-        result = prime * result + ((this.convertedAt == null) ? 0 : this.convertedAt.hashCode());
-        result = prime * result + ((this.convertedBy == null) ? 0 : this.convertedBy.hashCode());
-        result = prime * result + ((this.stagedElementId == null) ? 0 : this.stagedElementId.hashCode());
-        result = prime * result + ((this.members == null) ? 0 : this.members.hashCode());
-        return result;
     }
 
     @Override
